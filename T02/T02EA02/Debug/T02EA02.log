@@ -1,0 +1,8 @@
+﻿  main.cpp
+d:\github\advanced-games-programing\t02\t02ea02\main.cpp(114): warning C4838: conversion from 'float' to 'LONG' requires a narrowing conversion
+d:\github\advanced-games-programing\t02\t02ea02\main.cpp(114): warning C4244: 'initializing': conversion from 'float' to 'LONG', possible loss of data
+d:\github\advanced-games-programing\t02\t02ea02\main.cpp(188): warning C4244: '=': conversion from 'UINT' to 'float', possible loss of data
+d:\github\advanced-games-programing\t02\t02ea02\main.cpp(189): warning C4244: '=': conversion from 'UINT' to 'float', possible loss of data
+d:\github\advanced-games-programing\t02\t02ea02\main.cpp(193): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+d:\github\advanced-games-programing\t02\t02ea02\main.cpp(194): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+  T02EA02.vcxproj -> D:\GitHub\Advanced-Games-Programing\T02\T02EA02\Debug\T02EA02.exe
