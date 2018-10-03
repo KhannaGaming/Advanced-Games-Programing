@@ -65,8 +65,8 @@ POS_COL_VERTEX vertices[] =
 float g_clear_colour[4] = { 0.0f,0.0f,0.0f,1.0f };
 float g_x = 0;
 float g_y = 0;
-float g_rect_width = 640;
-float g_rect_height = 480;
+float g_rect_width = 64;
+float g_rect_height = 48;
 float speed = 0.06f;
 
 
