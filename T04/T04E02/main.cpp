@@ -76,7 +76,7 @@ struct CONSTANT_BUFFER0
 	float scale;
 	float RedAmount;		//4 bytes
 	float GreenAmount;
-	XMFLOAT3 packing_bytes;	//3x4 = 12 bytes
+	//XMFLOAT3 packing_bytes;	//3x4 = 12 bytes
 };
 ////////////////////////////////////////////////////////////////////////
 //Change every tutorial
@@ -200,20 +200,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			
 			cb0_values.scale -= 0.2f; // 50% of vertex red value 
-										  //Upload the new values for the constant buffer
-			g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
-
-			g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
-			
+			break;
 		};
 		if (wParam == 0x44)
 		{
 			cb0_values.scale += 0.2f; // 50% of vertex red value 
-										  //Upload the new values for the constant buffer
-			g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
-
-			g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
-			
+		
+			break;
 		};
 
 		if (wParam == 0x57)
@@ -221,30 +214,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			
 
 			cb0_values.RedAmount += 0.5f; // 50% of vertex red value 
-		    //Upload the new values for the constant buffer
-			g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
 
-			g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
-		
+			break;
 		};
 		if (wParam == 0x53)
 		{
 			cb0_values.RedAmount -= 0.5f; // 50% of vertex red value 
-										  //Upload the new values for the constant buffer
-			g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
-
-			g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
 			
+			break;
 		};
-		//Lock the buffer to allow writing
-		g_pImmediateContext->Map(g_pVertexBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms);
-
-		//Copy the data
-		memcpy(ms.pData, vertices, sizeof(vertices));
-
-		//Unlock the buffer
-		g_pImmediateContext->Unmap(g_pVertexBuffer, NULL);
-		break;
+		
 	case WM_SIZE:
 		if (g_pSwapChain)
 		{
@@ -307,7 +286,7 @@ HRESULT InitialiseD3D()
 	UINT createDeviceFlags = 0;
 
 #ifdef _DEBUG
-	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+	//createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
 	D3D_DRIVER_TYPE driverTypes[] =
@@ -525,6 +504,7 @@ HRESULT InitialiseGraphics()
 //Render Frame
 void RenderFrame(void)
 {
+	g_pImmediateContext->ClearRenderTargetView(g_pBackBufferRTView, g_clear_colour);
 	//Render HERE
 	//Set vertex buffer //03-01
 	UINT stride = sizeof(POS_COL_VERTEX);
@@ -533,6 +513,11 @@ void RenderFrame(void)
 
 	//Select which primitive type to use //03-01
 	g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	//Upload the new values for the constant buffer
+	g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
+
+	g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
 
 	//Draw the vertex buffer to the back buffer //03-01
 	g_pImmediateContext->Draw(sizeof(vertices), 0);
