@@ -1,2 +1,6 @@
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.16299.0
+<<<<<<< HEAD
 Debug|Win32|C:\Users\1khans16\Downloads\Advanced-Games-Programing\T04\T04E01\|
+=======
+Debug|Win32|D:\GitHub\Advanced-Games-Programing\T04\T04E01\|
+>>>>>>> e7bd0d708ca461251128a31a38a367844e5a5eab

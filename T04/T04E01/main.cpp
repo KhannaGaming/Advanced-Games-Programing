@@ -39,6 +39,10 @@ ID3D11Buffer*			g_pVertexBuffer;
 ID3D11VertexShader*		g_pVertexShader;
 ID3D11PixelShader*		g_pPixelShader;
 ID3D11InputLayout*		g_pInputLayout;
+<<<<<<< HEAD
+=======
+ID3D11Buffer*			g_pConstantBuffer0;
+>>>>>>> e7bd0d708ca461251128a31a38a367844e5a5eab
 
 	//Define vertices of a triangle - screen coordinates -1.0 to +1.0
 //Define vertex structure
@@ -51,6 +55,7 @@ struct POS_COL_VERTEX//This will be added to and renamed in future tutorials
 POS_COL_VERTEX vertices[] =
 {
 	{ XMFLOAT3(0.9f, 0.9f, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+<<<<<<< HEAD
 	{ XMFLOAT3(0.9f, -0.9f, 0.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
 	{ XMFLOAT3(-0.9f, -0.9f, 0.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
 	{ XMFLOAT3(0.0f, 0.9f, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
@@ -59,12 +64,23 @@ POS_COL_VERTEX vertices[] =
 	{ XMFLOAT3(0.0f, 0.9f, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
 	{ XMFLOAT3(-0.9f, -0.0f, 0.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
 	{ XMFLOAT3(-0.9f, +0.9f, 0.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+=======
+	{ XMFLOAT3(0.9f, -0.9f, 0.0f), XMFLOAT4(0.1f, 1.0f, 0.0f, 1.0f) },
+	{ XMFLOAT3(-0.9f, -0.9f, 0.0f), XMFLOAT4(0.1f, 0.0f, 1.0f, 1.0f) },
+	{ XMFLOAT3(0.0f, 0.9f, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+	{ XMFLOAT3(0.0f, -0.0f, 0.0f), XMFLOAT4(0.1f, 1.0f, 0.0f, 1.0f) },
+	{ XMFLOAT3(-0.9f, -0.0f, 0.0f), XMFLOAT4(0.1f, 0.0f, 1.0f, 1.0f) },
+	{ XMFLOAT3(0.0f, 0.9f, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+	{ XMFLOAT3(-0.9f, -0.0f, 0.0f), XMFLOAT4(0.1f, 0.0f, 1.0f, 1.0f) },
+	{ XMFLOAT3(-0.9f, +0.9f, 0.0f), XMFLOAT4(0.1f, 1.0f, 0.0f, 1.0f) },
+>>>>>>> e7bd0d708ca461251128a31a38a367844e5a5eab
 };
 
 //Backgournd clear colour
 float g_clear_colour[4] = { 0.0f,0.0f,0.0f,1.0f };
 float g_x = 0;
 float g_y = 0;
+<<<<<<< HEAD
 float g_rect_width = 64;
 float g_rect_height = 48;
 float speed = 0.06f;
@@ -73,6 +89,22 @@ float speed = 0.06f;
 ////////////////////////////////////////////////////////////////////////
 //Change every tutorial
 char g_TutorialName[100] = "T03E01\0";
+=======
+float g_rect_width = 640;
+float g_rect_height = 480;
+const float speed = 0.06f;
+
+//Const buffer structs. Pack to 16 bytes. Don't let any single element cross a 16 byte boundary
+struct CONSTANT_BUFFER0
+{
+	float RedAmount;		//4 bytes
+	float GreenAmount;
+	XMFLOAT3 packing_bytes;	//3x4 = 12 bytes
+};
+////////////////////////////////////////////////////////////////////////
+//Change every tutorial
+const char g_TutorialName[100] = "T04E01\0";
+>>>>>>> e7bd0d708ca461251128a31a38a367844e5a5eab
 
 ////////////////////////////////////////////////////////////////////////
 //Forward declarations
@@ -83,6 +115,11 @@ void ShutdownD3D();
 void RenderFrame(void);
 HRESULT InitialiseGraphics(void);
 
+<<<<<<< HEAD
+=======
+CONSTANT_BUFFER0 cb0_values;
+
+>>>>>>> e7bd0d708ca461251128a31a38a367844e5a5eab
 //////////////////////////////////////////////////////////////////////////////////////
 // Entry point to the program. Initializes everything and goes into a message processing 
 // loop. Idle time is used to render the scene.
@@ -189,31 +226,65 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		if (wParam == 0x41)
 		{
 			
+<<<<<<< HEAD
 			vertices[0].Pos.x = vertices[0].Pos.x - speed;
 			vertices[1].Pos.x = vertices[1].Pos.x - speed;
 			vertices[2].Pos.x = vertices[2].Pos.x - speed;
+=======
+			cb0_values.GreenAmount -= 0.5f; // 50% of vertex red value 
+										  //Upload the new values for the constant buffer
+			g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
+
+			g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
+>>>>>>> e7bd0d708ca461251128a31a38a367844e5a5eab
 			
 		};
 		if (wParam == 0x44)
 		{
+<<<<<<< HEAD
 			vertices[0].Pos.x = vertices[0].Pos.x + speed;
 			vertices[1].Pos.x = vertices[1].Pos.x + speed;
 			vertices[2].Pos.x = vertices[2].Pos.x + speed;
+=======
+			cb0_values.GreenAmount += 0.5f; // 50% of vertex red value 
+										  //Upload the new values for the constant buffer
+			g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
+
+			g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
+>>>>>>> e7bd0d708ca461251128a31a38a367844e5a5eab
 			
 		};
 
 		if (wParam == 0x57)
 		{
+<<<<<<< HEAD
 			vertices[0].Pos.y = vertices[0].Pos.y + speed;
 			vertices[1].Pos.y = vertices[1].Pos.y + speed;
 			vertices[2].Pos.y = vertices[2].Pos.y + speed;
+=======
+			
+
+			cb0_values.RedAmount += 0.5f; // 50% of vertex red value 
+		    //Upload the new values for the constant buffer
+			g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
+
+			g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
+>>>>>>> e7bd0d708ca461251128a31a38a367844e5a5eab
 		
 		};
 		if (wParam == 0x53)
 		{
+<<<<<<< HEAD
 			vertices[0].Pos.y = vertices[0].Pos.y - speed;
 			vertices[1].Pos.y = vertices[1].Pos.y - speed;
 			vertices[2].Pos.y = vertices[2].Pos.y - speed;
+=======
+			cb0_values.RedAmount -= 0.5f; // 50% of vertex red value 
+										  //Upload the new values for the constant buffer
+			g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
+
+			g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
+>>>>>>> e7bd0d708ca461251128a31a38a367844e5a5eab
 			
 		};
 		//Lock the buffer to allow writing
@@ -287,7 +358,11 @@ HRESULT InitialiseD3D()
 	UINT createDeviceFlags = 0;
 
 #ifdef _DEBUG
+<<<<<<< HEAD
 	//y7createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+=======
+	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+>>>>>>> e7bd0d708ca461251128a31a38a367844e5a5eab
 #endif
 
 	D3D_DRIVER_TYPE driverTypes[] =
@@ -377,6 +452,10 @@ void ShutdownD3D()
 	if (g_pPixelShader) g_pPixelShader->Release();//03-01
 	if (g_pBackBufferRTView) g_pBackBufferRTView->Release();
 	if (g_pSwapChain) g_pSwapChain->Release();
+<<<<<<< HEAD
+=======
+	if (g_pConstantBuffer0) g_pConstantBuffer0->Release();
+>>>>>>> e7bd0d708ca461251128a31a38a367844e5a5eab
 	if (g_pImmediateContext) g_pImmediateContext->Release();
 	if (g_pD3DDevice) g_pD3DDevice->Release();
 }
@@ -416,7 +495,29 @@ HRESULT InitialiseGraphics()
 	//Unlock the buffer
 	g_pImmediateContext->Unmap(g_pVertexBuffer, NULL);
 
+<<<<<<< HEAD
 	
+=======
+	//Create constant buffer
+	D3D11_BUFFER_DESC constant_buffer_desc;
+	ZeroMemory(&constant_buffer_desc, sizeof(constant_buffer_desc));
+	constant_buffer_desc.Usage = D3D11_USAGE_DEFAULT; // Can use UpdateSubresource() to update
+	constant_buffer_desc.ByteWidth = 16; //MUST be a multiple of 16, calculate from CB struct
+	constant_buffer_desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;// Use as a constant buffer
+
+	hr = g_pD3DDevice->CreateBuffer(&constant_buffer_desc, NULL, &g_pConstantBuffer0);
+
+	if (FAILED(hr))return hr;
+
+	CONSTANT_BUFFER0 cb0_values;
+	cb0_values.RedAmount = 0.5f; // 50% of vertex red value 
+	cb0_values.GreenAmount = 0.5f; // 50% of vertex green value 
+
+	//Upload the new values for the constant buffer
+	g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
+
+	g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
+>>>>>>> e7bd0d708ca461251128a31a38a367844e5a5eab
 
 	//Load and compile the pixel and vertex shaders- use vs_5_0 to target DX11 hardware only
 	ID3DBlob *VS, *PS, *error;

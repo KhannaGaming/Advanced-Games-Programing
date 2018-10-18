@@ -1,2 +1,9 @@
-﻿  main.cpp
-  T03EA05.vcxproj -> D:\GitHub\Advanced-Games-Programing\T03\T03EA05\Debug\T03EA05.exe
+﻿  Input.cpp
+  main.cpp
+d:\github\advanced-games-programing\t03\t03ea05\main.cpp(123): error C3867: 'Input::WndProc': non-standard syntax; use '&' to create a pointer to member
+d:\github\advanced-games-programing\t03\t03ea05\main.cpp(123): error C2440: '=': cannot convert from 'LRESULT (__stdcall Input::* )(HWND,UINT,WPARAM,LPARAM)' to 'WNDPROC'
+  d:\github\advanced-games-programing\t03\t03ea05\main.cpp(123): note: There is no context in which this conversion is possible
+d:\github\advanced-games-programing\t03\t03ea05\main.cpp(377): error C2065: 'vertices': undeclared identifier
+d:\github\advanced-games-programing\t03\t03ea05\main.cpp(395): error C2065: 'vertices': undeclared identifier
+d:\github\advanced-games-programing\t03\t03ea05\main.cpp(483): error C2065: 'vertices': undeclared identifier
+  Generating Code...
