@@ -74,10 +74,10 @@ float ratio=0.0f;
 //Const buffer structs. Pack to 16 bytes. Don't let any single element cross a 16 byte boundary
 struct CONSTANT_BUFFER0
 {
-	float scale;
+	XMMATRIX WorldViewProjection;
 	float RedAmount;		//4 bytes
-	float GreenAmount;
-	float packing_bytes;	//3x4 = 12 bytes
+	float scale;
+	XMFLOAT2 packing_bytes;	//3x4 = 12 bytes
 };
 ////////////////////////////////////////////////////////////////////////
 //Change every tutorial
@@ -420,7 +420,7 @@ HRESULT InitialiseGraphics()
 	D3D11_BUFFER_DESC constant_buffer_desc;
 	ZeroMemory(&constant_buffer_desc, sizeof(constant_buffer_desc));
 	constant_buffer_desc.Usage = D3D11_USAGE_DEFAULT; // Can use UpdateSubresource() to update
-	constant_buffer_desc.ByteWidth = 16; //MUST be a multiple of 16, calculate from CB struct
+	constant_buffer_desc.ByteWidth = 80; //MUST be a multiple of 16, calculate from CB struct
 	constant_buffer_desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;// Use as a constant buffer
 
 	hr = g_pD3DDevice->CreateBuffer(&constant_buffer_desc, NULL, &g_pConstantBuffer0);
@@ -518,6 +518,13 @@ void RenderFrame(void)
 	g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
 
 	g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
+
+	XMMATRIX projection, world, view;
+
+	world = XMMatrixTranslation(0, 0, 5);
+	projection = XMMatrixPerspectiveFovLH(XMConvertToRadians(45.0f), g_rect_width / g_rect_height, 1.0f, 100.0f);
+	view = XMMatrixIdentity();
+	cb0_values.WorldViewProjection = world * view * projection;
 
 	//Draw the vertex buffer to the back buffer //03-01
 	g_pImmediateContext->Draw(sizeof(vertices), 0);
