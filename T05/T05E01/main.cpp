@@ -54,30 +54,33 @@ POS_COL_VERTEX vertices[] =
 	{ XMFLOAT3(0.9f, 0.9f, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
 	{ XMFLOAT3(0.9f, -0.9f, 0.0f), XMFLOAT4(0.1f, 1.0f, 0.0f, 1.0f) },
 	{ XMFLOAT3(-0.9f, -0.9f, 0.0f), XMFLOAT4(0.1f, 0.0f, 1.0f, 1.0f) },
-	/*{ XMFLOAT3(0.0f, 0.9f, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+	{ XMFLOAT3(0.0f, 0.9f, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
 	{ XMFLOAT3(0.0f, -0.0f, 0.0f), XMFLOAT4(0.1f, 1.0f, 0.0f, 1.0f) },
 	{ XMFLOAT3(-0.9f, -0.0f, 0.0f), XMFLOAT4(0.1f, 0.0f, 1.0f, 1.0f) },
 	{ XMFLOAT3(0.0f, 0.9f, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
 	{ XMFLOAT3(-0.9f, -0.0f, 0.0f), XMFLOAT4(0.1f, 0.0f, 1.0f, 1.0f) },
-	{ XMFLOAT3(-0.9f, +0.9f, 0.0f), XMFLOAT4(0.1f, 1.0f, 0.0f, 1.0f) },*/
+	{ XMFLOAT3(-0.9f, +0.9f, 0.0f), XMFLOAT4(0.1f, 1.0f, 0.0f, 1.0f) },
 };
 
 //Backgournd clear colour
 float g_clear_colour[4] = { 0.0f,0.0f,0.0f,1.0f };
 float g_x = 0;
 float g_y = 0;
-float g_rect_width = 192;
-float g_rect_height = 108;
+float g_rect_width = 640;
+float g_rect_height = 480;
 const float speed = 0.06f;
-float ratio=0.0f;
+float xpos=0;
+float ypos=0;
+float zpos=5;
 
 //Const buffer structs. Pack to 16 bytes. Don't let any single element cross a 16 byte boundary
 struct CONSTANT_BUFFER0
 {
-	XMMATRIX WorldViewProjection;
+	XMMATRIX WorldViewProjection; // 64 bytes (4x4=16 floats x 4 floats)
 	float RedAmount;		//4 bytes
 	float scale;
-	XMFLOAT2 packing_bytes;	//3x4 = 12 bytes
+	XMFLOAT2 packing;
+	//TOTAL SIZE = 80 bytes
 };
 ////////////////////////////////////////////////////////////////////////
 //Change every tutorial
@@ -164,7 +167,6 @@ HRESULT InitialiseWindow(HINSTANCE hInstance, int nCmdShow)
 	g_hWnd = CreateWindow(	Name, g_TutorialName, WS_OVERLAPPEDWINDOW,
 							CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left,
 							rc.bottom - rc.top, NULL, NULL, hInstance,NULL);
-	ratio = g_rect_width / g_rect_height;
 	
 	if(!g_hWnd) return E_FAIL;
 
@@ -183,40 +185,43 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	switch (message)
 	{
-	/*case WM_PAINT:
+	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 		EndPaint(hWnd, &ps);
-		break;*/
+		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
 	
 	case WM_KEYDOWN:
-		//D3D11_MAPPED_SUBRESOURCE ms;
+		D3D11_MAPPED_SUBRESOURCE ms;
 		if (wParam == VK_ESCAPE)
 		{
 			DestroyWindow(g_hWnd);
-			break;
+			//break;
 		}
-		/*if (wParam == 0x41)
+		if (wParam == 0x41)
 		{
-			break;
+			xpos -= 0.1f;
+			//break;
 		};
 		if (wParam == 0x44)
 		{
-			break;
+			xpos += 0.1f;
+			//break;
 		};
 
 		if (wParam == 0x57)
 		{
-			break;
+			ypos += 0.1f;
+			//break;
 		};
 		if (wParam == 0x53)
 		{
-			
-			break;
-		};*/
-		return 0;
+			ypos -= 0.1f;
+			//break;
+		};
+		 break;
 		
 	case WM_SIZE:
 		if (g_pSwapChain)
@@ -243,11 +248,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				&g_pBackBufferRTView);
 			// Perform error handling here!
 			pBuffer->Release();
-			RECT rect;
+
 			g_pImmediateContext->OMSetRenderTargets(1, &g_pBackBufferRTView, NULL);
 			 
 			float width = LOWORD(lParam);
 			float height = HIWORD(lParam);
+			g_rect_width = width;
+			g_rect_height = height;
+
 			// Set up the viewport.
 			D3D11_VIEWPORT vp;
 			vp.Width = width;
@@ -257,15 +265,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			vp.TopLeftX = 0;
 			vp.TopLeftY = 0;
 			g_pImmediateContext->RSSetViewports(1, &vp);
-			
-			if (GetWindowRect(g_hWnd, &rect))
-			{
-				 float rectWidth = rect.right - rect.left;
-				 float rectHeight = (rect.bottom - rect.top);
-				 float newheight = rectWidth / ratio;
-				 SetWindowPos(g_hWnd,NULL,0,0, (int)rectWidth, (int)newheight,0);
-			}
-			
 		}
 		break;
 	default:
@@ -515,16 +514,16 @@ void RenderFrame(void)
 	g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	//Upload the new values for the constant buffer
+	XMMATRIX projection, world, view;
+
+	world = XMMatrixTranslation(xpos, ypos, zpos);
+	projection = XMMatrixPerspectiveFovLH(XMConvertToRadians(45.0), 640.0 / 480.0, 1.0, 100.0);
+	view = XMMatrixIdentity();
+	cb0_values.WorldViewProjection = world * view * projection;
+
 	g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
 
 	g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
-
-	XMMATRIX projection, world, view;
-
-	world = XMMatrixTranslation(0, 0, 5);
-	projection = XMMatrixPerspectiveFovLH(XMConvertToRadians(45.0f), g_rect_width / g_rect_height, 1.0f, 100.0f);
-	view = XMMatrixIdentity();
-	cb0_values.WorldViewProjection = world * view * projection;
 
 	//Draw the vertex buffer to the back buffer //03-01
 	g_pImmediateContext->Draw(sizeof(vertices), 0);
