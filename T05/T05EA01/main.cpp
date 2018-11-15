@@ -103,8 +103,8 @@ POS_COL_VERTEX vertices[] =
 
 	//Face11
 	{ XMFLOAT3(1.0f, -1.0f, -1.0f),		XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f) },
-	{ XMFLOAT3(-1.0f, -1.0f, 1.0f),	XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f) },
-	{ XMFLOAT3(-1.0f, -1.0f, -1.0f),		XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f) },
+	{ XMFLOAT3(-1.0f, -1.0f, 1.0f),		XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f) },
+	{ XMFLOAT3(-1.0f, -1.0f, -1.0f),	XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f) },
 
 	//Face12
 	{ XMFLOAT3(1.0f, -1.0f, 1.0f),		XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f) },
