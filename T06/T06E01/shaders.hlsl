@@ -1,7 +1,6 @@
 cbuffer CBuffer0
 {
 	matrix WVPMatrix;	// 64 bytes
-	matrix WVPMatrix2;	// 64 bytes
 	float red_fraction; // 4 bytes
 	float scale;		// 4 bytes
 	float2 packing;		// 8 bytes

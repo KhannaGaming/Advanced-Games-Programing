@@ -40,6 +40,8 @@ ID3D11VertexShader*		g_pVertexShader;
 ID3D11PixelShader*		g_pPixelShader;
 ID3D11InputLayout*		g_pInputLayout;
 ID3D11Buffer*			g_pConstantBuffer0;
+ID3D11DepthStencilView* g_pZBuffer;
+
 
 	//Define vertices of a triangle - screen coordinates -1.0 to +1.0
 //Define vertex structure
@@ -128,6 +130,9 @@ float zDegrees = 0;
 
 bool aPressed = false;
 bool sPressed = false;
+bool wPressed = false;
+bool dPressed = false;
+
 
 
 //Const buffer structs. Pack to 16 bytes. Don't let any single element cross a 16 byte boundary
@@ -141,7 +146,7 @@ struct CONSTANT_BUFFER0
 };
 ////////////////////////////////////////////////////////////////////////
 //Change every tutorial
-const char g_TutorialName[100] = "T04E01\0";
+const char g_TutorialName[100] = "T06E01\0";
 
 ////////////////////////////////////////////////////////////////////////
 //Forward declarations
@@ -153,7 +158,7 @@ void RenderFrame(void);
 void Input();
 HRESULT InitialiseGraphics(void);
 
-CONSTANT_BUFFER0 cb0_values;
+
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Entry point to the program. Initializes everything and goes into a message processing 
@@ -264,11 +269,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			aPressed = true;
 			//break;
 		};
+		if (wParam == 0x44)//D
+		{
+			dPressed = true;
+		}
 		if (wParam == 0x53)//S
 		{
 			sPressed = true;
 			//break;
 		};
+		if (wParam == 0x57)//W
+		{
+			wPressed = true;
+		}
 		break;
 		
 
@@ -278,11 +291,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			aPressed = false;
 		}
+		if (wParam == 0x44)//D
+		{
+			dPressed = false;
+		}
 		if (wParam == 0x53)//S
 		{
 			sPressed = false;
 			//break;
 		};
+		if (wParam == 0x57)//W
+		{
+			wPressed = false;
+		}
+
 		break;
 
 	case WM_SIZE:
@@ -406,8 +428,35 @@ HRESULT InitialiseD3D()
 	pBackBufferTexture->Release();
 	if (FAILED(hr)) return hr;
 
+	// Create a Z buffer texture
+	D3D11_TEXTURE2D_DESC tex2dDesc;
+	ZeroMemory(&tex2dDesc, sizeof(tex2dDesc));
+
+	tex2dDesc.Width = width;
+	tex2dDesc.Height = height;
+	tex2dDesc.ArraySize = 1;
+	tex2dDesc.MipLevels = 1;
+	tex2dDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	tex2dDesc.SampleDesc.Count = sd.SampleDesc.Count;
+	tex2dDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	tex2dDesc.Usage = D3D11_USAGE_DEFAULT;
+
+	ID3D11Texture2D *pZBufferTexture;
+	hr = g_pD3DDevice->CreateTexture2D(&tex2dDesc, NULL, &pZBufferTexture);
+	if (FAILED(hr)) return hr;
+
+	// Create the Z Buffer
+	D3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc;
+	ZeroMemory(&dsvDesc, sizeof(dsvDesc));
+
+	dsvDesc.Format = tex2dDesc.Format;
+	dsvDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+
+	g_pD3DDevice->CreateDepthStencilView(pZBufferTexture, &dsvDesc, &g_pZBuffer);
+	pZBufferTexture->Release();
+
 	//Set the render target view
-	g_pImmediateContext->OMSetRenderTargets(1, &g_pBackBufferRTView, NULL);
+	g_pImmediateContext->OMSetRenderTargets(1, &g_pBackBufferRTView, g_pZBuffer);
 
 	//Set the viewport
 	D3D11_VIEWPORT viewport;
@@ -453,7 +502,7 @@ HRESULT InitialiseGraphics()
 	D3D11_BUFFER_DESC bufferDesc;
 	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
 	bufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-	bufferDesc.ByteWidth = sizeof(POS_COL_VERTEX) * sizeof(vertices);
+	bufferDesc.ByteWidth = /*sizeof(POS_COL_VERTEX) **/ sizeof(vertices);
 	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	hr = g_pD3DDevice->CreateBuffer(&bufferDesc, NULL, &g_pVertexBuffer);
@@ -566,6 +615,8 @@ HRESULT InitialiseGraphics()
 void RenderFrame(void)
 {
 	g_pImmediateContext->ClearRenderTargetView(g_pBackBufferRTView, g_clear_colour);
+
+	g_pImmediateContext->ClearDepthStencilView(g_pZBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	//Render HERE
 	//Set vertex buffer //03-01
 	UINT stride = sizeof(POS_COL_VERTEX);
@@ -575,6 +626,7 @@ void RenderFrame(void)
 	//Select which primitive type to use //03-01
 	g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
+	CONSTANT_BUFFER0 cb0_values;
 	//Upload the new values for the constant buffer
 	XMMATRIX projection, world, view;
 
@@ -593,6 +645,27 @@ void RenderFrame(void)
 	//Draw the vertex buffer to the back buffer //03-01
 	g_pImmediateContext->Draw(36, 0);
 
+
+	CONSTANT_BUFFER0 cb0_values1;
+	//Upload the new values for the constant buffer
+	XMMATRIX projection1, world1, view1;
+
+	world1 = XMMatrixRotationX(XMConvertToRadians(10));
+	world1 *= XMMatrixRotationY(XMConvertToRadians(45));
+	world1 *= XMMatrixRotationZ(XMConvertToRadians(90));
+	world1 *= XMMatrixTranslation(0, 0, 10);
+	projection1 = XMMatrixPerspectiveFovLH(XMConvertToRadians(45.0), g_rect_width / g_rect_height, 1.0, 100.0);
+	view1 = XMMatrixIdentity();
+	cb0_values1.WorldViewProjection = world1 * view1 * projection1;
+
+	g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values1, 0, 0);
+
+	g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
+
+	//Draw the vertex buffer to the back buffer //03-01
+	g_pImmediateContext->Draw(36, 0);
+
+
 	//Display what has just been rendered;
 	g_pSwapChain->Present(0, 0);
 }
@@ -605,6 +678,16 @@ void Input()
 	}
 
 	if (sPressed == true)
+	{
+		zpos -= 0.001f;
+	}
+
+	if (wPressed == true)
+	{
+		zpos += 0.001f;
+	}
+
+	if (dPressed == true)
 	{
 		xDegrees += 0.001f;
 	}
