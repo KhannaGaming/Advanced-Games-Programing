@@ -1,0 +1,9 @@
+﻿  main.cpp
+d:\github\advanced-games-programing\t08\t08e02\main.cpp(292): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t08\t08e02\main.cpp(298): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t08\t08e02\main.cpp(358): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t08\t08e02\main.cpp(359): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t08\t08e02\main.cpp(373): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t08\t08e02\main.cpp(374): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t08\t08e02\main.cpp(262): warning C4101: 'ms': unreferenced local variable
+  T08E02.vcxproj -> D:\GitHub\Advanced-Games-Programing\T08\T08E02\Debug\T08E02.exe
