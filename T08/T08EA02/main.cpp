@@ -537,8 +537,8 @@ HRESULT InitialiseD3D()
 
 	g_pImmediateContext->RSSetViewports(1, &viewport);
 
-	g_pText2D = new Text2D("Assets/font1.bmp", g_pD3DDevice, g_pImmediateContext);
-	g_pText2D2 = new Text2D("Assets/font1.bmp", g_pD3DDevice, g_pImmediateContext);
+	g_pText2D = new Text2D("Assets/font1.png", g_pD3DDevice, g_pImmediateContext);
+	g_pText2D2 = new Text2D("Assets/font1.png", g_pD3DDevice, g_pImmediateContext);
 
 	D3D11_BLEND_DESC b;
 	b.RenderTarget[0].BlendEnable = TRUE;
