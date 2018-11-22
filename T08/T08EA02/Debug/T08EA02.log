@@ -1,14 +1,10 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (T08EA01.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   main.cpp
-d:\github\advanced-games-programing\t08\t08ea02\sprite.h(21): warning C4091: 'static ': ignored on left of 'POS_COL_TEX_VERTEX' when no variable is declared
-d:\github\advanced-games-programing\t08\t08ea02\main.cpp(299): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\github\advanced-games-programing\t08\t08ea02\main.cpp(305): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\github\advanced-games-programing\t08\t08ea02\main.cpp(365): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-d:\github\advanced-games-programing\t08\t08ea02\main.cpp(366): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-d:\github\advanced-games-programing\t08\t08ea02\main.cpp(380): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-d:\github\advanced-games-programing\t08\t08ea02\main.cpp(381): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-d:\github\advanced-games-programing\t08\t08ea02\main.cpp(269): warning C4101: 'ms': unreferenced local variable
-  Sprite.cpp
-d:\github\advanced-games-programing\t08\t08ea02\sprite.h(21): warning C4091: 'static ': ignored on left of 'POS_COL_TEX_VERTEX' when no variable is declared
-  Generating Code...
+d:\github\advanced-games-programing\t08\t08ea02\main.cpp(297): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t08\t08ea02\main.cpp(303): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t08\t08ea02\main.cpp(363): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t08\t08ea02\main.cpp(364): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t08\t08ea02\main.cpp(378): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t08\t08ea02\main.cpp(379): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t08\t08ea02\main.cpp(267): warning C4101: 'ms': unreferenced local variable
   T08EA02.vcxproj -> D:\GitHub\Advanced-Games-Programing\T08\T08EA02\Debug\T08EA02.exe

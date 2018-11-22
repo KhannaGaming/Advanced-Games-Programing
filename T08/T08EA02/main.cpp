@@ -738,6 +738,7 @@ HRESULT InitialiseGraphics()
 //Render Frame
 void RenderFrame(void)
 {
+	g_pImmediateContext->OMSetBlendState(g_pAlphaBlendEnable, 0, 0xffffffff);
 	g_pImmediateContext->ClearRenderTargetView(g_pBackBufferRTView, g_clear_colour);
 
 	g_pImmediateContext->ClearDepthStencilView(g_pZBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
@@ -797,7 +798,6 @@ void RenderFrame(void)
 
 	g_pText2D->AddText("some text", -1.0f, +1.0f, 0.2f);
 	g_pText2D2->AddText("!$%'&*()-,'#.", -0.0f, +0.0f, 0.1f);
-	g_pImmediateContext->OMSetBlendState(g_pAlphaBlendEnable, 0, 0xffffffff);
 	g_pText2D->RenderText();
 	g_pText2D2->RenderText();
 	//g_pImmediateContext->OMSetBlendState(g_pAlphaBlendDisable, 0, 0xffffffff);
