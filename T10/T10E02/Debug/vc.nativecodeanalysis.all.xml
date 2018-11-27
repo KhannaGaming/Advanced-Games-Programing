@@ -1,0 +1,4322 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>119</LINE>
+      <COLUMN>16</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMConvertHalfToFloatStream': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1901). </DESCRIPTION>
+    <FUNCTION>XMConvertHalfToFloatStream</FUNCTION>
+    <DECORATED>?XMConvertHalfToFloatStream@@YAPAMPAMIPBGII@Z</DECORATED>
+    <FUNCLINE>119</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>119</LINE>
+      <COLUMN>16</COLUMN>
+    </SFA>
+    <DEFECTCODE>6101</DEFECTCODE>
+    <DESCRIPTION>Returning uninitialized memory '*pOutputStream'.  A successful path through the function does not set the named _Out_ parameter. </DESCRIPTION>
+    <FUNCTION>XMConvertHalfToFloatStream</FUNCTION>
+    <DECORATED>?XMConvertHalfToFloatStream@@YAPAMPAMIPBGII@Z</DECORATED>
+    <FUNCLINE>119</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>119</LINE>
+        <COLUMN>16</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>130</LINE>
+        <COLUMN>10</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'UINT i')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>131</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>132</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>134</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>135</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>137</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>137</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;HalfCount' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>144</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>119</LINE>
+        <COLUMN>16</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is an _Out_ parameter that may not have been assigned to</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>194</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMConvertFloatToHalfStream': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1906). </DESCRIPTION>
+    <FUNCTION>XMConvertFloatToHalfStream</FUNCTION>
+    <DECORATED>?XMConvertFloatToHalfStream@@YAPAGPAGIPBMII@Z</DECORATED>
+    <FUNCLINE>194</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>194</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>6101</DEFECTCODE>
+    <DESCRIPTION>Returning uninitialized memory '*pOutputStream'.  A successful path through the function does not set the named _Out_ parameter. </DESCRIPTION>
+    <FUNCTION>XMConvertFloatToHalfStream</FUNCTION>
+    <DECORATED>?XMConvertFloatToHalfStream@@YAPAGPAGIPBMII@Z</DECORATED>
+    <FUNCLINE>194</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>194</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>205</LINE>
+        <COLUMN>10</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'UINT i')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>206</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>207</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>209</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>210</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>212</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>212</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;FloatCount' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>218</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>194</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is an _Out_ parameter that may not have been assigned to</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>419</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadInt': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1924). </DESCRIPTION>
+    <FUNCTION>XMLoadInt</FUNCTION>
+    <DECORATED>?XMLoadInt@@YA?AU__vector4@@PBI@Z</DECORATED>
+    <FUNCLINE>419</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>442</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1925). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat</FUNCTION>
+    <DECORATED>?XMLoadFloat@@YA?AU__vector4@@PBM@Z</DECORATED>
+    <FUNCLINE>442</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>465</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadInt2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1927). </DESCRIPTION>
+    <FUNCTION>XMLoadInt2</FUNCTION>
+    <DECORATED>?XMLoadInt2@@YA?AU__vector4@@PBI@Z</DECORATED>
+    <FUNCLINE>465</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>493</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadInt2A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1928). </DESCRIPTION>
+    <FUNCTION>XMLoadInt2A</FUNCTION>
+    <DECORATED>?XMLoadInt2A@@YA?AU__vector4@@PBI@Z</DECORATED>
+    <FUNCLINE>493</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>524</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1929). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat2</FUNCTION>
+    <DECORATED>?XMLoadFloat2@@YA?AU__vector4@@PBU_XMFLOAT2@@@Z</DECORATED>
+    <FUNCLINE>524</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>548</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat2A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1930). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat2A</FUNCTION>
+    <DECORATED>?XMLoadFloat2A@@YA?AU__vector4@@PBUXMFLOAT2A@@@Z</DECORATED>
+    <FUNCLINE>548</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>577</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadHalf2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1931). </DESCRIPTION>
+    <FUNCTION>XMLoadHalf2</FUNCTION>
+    <DECORATED>?XMLoadHalf2@@YA?AU__vector4@@PBU_XMHALF2@@@Z</DECORATED>
+    <FUNCLINE>577</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>609</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadShortN2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1932). </DESCRIPTION>
+    <FUNCTION>XMLoadShortN2</FUNCTION>
+    <DECORATED>?XMLoadShortN2@@YA?AU__vector4@@PBU_XMSHORTN2@@@Z</DECORATED>
+    <FUNCLINE>609</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>651</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadShort2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1933). </DESCRIPTION>
+    <FUNCTION>XMLoadShort2</FUNCTION>
+    <DECORATED>?XMLoadShort2@@YA?AU__vector4@@PBU_XMSHORT2@@@Z</DECORATED>
+    <FUNCLINE>651</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>692</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUShortN2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1934). </DESCRIPTION>
+    <FUNCTION>XMLoadUShortN2</FUNCTION>
+    <DECORATED>?XMLoadUShortN2@@YA?AU__vector4@@PBU_XMUSHORTN2@@@Z</DECORATED>
+    <FUNCLINE>692</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>732</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUShort2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1935). </DESCRIPTION>
+    <FUNCTION>XMLoadUShort2</FUNCTION>
+    <DECORATED>?XMLoadUShort2@@YA?AU__vector4@@PBU_XMUSHORT2@@@Z</DECORATED>
+    <FUNCLINE>732</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>771</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadInt3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1937). </DESCRIPTION>
+    <FUNCTION>XMLoadInt3</FUNCTION>
+    <DECORATED>?XMLoadInt3@@YA?AU__vector4@@PBI@Z</DECORATED>
+    <FUNCLINE>771</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>807</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadInt3A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1938). </DESCRIPTION>
+    <FUNCTION>XMLoadInt3A</FUNCTION>
+    <DECORATED>?XMLoadInt3A@@YA?AU__vector4@@PBI@Z</DECORATED>
+    <FUNCLINE>807</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>838</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1939). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat3</FUNCTION>
+    <DECORATED>?XMLoadFloat3@@YA?AU__vector4@@PBU_XMFLOAT3@@@Z</DECORATED>
+    <FUNCLINE>838</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>872</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat3A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1940). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat3A</FUNCTION>
+    <DECORATED>?XMLoadFloat3A@@YA?AU__vector4@@PBUXMFLOAT3A@@@Z</DECORATED>
+    <FUNCLINE>872</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>902</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUHenDN3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1943). </DESCRIPTION>
+    <FUNCTION>XMLoadUHenDN3</FUNCTION>
+    <DECORATED>?XMLoadUHenDN3@@YA?AU__vector4@@PBU_XMUHENDN3@@@Z</DECORATED>
+    <FUNCLINE>902</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>945</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUHenD3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1944). </DESCRIPTION>
+    <FUNCTION>XMLoadUHenD3</FUNCTION>
+    <DECORATED>?XMLoadUHenD3@@YA?AU__vector4@@PBU_XMUHEND3@@@Z</DECORATED>
+    <FUNCLINE>945</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>987</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadHenDN3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1941). </DESCRIPTION>
+    <FUNCTION>XMLoadHenDN3</FUNCTION>
+    <DECORATED>?XMLoadHenDN3@@YA?AU__vector4@@PBU_XMHENDN3@@@Z</DECORATED>
+    <FUNCLINE>987</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1038</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadHenD3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1942). </DESCRIPTION>
+    <FUNCTION>XMLoadHenD3</FUNCTION>
+    <DECORATED>?XMLoadHenD3@@YA?AU__vector4@@PBU_XMHEND3@@@Z</DECORATED>
+    <FUNCLINE>1038</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1088</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUDHenN3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1947). </DESCRIPTION>
+    <FUNCTION>XMLoadUDHenN3</FUNCTION>
+    <DECORATED>?XMLoadUDHenN3@@YA?AU__vector4@@PBU_XMUDHENN3@@@Z</DECORATED>
+    <FUNCLINE>1088</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1131</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUDHen3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1948). </DESCRIPTION>
+    <FUNCTION>XMLoadUDHen3</FUNCTION>
+    <DECORATED>?XMLoadUDHen3@@YA?AU__vector4@@PBU_XMUDHEN3@@@Z</DECORATED>
+    <FUNCLINE>1131</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1173</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadDHenN3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1945). </DESCRIPTION>
+    <FUNCTION>XMLoadDHenN3</FUNCTION>
+    <DECORATED>?XMLoadDHenN3@@YA?AU__vector4@@PBU_XMDHENN3@@@Z</DECORATED>
+    <FUNCLINE>1173</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1224</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadDHen3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1946). </DESCRIPTION>
+    <FUNCTION>XMLoadDHen3</FUNCTION>
+    <DECORATED>?XMLoadDHen3@@YA?AU__vector4@@PBU_XMDHEN3@@@Z</DECORATED>
+    <FUNCLINE>1224</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1274</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadU565': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1949). </DESCRIPTION>
+    <FUNCTION>XMLoadU565</FUNCTION>
+    <DECORATED>?XMLoadU565@@YA?AU__vector4@@PBU_XMU565@@@Z</DECORATED>
+    <FUNCLINE>1274</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1311</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat3PK': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1950). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat3PK</FUNCTION>
+    <DECORATED>?XMLoadFloat3PK@@YA?AU__vector4@@PBU_XMFLOAT3PK@@@Z</DECORATED>
+    <FUNCLINE>1311</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1429</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat3SE': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1951). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat3SE</FUNCTION>
+    <DECORATED>?XMLoadFloat3SE@@YA?AU__vector4@@PBU_XMFLOAT3SE@@@Z</DECORATED>
+    <FUNCLINE>1429</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1538</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadInt4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1953). </DESCRIPTION>
+    <FUNCTION>XMLoadInt4</FUNCTION>
+    <DECORATED>?XMLoadInt4@@YA?AU__vector4@@PBI@Z</DECORATED>
+    <FUNCLINE>1538</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1569</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadInt4A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1954). </DESCRIPTION>
+    <FUNCTION>XMLoadInt4A</FUNCTION>
+    <DECORATED>?XMLoadInt4A@@YA?AU__vector4@@PBI@Z</DECORATED>
+    <FUNCLINE>1569</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1602</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1955). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat4</FUNCTION>
+    <DECORATED>?XMLoadFloat4@@YA?AU__vector4@@PBU_XMFLOAT4@@@Z</DECORATED>
+    <FUNCLINE>1602</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1626</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat4A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1956). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat4A</FUNCTION>
+    <DECORATED>?XMLoadFloat4A@@YA?AU__vector4@@PBUXMFLOAT4A@@@Z</DECORATED>
+    <FUNCLINE>1626</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1658</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadHalf4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1957). </DESCRIPTION>
+    <FUNCTION>XMLoadHalf4</FUNCTION>
+    <DECORATED>?XMLoadHalf4@@YA?AU__vector4@@PBU_XMHALF4@@@Z</DECORATED>
+    <FUNCLINE>1658</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1689</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadShortN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1958). </DESCRIPTION>
+    <FUNCTION>XMLoadShortN4</FUNCTION>
+    <DECORATED>?XMLoadShortN4@@YA?AU__vector4@@PBU_XMSHORTN4@@@Z</DECORATED>
+    <FUNCLINE>1689</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1736</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadShort4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1959). </DESCRIPTION>
+    <FUNCTION>XMLoadShort4</FUNCTION>
+    <DECORATED>?XMLoadShort4@@YA?AU__vector4@@PBU_XMSHORT4@@@Z</DECORATED>
+    <FUNCLINE>1736</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1784</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUShortN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1960). </DESCRIPTION>
+    <FUNCTION>XMLoadUShortN4</FUNCTION>
+    <DECORATED>?XMLoadUShortN4@@YA?AU__vector4@@PBU_XMUSHORTN4@@@Z</DECORATED>
+    <FUNCLINE>1784</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1827</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUShort4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1961). </DESCRIPTION>
+    <FUNCTION>XMLoadUShort4</FUNCTION>
+    <DECORATED>?XMLoadUShort4@@YA?AU__vector4@@PBU_XMUSHORT4@@@Z</DECORATED>
+    <FUNCLINE>1827</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1869</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadXIcoN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1962). </DESCRIPTION>
+    <FUNCTION>XMLoadXIcoN4</FUNCTION>
+    <DECORATED>?XMLoadXIcoN4@@YA?AU__vector4@@PBU_XMXICON4@@@Z</DECORATED>
+    <FUNCLINE>1869</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1926</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadXIco4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1963). </DESCRIPTION>
+    <FUNCTION>XMLoadXIco4</FUNCTION>
+    <DECORATED>?XMLoadXIco4@@YA?AU__vector4@@PBU_XMXICO4@@@Z</DECORATED>
+    <FUNCLINE>1926</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>1982</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUIcoN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1966). </DESCRIPTION>
+    <FUNCTION>XMLoadUIcoN4</FUNCTION>
+    <DECORATED>?XMLoadUIcoN4@@YA?AU__vector4@@PBU_XMUICON4@@@Z</DECORATED>
+    <FUNCLINE>1982</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2028</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUIco4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1967). </DESCRIPTION>
+    <FUNCTION>XMLoadUIco4</FUNCTION>
+    <DECORATED>?XMLoadUIco4@@YA?AU__vector4@@PBU_XMUICO4@@@Z</DECORATED>
+    <FUNCLINE>2028</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2073</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadIcoN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1964). </DESCRIPTION>
+    <FUNCTION>XMLoadIcoN4</FUNCTION>
+    <DECORATED>?XMLoadIcoN4@@YA?AU__vector4@@PBU_XMICON4@@@Z</DECORATED>
+    <FUNCLINE>2073</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2126</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadIco4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1965). </DESCRIPTION>
+    <FUNCTION>XMLoadIco4</FUNCTION>
+    <DECORATED>?XMLoadIco4@@YA?AU__vector4@@PBU_XMICO4@@@Z</DECORATED>
+    <FUNCLINE>2126</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2179</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadXDecN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1968). </DESCRIPTION>
+    <FUNCTION>XMLoadXDecN4</FUNCTION>
+    <DECORATED>?XMLoadXDecN4@@YA?AU__vector4@@PBU_XMXDECN4@@@Z</DECORATED>
+    <FUNCLINE>2179</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2224</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadXDec4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1969). </DESCRIPTION>
+    <FUNCTION>XMLoadXDec4</FUNCTION>
+    <DECORATED>?XMLoadXDec4@@YA?AU__vector4@@PBU_XMXDEC4@@@Z</DECORATED>
+    <FUNCLINE>2224</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2276</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUDecN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1972). </DESCRIPTION>
+    <FUNCTION>XMLoadUDecN4</FUNCTION>
+    <DECORATED>?XMLoadUDecN4@@YA?AU__vector4@@PBU_XMUDECN4@@@Z</DECORATED>
+    <FUNCLINE>2276</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2320</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUDec4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1973). </DESCRIPTION>
+    <FUNCTION>XMLoadUDec4</FUNCTION>
+    <DECORATED>?XMLoadUDec4@@YA?AU__vector4@@PBU_XMUDEC4@@@Z</DECORATED>
+    <FUNCLINE>2320</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2363</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadDecN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1970). </DESCRIPTION>
+    <FUNCTION>XMLoadDecN4</FUNCTION>
+    <DECORATED>?XMLoadDecN4@@YA?AU__vector4@@PBU_XMDECN4@@@Z</DECORATED>
+    <FUNCLINE>2363</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2418</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadDec4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1971). </DESCRIPTION>
+    <FUNCTION>XMLoadDec4</FUNCTION>
+    <DECORATED>?XMLoadDec4@@YA?AU__vector4@@PBU_XMDEC4@@@Z</DECORATED>
+    <FUNCLINE>2418</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2472</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUByteN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1976). </DESCRIPTION>
+    <FUNCTION>XMLoadUByteN4</FUNCTION>
+    <DECORATED>?XMLoadUByteN4@@YA?AU__vector4@@PBU_XMUBYTEN4@@@Z</DECORATED>
+    <FUNCLINE>2472</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2512</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUByte4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1977). </DESCRIPTION>
+    <FUNCTION>XMLoadUByte4</FUNCTION>
+    <DECORATED>?XMLoadUByte4@@YA?AU__vector4@@PBU_XMUBYTE4@@@Z</DECORATED>
+    <FUNCLINE>2512</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2552</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadByteN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1974). </DESCRIPTION>
+    <FUNCTION>XMLoadByteN4</FUNCTION>
+    <DECORATED>?XMLoadByteN4@@YA?AU__vector4@@PBU_XMBYTEN4@@@Z</DECORATED>
+    <FUNCLINE>2552</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2600</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadByte4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1975). </DESCRIPTION>
+    <FUNCTION>XMLoadByte4</FUNCTION>
+    <DECORATED>?XMLoadByte4@@YA?AU__vector4@@PBU_XMBYTE4@@@Z</DECORATED>
+    <FUNCLINE>2600</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2648</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadUNibble4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1978). </DESCRIPTION>
+    <FUNCTION>XMLoadUNibble4</FUNCTION>
+    <DECORATED>?XMLoadUNibble4@@YA?AU__vector4@@PBU_XMUNIBBLE4@@@Z</DECORATED>
+    <FUNCLINE>2648</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2687</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadU555': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1979). </DESCRIPTION>
+    <FUNCTION>XMLoadU555</FUNCTION>
+    <DECORATED>?XMLoadU555@@YA?AU__vector4@@PBU_XMU555@@@Z</DECORATED>
+    <FUNCLINE>2687</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2726</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadColor': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1980). </DESCRIPTION>
+    <FUNCTION>XMLoadColor</FUNCTION>
+    <DECORATED>?XMLoadColor@@YA?AU__vector4@@PBU_XMCOLOR@@@Z</DECORATED>
+    <FUNCLINE>2726</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2765</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat3x3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1982). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat3x3</FUNCTION>
+    <DECORATED>?XMLoadFloat3x3@@YA?AU_XMMATRIX@@PBU_XMFLOAT3X3@@@Z</DECORATED>
+    <FUNCLINE>2765</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2828</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat4x3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1983). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat4x3</FUNCTION>
+    <DECORATED>?XMLoadFloat4x3@@YA?AU_XMMATRIX@@PBU_XMFLOAT4X3@@@Z</DECORATED>
+    <FUNCLINE>2828</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2896</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat4x3A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1984). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat4x3A</FUNCTION>
+    <DECORATED>?XMLoadFloat4x3A@@YA?AU_XMMATRIX@@PBUXMFLOAT4X3A@@@Z</DECORATED>
+    <FUNCLINE>2896</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>2967</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat4x4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1985). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat4x4</FUNCTION>
+    <DECORATED>?XMLoadFloat4x4@@YA?AU_XMMATRIX@@PBU_XMFLOAT4X4@@@Z</DECORATED>
+    <FUNCLINE>2967</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3014</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMLoadFloat4x4A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1986). </DESCRIPTION>
+    <FUNCTION>XMLoadFloat4x4A</FUNCTION>
+    <DECORATED>?XMLoadFloat4x4A@@YA?AU_XMMATRIX@@PBUXMFLOAT4X4A@@@Z</DECORATED>
+    <FUNCLINE>3014</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3069</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreInt': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1994). </DESCRIPTION>
+    <FUNCTION>XMStoreInt</FUNCTION>
+    <DECORATED>?XMStoreInt@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3069</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3093</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1995). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat</FUNCTION>
+    <DECORATED>?XMStoreFloat@@YAXPAMABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3093</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3117</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreInt2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1997). </DESCRIPTION>
+    <FUNCTION>XMStoreInt2</FUNCTION>
+    <DECORATED>?XMStoreInt2@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3117</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3144</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreInt2A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1998). </DESCRIPTION>
+    <FUNCTION>XMStoreInt2A</FUNCTION>
+    <DECORATED>?XMStoreInt2A@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3144</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3171</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(1999). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat2</FUNCTION>
+    <DECORATED>?XMStoreFloat2@@YAXPAU_XMFLOAT2@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3171</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3198</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat2A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2000). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat2A</FUNCTION>
+    <DECORATED>?XMStoreFloat2A@@YAXPAUXMFLOAT2A@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3198</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3225</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreHalf2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2001). </DESCRIPTION>
+    <FUNCTION>XMStoreHalf2</FUNCTION>
+    <DECORATED>?XMStoreHalf2@@YAXPAU_XMHALF2@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3225</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3248</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreShortN2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2002). </DESCRIPTION>
+    <FUNCTION>XMStoreShortN2</FUNCTION>
+    <DECORATED>?XMStoreShortN2@@YAXPAU_XMSHORTN2@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3248</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3284</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreShort2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2003). </DESCRIPTION>
+    <FUNCTION>XMStoreShort2</FUNCTION>
+    <DECORATED>?XMStoreShort2@@YAXPAU_XMSHORT2@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3284</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3322</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUShortN2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2004). </DESCRIPTION>
+    <FUNCTION>XMStoreUShortN2</FUNCTION>
+    <DECORATED>?XMStoreUShortN2@@YAXPAU_XMUSHORTN2@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3322</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3361</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUShort2': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2005). </DESCRIPTION>
+    <FUNCTION>XMStoreUShort2</FUNCTION>
+    <DECORATED>?XMStoreUShort2@@YAXPAU_XMUSHORT2@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3361</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3398</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreInt3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2007). </DESCRIPTION>
+    <FUNCTION>XMStoreInt3</FUNCTION>
+    <DECORATED>?XMStoreInt3@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3398</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3430</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreInt3A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2008). </DESCRIPTION>
+    <FUNCTION>XMStoreInt3A</FUNCTION>
+    <DECORATED>?XMStoreInt3A@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3430</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3460</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2009). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat3</FUNCTION>
+    <DECORATED>?XMStoreFloat3@@YAXPAU_XMFLOAT3@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3460</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3492</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat3A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2010). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat3A</FUNCTION>
+    <DECORATED>?XMStoreFloat3A@@YAXPAUXMFLOAT3A@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3492</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3522</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUHenDN3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2013). </DESCRIPTION>
+    <FUNCTION>XMStoreUHenDN3</FUNCTION>
+    <DECORATED>?XMStoreUHenDN3@@YAXPAU_XMUHENDN3@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3522</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3572</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUHenD3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2014). </DESCRIPTION>
+    <FUNCTION>XMStoreUHenD3</FUNCTION>
+    <DECORATED>?XMStoreUHenD3@@YAXPAU_XMUHEND3@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3572</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3622</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreHenDN3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2011). </DESCRIPTION>
+    <FUNCTION>XMStoreHenDN3</FUNCTION>
+    <DECORATED>?XMStoreHenDN3@@YAXPAU_XMHENDN3@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3622</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3666</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreHenD3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2012). </DESCRIPTION>
+    <FUNCTION>XMStoreHenD3</FUNCTION>
+    <DECORATED>?XMStoreHenD3@@YAXPAU_XMHEND3@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3666</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3712</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUDHenN3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2017). </DESCRIPTION>
+    <FUNCTION>XMStoreUDHenN3</FUNCTION>
+    <DECORATED>?XMStoreUDHenN3@@YAXPAU_XMUDHENN3@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3712</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3762</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUDHen3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2018). </DESCRIPTION>
+    <FUNCTION>XMStoreUDHen3</FUNCTION>
+    <DECORATED>?XMStoreUDHen3@@YAXPAU_XMUDHEN3@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3762</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3812</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreDHenN3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2015). </DESCRIPTION>
+    <FUNCTION>XMStoreDHenN3</FUNCTION>
+    <DECORATED>?XMStoreDHenN3@@YAXPAU_XMDHENN3@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3812</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3856</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreDHen3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2016). </DESCRIPTION>
+    <FUNCTION>XMStoreDHen3</FUNCTION>
+    <DECORATED>?XMStoreDHen3@@YAXPAU_XMDHEN3@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3856</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3902</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreU565': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2019). </DESCRIPTION>
+    <FUNCTION>XMStoreU565</FUNCTION>
+    <DECORATED>?XMStoreU565@@YAXPAU_XMU565@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3902</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>3940</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat3PK': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2020). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat3PK</FUNCTION>
+    <DECORATED>?XMStoreFloat3PK@@YAXPAU_XMFLOAT3PK@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>3940</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4058</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat3SE': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2021). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat3SE</FUNCTION>
+    <DECORATED>?XMStoreFloat3SE@@YAXPAU_XMFLOAT3SE@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4058</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4143</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreInt4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2023). </DESCRIPTION>
+    <FUNCTION>XMStoreInt4</FUNCTION>
+    <DECORATED>?XMStoreInt4@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4143</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4169</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreInt4A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2024). </DESCRIPTION>
+    <FUNCTION>XMStoreInt4A</FUNCTION>
+    <DECORATED>?XMStoreInt4A@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4169</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4197</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreInt4NC': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2025). </DESCRIPTION>
+    <FUNCTION>XMStoreInt4NC</FUNCTION>
+    <DECORATED>?XMStoreInt4NC@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4197</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4209</LINE>
+      <COLUMN>20</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'pDestination':  the writable size is '1*4' bytes, but '8' bytes might be written.</DESCRIPTION>
+    <FUNCTION>XMStoreInt4NC</FUNCTION>
+    <DECORATED>?XMStoreInt4NC@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4197</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>4197</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'pDestination' is an array of 1 elements (4 bytes)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>4205</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>4206</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>4208</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathconvert.inl</FILENAME>
+        <LINE>4209</LINE>
+        <COLUMN>20</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'pDestination[1]', (writable range is 0 to 0)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4225</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2026). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat4</FUNCTION>
+    <DECORATED>?XMStoreFloat4@@YAXPAU_XMFLOAT4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4225</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4251</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat4A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2027). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat4A</FUNCTION>
+    <DECORATED>?XMStoreFloat4A@@YAXPAUXMFLOAT4A@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4251</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4278</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat4NC': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2028). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat4NC</FUNCTION>
+    <DECORATED>?XMStoreFloat4NC@@YAXPAU_XMFLOAT4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4278</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4306</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreHalf4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2029). </DESCRIPTION>
+    <FUNCTION>XMStoreHalf4</FUNCTION>
+    <DECORATED>?XMStoreHalf4@@YAXPAU_XMHALF4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4306</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4333</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreShortN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2030). </DESCRIPTION>
+    <FUNCTION>XMStoreShortN4</FUNCTION>
+    <DECORATED>?XMStoreShortN4@@YAXPAU_XMSHORTN4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4333</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4371</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreShort4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2031). </DESCRIPTION>
+    <FUNCTION>XMStoreShort4</FUNCTION>
+    <DECORATED>?XMStoreShort4@@YAXPAU_XMSHORT4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4371</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4411</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUShortN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2032). </DESCRIPTION>
+    <FUNCTION>XMStoreUShortN4</FUNCTION>
+    <DECORATED>?XMStoreUShortN4@@YAXPAU_XMUSHORTN4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4411</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4454</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUShort4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2033). </DESCRIPTION>
+    <FUNCTION>XMStoreUShort4</FUNCTION>
+    <DECORATED>?XMStoreUShort4@@YAXPAU_XMUSHORT4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4454</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4495</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreXIcoN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2034). </DESCRIPTION>
+    <FUNCTION>XMStoreXIcoN4</FUNCTION>
+    <DECORATED>?XMStoreXIcoN4@@YAXPAU_XMXICON4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4495</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4552</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreXIco4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2035). </DESCRIPTION>
+    <FUNCTION>XMStoreXIco4</FUNCTION>
+    <DECORATED>?XMStoreXIco4@@YAXPAU_XMXICO4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4552</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4605</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUIcoN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2038). </DESCRIPTION>
+    <FUNCTION>XMStoreUIcoN4</FUNCTION>
+    <DECORATED>?XMStoreUIcoN4@@YAXPAU_XMUICON4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4605</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4677</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUIco4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2039). </DESCRIPTION>
+    <FUNCTION>XMStoreUIco4</FUNCTION>
+    <DECORATED>?XMStoreUIco4@@YAXPAU_XMUICO4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4677</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4738</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreIcoN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2036). </DESCRIPTION>
+    <FUNCTION>XMStoreIcoN4</FUNCTION>
+    <DECORATED>?XMStoreIcoN4@@YAXPAU_XMICON4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4738</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4800</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreIco4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2037). </DESCRIPTION>
+    <FUNCTION>XMStoreIco4</FUNCTION>
+    <DECORATED>?XMStoreIco4@@YAXPAU_XMICO4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4800</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4860</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreXDecN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2040). </DESCRIPTION>
+    <FUNCTION>XMStoreXDecN4</FUNCTION>
+    <DECORATED>?XMStoreXDecN4@@YAXPAU_XMXDECN4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4860</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4913</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreXDec4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2041). </DESCRIPTION>
+    <FUNCTION>XMStoreXDec4</FUNCTION>
+    <DECORATED>?XMStoreXDec4@@YAXPAU_XMXDEC4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4913</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>4966</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUDecN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2044). </DESCRIPTION>
+    <FUNCTION>XMStoreUDecN4</FUNCTION>
+    <DECORATED>?XMStoreUDecN4@@YAXPAU_XMUDECN4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>4966</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5017</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUDec4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2045). </DESCRIPTION>
+    <FUNCTION>XMStoreUDec4</FUNCTION>
+    <DECORATED>?XMStoreUDec4@@YAXPAU_XMUDEC4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>5017</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5068</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreDecN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2042). </DESCRIPTION>
+    <FUNCTION>XMStoreDecN4</FUNCTION>
+    <DECORATED>?XMStoreDecN4@@YAXPAU_XMDECN4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>5068</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5117</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreDec4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2043). </DESCRIPTION>
+    <FUNCTION>XMStoreDec4</FUNCTION>
+    <DECORATED>?XMStoreDec4@@YAXPAU_XMDEC4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>5117</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5168</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUByteN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2048). </DESCRIPTION>
+    <FUNCTION>XMStoreUByteN4</FUNCTION>
+    <DECORATED>?XMStoreUByteN4@@YAXPAU_XMUBYTEN4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>5168</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5220</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUByte4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2049). </DESCRIPTION>
+    <FUNCTION>XMStoreUByte4</FUNCTION>
+    <DECORATED>?XMStoreUByte4@@YAXPAU_XMUBYTE4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>5220</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5272</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreByteN4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2046). </DESCRIPTION>
+    <FUNCTION>XMStoreByteN4</FUNCTION>
+    <DECORATED>?XMStoreByteN4@@YAXPAU_XMBYTEN4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>5272</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5321</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreByte4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2047). </DESCRIPTION>
+    <FUNCTION>XMStoreByte4</FUNCTION>
+    <DECORATED>?XMStoreByte4@@YAXPAU_XMBYTE4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>5321</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5373</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreUNibble4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2050). </DESCRIPTION>
+    <FUNCTION>XMStoreUNibble4</FUNCTION>
+    <DECORATED>?XMStoreUNibble4@@YAXPAU_XMUNIBBLE4@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>5373</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5414</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreU555': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2051). </DESCRIPTION>
+    <FUNCTION>XMStoreU555</FUNCTION>
+    <DECORATED>?XMStoreU555@@YAXPAU_XMU555@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>5414</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5454</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreColor': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2052). </DESCRIPTION>
+    <FUNCTION>XMStoreColor</FUNCTION>
+    <DECORATED>?XMStoreColor@@YAXPAU_XMCOLOR@@ABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>5454</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5501</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat3x3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2054). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat3x3</FUNCTION>
+    <DECORATED>?XMStoreFloat3x3@@YAXPAU_XMFLOAT3X3@@ABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>5501</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5517</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat3x3NC': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2055). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat3x3NC</FUNCTION>
+    <DECORATED>?XMStoreFloat3x3NC@@YAXPAU_XMFLOAT3X3@@ABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>5517</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5557</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat4x3': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2056). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat4x3</FUNCTION>
+    <DECORATED>?XMStoreFloat4x3@@YAXPAU_XMFLOAT4X3@@ABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>5557</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5573</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat4x3A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2057). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat4x3A</FUNCTION>
+    <DECORATED>?XMStoreFloat4x3A@@YAXPAUXMFLOAT4X3A@@ABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>5573</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5631</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat4x3NC': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2058). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat4x3NC</FUNCTION>
+    <DECORATED>?XMStoreFloat4x3NC@@YAXPAU_XMFLOAT4X3@@ABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>5631</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5677</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat4x4': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2059). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat4x4</FUNCTION>
+    <DECORATED>?XMStoreFloat4x4@@YAXPAU_XMFLOAT4X4@@ABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>5677</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5700</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat4x4A': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2060). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat4x4A</FUNCTION>
+    <DECORATED>?XMStoreFloat4x4A@@YAXPAUXMFLOAT4X4A@@ABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>5700</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathconvert.inl</FILENAME>
+      <LINE>5744</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMStoreFloat4x4NC': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2061). </DESCRIPTION>
+    <FUNCTION>XMStoreFloat4x4NC</FUNCTION>
+    <DECORATED>?XMStoreFloat4x4NC@@YAXPAU_XMFLOAT4X4@@ABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>5744</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>106</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorReplicatePtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2073). </DESCRIPTION>
+    <FUNCTION>XMVectorReplicatePtr</FUNCTION>
+    <DECORATED>?XMVectorReplicatePtr@@YA?AU__vector4@@PBM@Z</DECORATED>
+    <FUNCLINE>106</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>140</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorReplicateIntPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2075). </DESCRIPTION>
+    <FUNCTION>XMVectorReplicateIntPtr</FUNCTION>
+    <DECORATED>?XMVectorReplicateIntPtr@@YA?AU__vector4@@PBI@Z</DECORATED>
+    <FUNCLINE>140</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>434</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorGetByIndexPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2094). </DESCRIPTION>
+    <FUNCTION>XMVectorGetByIndexPtr</FUNCTION>
+    <DECORATED>?XMVectorGetByIndexPtr@@YAXPAMABU__vector4@@I@Z</DECORATED>
+    <FUNCLINE>434</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>449</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorGetXPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2095). </DESCRIPTION>
+    <FUNCTION>XMVectorGetXPtr</FUNCTION>
+    <DECORATED>?XMVectorGetXPtr@@YAXPAMABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>449</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>461</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorGetYPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2096). </DESCRIPTION>
+    <FUNCTION>XMVectorGetYPtr</FUNCTION>
+    <DECORATED>?XMVectorGetYPtr@@YAXPAMABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>461</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>474</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorGetZPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2097). </DESCRIPTION>
+    <FUNCTION>XMVectorGetZPtr</FUNCTION>
+    <DECORATED>?XMVectorGetZPtr@@YAXPAMABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>474</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>487</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorGetWPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2098). </DESCRIPTION>
+    <FUNCTION>XMVectorGetWPtr</FUNCTION>
+    <DECORATED>?XMVectorGetWPtr@@YAXPAMABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>487</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>577</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorGetIntByIndexPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2106). </DESCRIPTION>
+    <FUNCTION>XMVectorGetIntByIndexPtr</FUNCTION>
+    <DECORATED>?XMVectorGetIntByIndexPtr@@YAXPAIABU__vector4@@I@Z</DECORATED>
+    <FUNCLINE>577</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>598</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorGetIntXPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2107). </DESCRIPTION>
+    <FUNCTION>XMVectorGetIntXPtr</FUNCTION>
+    <DECORATED>?XMVectorGetIntXPtr@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>598</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>610</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorGetIntYPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2108). </DESCRIPTION>
+    <FUNCTION>XMVectorGetIntYPtr</FUNCTION>
+    <DECORATED>?XMVectorGetIntYPtr@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>610</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>623</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorGetIntZPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2109). </DESCRIPTION>
+    <FUNCTION>XMVectorGetIntZPtr</FUNCTION>
+    <DECORATED>?XMVectorGetIntZPtr@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>623</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>636</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorGetIntWPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2110). </DESCRIPTION>
+    <FUNCTION>XMVectorGetIntWPtr</FUNCTION>
+    <DECORATED>?XMVectorGetIntWPtr@@YAXPAIABU__vector4@@@Z</DECORATED>
+    <FUNCLINE>636</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>792</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorSetByIndexPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2118). </DESCRIPTION>
+    <FUNCTION>XMVectorSetByIndexPtr</FUNCTION>
+    <DECORATED>?XMVectorSetByIndexPtr@@YA?AU__vector4@@ABU1@PBMI@Z</DECORATED>
+    <FUNCLINE>792</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>814</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorSetXPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2119). </DESCRIPTION>
+    <FUNCTION>XMVectorSetXPtr</FUNCTION>
+    <DECORATED>?XMVectorSetXPtr@@YA?AU__vector4@@ABU1@PBM@Z</DECORATED>
+    <FUNCLINE>814</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>834</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorSetYPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2120). </DESCRIPTION>
+    <FUNCTION>XMVectorSetYPtr</FUNCTION>
+    <DECORATED>?XMVectorSetYPtr@@YA?AU__vector4@@ABU1@PBM@Z</DECORATED>
+    <FUNCLINE>834</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>860</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorSetZPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2121). </DESCRIPTION>
+    <FUNCTION>XMVectorSetZPtr</FUNCTION>
+    <DECORATED>?XMVectorSetZPtr@@YA?AU__vector4@@ABU1@PBM@Z</DECORATED>
+    <FUNCLINE>860</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>886</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorSetWPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2122). </DESCRIPTION>
+    <FUNCTION>XMVectorSetWPtr</FUNCTION>
+    <DECORATED>?XMVectorSetWPtr@@YA?AU__vector4@@ABU1@PBM@Z</DECORATED>
+    <FUNCLINE>886</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>1056</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorSetIntByIndexPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2130). </DESCRIPTION>
+    <FUNCTION>XMVectorSetIntByIndexPtr</FUNCTION>
+    <DECORATED>?XMVectorSetIntByIndexPtr@@YA?AU__vector4@@ABU1@PBII@Z</DECORATED>
+    <FUNCLINE>1056</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>1079</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorSetIntXPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2131). </DESCRIPTION>
+    <FUNCTION>XMVectorSetIntXPtr</FUNCTION>
+    <DECORATED>?XMVectorSetIntXPtr@@YA?AU__vector4@@ABU1@PBI@Z</DECORATED>
+    <FUNCLINE>1079</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>1099</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorSetIntYPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2132). </DESCRIPTION>
+    <FUNCTION>XMVectorSetIntYPtr</FUNCTION>
+    <DECORATED>?XMVectorSetIntYPtr@@YA?AU__vector4@@ABU1@PBI@Z</DECORATED>
+    <FUNCLINE>1099</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>1125</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorSetIntZPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2133). </DESCRIPTION>
+    <FUNCTION>XMVectorSetIntZPtr</FUNCTION>
+    <DECORATED>?XMVectorSetIntZPtr@@YA?AU__vector4@@ABU1@PBI@Z</DECORATED>
+    <FUNCLINE>1125</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>1151</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorSetIntWPtr': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2134). </DESCRIPTION>
+    <FUNCTION>XMVectorSetIntWPtr</FUNCTION>
+    <DECORATED>?XMVectorSetIntWPtr@@YA?AU__vector4@@ABU1@PBI@Z</DECORATED>
+    <FUNCLINE>1151</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>1454</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorEqualR': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2154). </DESCRIPTION>
+    <FUNCTION>XMVectorEqualR</FUNCTION>
+    <DECORATED>?XMVectorEqualR@@YA?AU__vector4@@PAIABU1@1@Z</DECORATED>
+    <FUNCLINE>1454</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>1541</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorEqualIntR': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2156). </DESCRIPTION>
+    <FUNCTION>XMVectorEqualIntR</FUNCTION>
+    <DECORATED>?XMVectorEqualIntR@@YA?AU__vector4@@PAIABU1@1@Z</DECORATED>
+    <FUNCLINE>1541</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>1706</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorGreaterR': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2161). </DESCRIPTION>
+    <FUNCTION>XMVectorGreaterR</FUNCTION>
+    <DECORATED>?XMVectorGreaterR@@YA?AU__vector4@@PAIABU1@1@Z</DECORATED>
+    <FUNCLINE>1706</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>1786</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorGreaterOrEqualR': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2163). </DESCRIPTION>
+    <FUNCTION>XMVectorGreaterOrEqualR</FUNCTION>
+    <DECORATED>?XMVectorGreaterOrEqualR@@YA?AU__vector4@@PAIABU1@1@Z</DECORATED>
+    <FUNCLINE>1786</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>1920</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorInBoundsR': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2167). </DESCRIPTION>
+    <FUNCTION>XMVectorInBoundsR</FUNCTION>
+    <DECORATED>?XMVectorInBoundsR@@YA?AU__vector4@@PAIABU1@1@Z</DECORATED>
+    <FUNCLINE>1920</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>2730</LINE>
+      <COLUMN>42</COLUMN>
+    </SFA>
+    <DEFECTCODE>6287</DEFECTCODE>
+    <DESCRIPTION>Redundant code:  the left and right sub-expressions are identical.</DESCRIPTION>
+    <FUNCTION>XMVectorReciprocalEst</FUNCTION>
+    <DECORATED>?XMVectorReciprocalEst@@YA?AU__vector4@@ABU1@@Z</DECORATED>
+    <FUNCLINE>2712</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>2854</LINE>
+      <COLUMN>42</COLUMN>
+    </SFA>
+    <DEFECTCODE>6287</DEFECTCODE>
+    <DESCRIPTION>Redundant code:  the left and right sub-expressions are identical.</DESCRIPTION>
+    <FUNCTION>XMVectorReciprocalSqrtEst</FUNCTION>
+    <DECORATED>?XMVectorReciprocalSqrtEst@@YA?AU__vector4@@ABU1@@Z</DECORATED>
+    <FUNCLINE>2830</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>3482</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorSinCos': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2216). </DESCRIPTION>
+    <FUNCTION>XMVectorSinCos</FUNCTION>
+    <DECORATED>?XMVectorSinCos@@YAXPAU__vector4@@0ABU1@@Z</DECORATED>
+    <FUNCLINE>3482</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>4673</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVectorSinCosEst': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2217). </DESCRIPTION>
+    <FUNCTION>XMVectorSinCosEst</FUNCTION>
+    <DECORATED>?XMVectorSinCosEst@@YAXPAU__vector4@@0ABU1@@Z</DECORATED>
+    <FUNCLINE>4673</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>7026</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVector2TransformStream': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2290). </DESCRIPTION>
+    <FUNCTION>XMVector2TransformStream</FUNCTION>
+    <DECORATED>?XMVector2TransformStream@@YAPAU_XMFLOAT4@@PAU1@IPBU_XMFLOAT2@@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>7026</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>7026</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>6101</DEFECTCODE>
+    <DESCRIPTION>Returning uninitialized memory '*pOutputStream'.  A successful path through the function does not set the named _Out_ parameter. </DESCRIPTION>
+    <FUNCTION>XMVector2TransformStream</FUNCTION>
+    <DECORATED>?XMVector2TransformStream@@YAPAU_XMFLOAT4@@PAU1@IPBU_XMFLOAT2@@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>7026</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7026</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7038</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'XMVECTOR V')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7039</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7040</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7041</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7042</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7043</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7044</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7046</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7047</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7049</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7049</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;VectorCount' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7066</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7026</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is an _Out_ parameter that may not have been assigned to</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>7094</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVector2TransformStreamNC': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2294). </DESCRIPTION>
+    <FUNCTION>XMVector2TransformStreamNC</FUNCTION>
+    <DECORATED>?XMVector2TransformStreamNC@@YAPAU_XMFLOAT4@@PAU1@IPBU_XMFLOAT2@@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>7094</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>7154</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVector2TransformCoordStream': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2299). </DESCRIPTION>
+    <FUNCTION>XMVector2TransformCoordStream</FUNCTION>
+    <DECORATED>?XMVector2TransformCoordStream@@YAPAU_XMFLOAT2@@PAU1@IPBU1@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>7154</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>7154</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>6101</DEFECTCODE>
+    <DESCRIPTION>Returning uninitialized memory '*pOutputStream'.  A successful path through the function does not set the named _Out_ parameter. </DESCRIPTION>
+    <FUNCTION>XMVector2TransformCoordStream</FUNCTION>
+    <DECORATED>?XMVector2TransformCoordStream@@YAPAU_XMFLOAT2@@PAU1@IPBU1@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>7154</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7154</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7166</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'XMVECTOR V')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7167</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7168</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7169</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7170</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7171</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7172</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7173</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7175</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7176</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7178</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7178</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;VectorCount' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7200</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7154</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is an _Out_ parameter that may not have been assigned to</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>7263</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVector2TransformNormalStream': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2304). </DESCRIPTION>
+    <FUNCTION>XMVector2TransformNormalStream</FUNCTION>
+    <DECORATED>?XMVector2TransformNormalStream@@YAPAU_XMFLOAT2@@PAU1@IPBU1@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>7263</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>7263</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>6101</DEFECTCODE>
+    <DESCRIPTION>Returning uninitialized memory '*pOutputStream'.  A successful path through the function does not set the named _Out_ parameter. </DESCRIPTION>
+    <FUNCTION>XMVector2TransformNormalStream</FUNCTION>
+    <DECORATED>?XMVector2TransformNormalStream@@YAPAU_XMFLOAT2@@PAU1@IPBU1@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>7263</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7263</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7275</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'XMVECTOR V')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7276</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7277</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7278</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7279</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7280</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7281</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7283</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7284</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7286</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7286</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;VectorCount' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7303</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>7263</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is an _Out_ parameter that may not have been assigned to</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>8631</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVector3ComponentsFromNormal': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2354). </DESCRIPTION>
+    <FUNCTION>XMVector3ComponentsFromNormal</FUNCTION>
+    <DECORATED>?XMVector3ComponentsFromNormal@@YAXPAU__vector4@@0ABU1@1@Z</DECORATED>
+    <FUNCLINE>8631</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>8778</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVector3TransformStream': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2358). </DESCRIPTION>
+    <FUNCTION>XMVector3TransformStream</FUNCTION>
+    <DECORATED>?XMVector3TransformStream@@YAPAU_XMFLOAT4@@PAU1@IPBU_XMFLOAT3@@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>8778</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>8778</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>6101</DEFECTCODE>
+    <DESCRIPTION>Returning uninitialized memory '*pOutputStream'.  A successful path through the function does not set the named _Out_ parameter. </DESCRIPTION>
+    <FUNCTION>XMVector3TransformStream</FUNCTION>
+    <DECORATED>?XMVector3TransformStream@@YAPAU_XMFLOAT4@@PAU1@IPBU_XMFLOAT3@@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>8778</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8778</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8790</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'XMVECTOR V')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8791</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8792</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8793</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8794</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8795</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8796</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8797</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8799</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8800</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8802</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8802</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;VectorCount' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8819</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8778</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is an _Out_ parameter that may not have been assigned to</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>8851</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVector3TransformStreamNC': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2362). </DESCRIPTION>
+    <FUNCTION>XMVector3TransformStreamNC</FUNCTION>
+    <DECORATED>?XMVector3TransformStreamNC@@YAPAU_XMFLOAT4@@PAU1@IPBU_XMFLOAT3@@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>8851</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>8917</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVector3TransformCoordStream': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2367). </DESCRIPTION>
+    <FUNCTION>XMVector3TransformCoordStream</FUNCTION>
+    <DECORATED>?XMVector3TransformCoordStream@@YAPAU_XMFLOAT3@@PAU1@IPBU1@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>8917</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>8917</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>6101</DEFECTCODE>
+    <DESCRIPTION>Returning uninitialized memory '*pOutputStream'.  A successful path through the function does not set the named _Out_ parameter. </DESCRIPTION>
+    <FUNCTION>XMVector3TransformCoordStream</FUNCTION>
+    <DECORATED>?XMVector3TransformCoordStream@@YAPAU_XMFLOAT3@@PAU1@IPBU1@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>8917</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8917</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8929</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'XMVECTOR V')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8930</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8931</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8932</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8933</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8934</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8935</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8936</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8937</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8939</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8940</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8942</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8942</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;VectorCount' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8967</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>8917</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is an _Out_ parameter that may not have been assigned to</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>9046</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVector3TransformNormalStream': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2372). </DESCRIPTION>
+    <FUNCTION>XMVector3TransformNormalStream</FUNCTION>
+    <DECORATED>?XMVector3TransformNormalStream@@YAPAU_XMFLOAT3@@PAU1@IPBU1@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>9046</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>9046</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>6101</DEFECTCODE>
+    <DESCRIPTION>Returning uninitialized memory '*pOutputStream'.  A successful path through the function does not set the named _Out_ parameter. </DESCRIPTION>
+    <FUNCTION>XMVector3TransformNormalStream</FUNCTION>
+    <DECORATED>?XMVector3TransformNormalStream@@YAPAU_XMFLOAT3@@PAU1@IPBU1@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>9046</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9046</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9058</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'XMVECTOR V')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9059</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9060</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9061</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9062</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9063</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9064</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9065</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9067</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9068</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9070</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9070</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;VectorCount' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9090</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9046</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is an _Out_ parameter that may not have been assigned to</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>9197</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVector3ProjectStream': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2378). </DESCRIPTION>
+    <FUNCTION>XMVector3ProjectStream</FUNCTION>
+    <DECORATED>?XMVector3ProjectStream@@YAPAU_XMFLOAT3@@PAU1@IPBU1@IIMMMMMMABU_XMMATRIX@@22@Z</DECORATED>
+    <FUNCLINE>9197</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>9197</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>6101</DEFECTCODE>
+    <DESCRIPTION>Returning uninitialized memory '*pOutputStream'.  A successful path through the function does not set the named _Out_ parameter. </DESCRIPTION>
+    <FUNCTION>XMVector3ProjectStream</FUNCTION>
+    <DECORATED>?XMVector3ProjectStream@@YAPAU_XMFLOAT3@@PAU1@IPBU1@IIMMMMMMABU_XMMATRIX@@22@Z</DECORATED>
+    <FUNCLINE>9197</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9197</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9217</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'XMMATRIX Transform=()')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9218</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9219</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9220</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9221</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9222</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9223</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9224</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9225</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9226</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9228</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9229</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9231</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9236</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9241</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9242</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9244</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9244</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;VectorCount' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9258</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9197</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is an _Out_ parameter that may not have been assigned to</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>9389</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVector3UnprojectStream': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2386). </DESCRIPTION>
+    <FUNCTION>XMVector3UnprojectStream</FUNCTION>
+    <DECORATED>?XMVector3UnprojectStream@@YAPAU_XMFLOAT3@@PAU1@IPBU1@IIMMMMMMABU_XMMATRIX@@22@Z</DECORATED>
+    <FUNCLINE>9389</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>9389</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>6101</DEFECTCODE>
+    <DESCRIPTION>Returning uninitialized memory '*pOutputStream'.  A successful path through the function does not set the named _Out_ parameter. </DESCRIPTION>
+    <FUNCTION>XMVector3UnprojectStream</FUNCTION>
+    <DECORATED>?XMVector3UnprojectStream@@YAPAU_XMFLOAT3@@PAU1@IPBU1@IIMMMMMMABU_XMMATRIX@@22@Z</DECORATED>
+    <FUNCLINE>9389</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9389</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9408</LINE>
+        <COLUMN>20</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'XMMATRIX Transform=()')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9409</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9410</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9411</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9412</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9413</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9414</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9415</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9416</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9417</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9419</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9420</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9422</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9426</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9428</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9432</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9434</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9435</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9436</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9438</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9438</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;VectorCount' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9452</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>9389</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is an _Out_ parameter that may not have been assigned to</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>10791</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMVector4TransformStream': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2437). </DESCRIPTION>
+    <FUNCTION>XMVector4TransformStream</FUNCTION>
+    <DECORATED>?XMVector4TransformStream@@YAPAU_XMFLOAT4@@PAU1@IPBU1@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>10791</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathvector.inl</FILENAME>
+      <LINE>10791</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>6101</DEFECTCODE>
+    <DESCRIPTION>Returning uninitialized memory '*pOutputStream'.  A successful path through the function does not set the named _Out_ parameter. </DESCRIPTION>
+    <FUNCTION>XMVector4TransformStream</FUNCTION>
+    <DECORATED>?XMVector4TransformStream@@YAPAU_XMFLOAT4@@PAU1@IPBU1@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>10791</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10791</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10803</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'XMVECTOR V')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10804</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10805</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10806</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10807</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10808</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10809</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10810</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10811</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10813</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10814</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10816</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10816</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;VectorCount' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10839</LINE>
+        <COLUMN>4</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathvector.inl</FILENAME>
+        <LINE>10791</LINE>
+        <COLUMN>19</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*pOutputStream' is an _Out_ parameter that may not have been assigned to</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathmatrix.inl</FILENAME>
+      <LINE>406</LINE>
+      <COLUMN>18</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMMatrixInverse': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2455). </DESCRIPTION>
+    <FUNCTION>XMMatrixInverse</FUNCTION>
+    <DECORATED>?XMMatrixInverse@@YA?AU_XMMATRIX@@PAU__vector4@@ABU1@@Z</DECORATED>
+    <FUNCLINE>406</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathmatrix.inl</FILENAME>
+      <LINE>806</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMMatrixDecompose': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2457). </DESCRIPTION>
+    <FUNCTION>XMMatrixDecompose</FUNCTION>
+    <DECORATED>?XMMatrixDecompose@@YAHPAU__vector4@@00ABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>806</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathmatrix.inl</FILENAME>
+      <LINE>806</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>6101</DEFECTCODE>
+    <DESCRIPTION>Returning uninitialized memory '*outRotQuat'.  A successful path through the function does not set the named _Out_ parameter. Annotate this function with _Success_(return) if returning FALSE indicates failure.</DESCRIPTION>
+    <FUNCTION>XMMatrixDecompose</FUNCTION>
+    <DECORATED>?XMMatrixDecompose@@YAHPAU__vector4@@00ABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>806</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>806</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*outRotQuat' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>808</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>809</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>810</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>811</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>812</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>812</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>812</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>813</LINE>
+        <COLUMN>23</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>820</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>822</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>823</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>824</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>826</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>827</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>828</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>829</LINE>
+        <COLUMN>17</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>831</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>833</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>834</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>835</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>837</LINE>
+        <COLUMN>1</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>839</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>843</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>845</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>859</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>861</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>866</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>868</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>871</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>880</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>881</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>883</LINE>
+        <COLUMN>22</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume '0.000100&lt;fDet')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>886</LINE>
+        <COLUMN>2</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+        <FILENAME>xnamathmatrix.inl</FILENAME>
+        <LINE>806</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'*outRotQuat' is an _Out_ parameter that may not have been assigned to</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathmisc.inl</FILENAME>
+      <LINE>613</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMQuaternionSquadSetup': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2528). </DESCRIPTION>
+    <FUNCTION>XMQuaternionSquadSetup</FUNCTION>
+    <DECORATED>?XMQuaternionSquadSetup@@YAXPAU__vector4@@00ABU1@111@Z</DECORATED>
+    <FUNCLINE>613</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathmisc.inl</FILENAME>
+      <LINE>1040</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMQuaternionToAxisAngle': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2539). </DESCRIPTION>
+    <FUNCTION>XMQuaternionToAxisAngle</FUNCTION>
+    <DECORATED>?XMQuaternionToAxisAngle@@YAXPAU__vector4@@PAMABU1@@Z</DECORATED>
+    <FUNCLINE>1040</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathmisc.inl</FILENAME>
+      <LINE>1347</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMPlaneIntersectPlane': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2560). </DESCRIPTION>
+    <FUNCTION>XMPlaneIntersectPlane</FUNCTION>
+    <DECORATED>?XMPlaneIntersectPlane@@YAXPAU__vector4@@0ABU1@1@Z</DECORATED>
+    <FUNCLINE>1347</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathmisc.inl</FILENAME>
+      <LINE>1481</LINE>
+      <COLUMN>20</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMPlaneTransformStream': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2562). </DESCRIPTION>
+    <FUNCTION>XMPlaneTransformStream</FUNCTION>
+    <DECORATED>?XMPlaneTransformStream@@YAPAU_XMFLOAT4@@PAU1@IPBU1@IIABU_XMMATRIX@@@Z</DECORATED>
+    <FUNCLINE>1481</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathmisc.inl</FILENAME>
+      <LINE>1833</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMAssert': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2599). </DESCRIPTION>
+    <FUNCTION>XMAssert</FUNCTION>
+    <DECORATED>?XMAssert@@YAXPBD0I@Z</DECORATED>
+    <FUNCLINE>1833</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathmisc.inl</FILENAME>
+      <LINE>2099</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMScalarSinCos': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2607). </DESCRIPTION>
+    <FUNCTION>XMScalarSinCos</FUNCTION>
+    <DECORATED>?XMScalarSinCos@@YAXPAM0M@Z</DECORATED>
+    <FUNCLINE>2099</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\program files (x86)\microsoft directx sdk (june 2010)\include\</FILEPATH>
+      <FILENAME>xnamathmisc.inl</FILENAME>
+      <LINE>2319</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'XMScalarSinCosEst': this instance has no annotations. See c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2612). </DESCRIPTION>
+    <FUNCTION>XMScalarSinCosEst</FUNCTION>
+    <DECORATED>?XMScalarSinCosEst@@YAXPAM0M@Z</DECORATED>
+    <FUNCLINE>2319</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>184</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'WinMain': this instance has no annotations. See c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\winbase.h(909). </DESCRIPTION>
+    <FUNCTION>WinMain</FUNCTION>
+    <DECORATED>WinMain@16</DECORATED>
+    <FUNCLINE>184</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>364</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>6387</DEFECTCODE>
+    <DESCRIPTION>'pBuffer' could be '0':  this does not adhere to the specification for the function 'ID3D11Device::CreateRenderTargetView'. See line 0 for an earlier location where this can occur</DESCRIPTION>
+    <FUNCTION>WndProc</FUNCTION>
+    <DECORATED>?WndProc@@YGJPAUHWND__@@IIJ@Z</DECORATED>
+    <FUNCLINE>263</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>265</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>266</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>268</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>343</LINE>
+        <COLUMN>1</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>344</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>346</LINE>
+        <COLUMN>42</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>349</LINE>
+        <COLUMN>31</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>351</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>354</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>359</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>360</LINE>
+        <COLUMN>6</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'pBuffer' may be NULL</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>364</LINE>
+        <COLUMN>6</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'pBuffer' should not be NULL, because this is not consistent with the SAL annotation on 'ID3D11Device::CreateRenderTargetView'</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+      <FILENAME>objfilemodel.cpp</FILENAME>
+      <LINE>61</LINE>
+      <COLUMN>12</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'fbuffer':  the writable size is '(fbuffersize+1)*1' bytes, but '4294967295' bytes might be written.</DESCRIPTION>
+    <FUNCTION>ObjFileModel::loadfile</FUNCTION>
+    <DECORATED>?loadfile@ObjFileModel@@AAEHPAD@Z</DECORATED>
+    <FUNCLINE>44</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>objfilemodel.cpp</FILENAME>
+        <LINE>46</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>objfilemodel.cpp</FILENAME>
+        <LINE>48</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>objfilemodel.cpp</FILENAME>
+        <LINE>49</LINE>
+        <COLUMN>10</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'pFile==0' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>objfilemodel.cpp</FILENAME>
+        <LINE>52</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>objfilemodel.cpp</FILENAME>
+        <LINE>53</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>objfilemodel.cpp</FILENAME>
+        <LINE>54</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>objfilemodel.cpp</FILENAME>
+        <LINE>57</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>objfilemodel.cpp</FILENAME>
+        <LINE>58</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'fbuffer==0' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>objfilemodel.cpp</FILENAME>
+        <LINE>61</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'fbuffer' is an Output from 'fread' (declared at c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h:233)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>d:\github\advanced-games-programing\t10\t10e02\</FILEPATH>
+        <FILENAME>objfilemodel.cpp</FILENAME>
+        <LINE>61</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'fbuffer', (outside its writable range)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT></DEFECTS>

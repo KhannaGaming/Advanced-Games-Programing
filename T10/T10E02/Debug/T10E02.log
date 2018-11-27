@@ -1,0 +1,20 @@
+﻿  camera.cpp
+d:\github\advanced-games-programing\t10\t10e02\camera.cpp(11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t10\t10e02\camera.cpp(12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t10\t10e02\camera.cpp(23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t10\t10e02\camera.cpp(24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+d:\github\advanced-games-programing\t10\t10e02\main.cpp(309): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t10\t10e02\main.cpp(315): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t10\t10e02\main.cpp(375): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t10\t10e02\main.cpp(376): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t10\t10e02\main.cpp(390): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t10\t10e02\main.cpp(391): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t10\t10e02\main.cpp(279): warning C4101: 'ms': unreferenced local variable
+  Model.cpp
+  objfilemodel.cpp
+  text2D.cpp
+  Generating Code...
+d:\github\advanced-games-programing\t10\t10e02\model.cpp(213): warning C4715: 'Model::AddTexture': not all control paths return a value
+d:\github\advanced-games-programing\t10\t10e02\model.cpp(232): warning C4715: 'Model::SetSamplerState': not all control paths return a value
+  T10E02.vcxproj -> D:\GitHub\Advanced-Games-Programing\T10\T10E02\Debug\T10E02.exe

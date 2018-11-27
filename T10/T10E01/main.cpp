@@ -626,7 +626,7 @@ HRESULT InitialiseGraphics()
 	HRESULT hr = S_OK;
 	
 	g_pModel = new Model(g_pD3DDevice, g_pImmediateContext);
-	g_pModel->LoadObjModel((char*)"Assets/Tiger.obj",0.0f,10.0f,50.0f);
+	g_pModel->LoadObjModel((char*)"Assets/sphere.obj",0.0f,0.0f,50.0f);
 
 	//Set up and create vertex buffer
 	D3D11_BUFFER_DESC bufferDesc;

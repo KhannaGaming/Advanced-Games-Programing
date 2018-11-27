@@ -8,8 +8,8 @@ struct MODEL_CONSTANT_BUFFER0
 	XMVECTOR directional_light_vector;	//16 bytes
 	XMVECTOR directional_light_colour;	//16 bytes
 	XMVECTOR ambient_light_colour;		//16 bytes
-	XMVECTOR point_light_position;
-	XMVECTOR point_light_colour;
+	//XMVECTOR point_light_position;
+	//XMVECTOR point_light_colour;
 };//TOTAL SIZE = 112 bytes
 
 Model::Model(ID3D11Device* D3DDevice, ID3D11DeviceContext* ImmediateContext)
@@ -101,7 +101,7 @@ HRESULT Model::LoadObjModel(char * fileName, float xpos, float ypos, float zpos)
 	D3D11_BUFFER_DESC constant_buffer_desc;
 	ZeroMemory(&constant_buffer_desc, sizeof(constant_buffer_desc));
 	constant_buffer_desc.Usage = D3D11_USAGE_DEFAULT; // Can use UpdateSubresource() to update
-	constant_buffer_desc.ByteWidth = 144; //MUST be a multiple of 16, calculate from CB struct
+	constant_buffer_desc.ByteWidth = 112; //MUST be a multiple of 16, calculate from CB struct
 	constant_buffer_desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;// Use as a constant buffer
 
 	hr = m_pD3DDevice->CreateBuffer(&constant_buffer_desc, NULL, &m_pConstantBuffer);
@@ -119,8 +119,9 @@ void Model::Draw(XMMATRIX* view, XMMATRIX* projection)
 	g_ambient_light_color = XMVectorSet(0.5f, 0.5f, 0.5f, 1.0f);//dark grey
 																//always use a small value for ambient lighting
 
-	g_point_light_colour = XMVectorSet(0.5f, 0.0f, 0.0f, 0.0f);
-	g_point_light_position = XMVectorSet(1.0f, 1.0f, 0.0f, 0.0f);
+	//Point Light
+	/*g_point_light_colour = XMVectorSet(0.5f, 0.0f, 0.0f, 0.0f);
+	g_point_light_position = XMVectorSet(1.0f, 1.0f, 0.0f, 0.0f);*/
 
 
 	m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -138,13 +139,15 @@ void Model::Draw(XMMATRIX* view, XMMATRIX* projection)
 
 	model_cb_values.WorldViewProjection = world * (*view)*(*projection);
 
+	//Point Light
+	/*
 	XMVECTOR determinant; // inverse function returns determinant, but it isnt used
 	XMMATRIX inverse; // if not defined elsewhere
 	inverse = XMMatrixInverse(&determinant, world);
 	model_cb_values.point_light_colour = g_point_light_colour;
 	model_cb_values.point_light_position = XMVector3Transform(g_point_light_position, Rotation);
 	model_cb_values.point_light_position *= XMVector3Transform(g_point_light_position, inverse);
-
+	*/
 	transpose = XMMatrixTranspose(world);
 	model_cb_values.ambient_light_colour = g_ambient_light_color;
 	model_cb_values.directional_light_colour = g_directional_light_colour;

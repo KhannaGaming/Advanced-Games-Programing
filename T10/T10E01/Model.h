@@ -27,8 +27,9 @@ private:
 	XMVECTOR g_directional_light_shines_from;
 	XMVECTOR g_directional_light_colour;
 	XMVECTOR g_ambient_light_color;
-	XMVECTOR g_point_light_position;
-	XMVECTOR g_point_light_colour;
+	//Point Light
+	//XMVECTOR g_point_light_position;
+	//XMVECTOR g_point_light_colour;
 
 	float			m_x, m_y, m_z;
 	float			m_xAngle, m_yAngle, m_zAngle;
