@@ -1,3 +1,22 @@
-﻿  Model.cpp
-Model.obj : error LNK2019: unresolved external symbol "public: void __thiscall LightManager::CreateDirectionalLight(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,struct __vector4,struct __vector4)" (?CreateDirectionalLight@LightManager@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U__vector4@@1@Z) referenced in function "public: __thiscall Model::Model(struct ID3D11Device *,struct ID3D11DeviceContext *)" (??0Model@@QAE@PAUID3D11Device@@PAUID3D11DeviceContext@@@Z)
-D:\GitHub\Advanced-Games-Programing\T10\T10EA01\Debug\T10EA01.exe : fatal error LNK1120: 1 unresolved externals
+﻿  LightManager.cpp
+d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(35): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(43): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(51): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(63): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(71): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(83): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(90): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(97): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(109): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(117): warning C4018: '<': signed/unsigned mismatch
+  Model.cpp
+  main.cpp
+d:\github\advanced-games-programing\t10\t10ea01\main.cpp(309): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t10\t10ea01\main.cpp(315): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t10\t10ea01\main.cpp(375): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t10\t10ea01\main.cpp(376): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t10\t10ea01\main.cpp(390): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t10\t10ea01\main.cpp(391): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t10\t10ea01\main.cpp(279): warning C4101: 'ms': unreferenced local variable
+  Generating Code...
+  T10EA01.vcxproj -> D:\GitHub\Advanced-Games-Programing\T10\T10EA01\Debug\T10EA01.exe
