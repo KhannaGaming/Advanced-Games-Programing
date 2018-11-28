@@ -1,0 +1,6 @@
+﻿  Model.cpp
+d:\github\advanced-games-programing\t12\t12e01\model.cpp(252): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t12\t12e01\model.cpp(254): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t12\t12e01\model.cpp(282): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t12\t12e01\model.cpp(316): warning C4018: '<': signed/unsigned mismatch
+  T12E01.vcxproj -> D:\GitHub\Advanced-Games-Programing\T12\T12E01\Debug\T12E01.exe

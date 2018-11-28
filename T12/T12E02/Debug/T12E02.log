@@ -1,0 +1,11 @@
+﻿  main.cpp
+d:\github\advanced-games-programing\t12\t12e02\main.cpp(313): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t12\t12e02\main.cpp(319): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t12\t12e02\main.cpp(379): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t12\t12e02\main.cpp(380): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t12\t12e02\main.cpp(394): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t12\t12e02\main.cpp(395): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t12\t12e02\main.cpp(585): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t12\t12e02\main.cpp(820): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t12\t12e02\main.cpp(857): warning C4018: '<': signed/unsigned mismatch
+  T12E02.vcxproj -> D:\GitHub\Advanced-Games-Programing\T12\T12E02\Debug\T12E02.exe
