@@ -631,9 +631,9 @@ HRESULT InitialiseGraphics()
 	HRESULT hr = S_OK;
 	
 	g_pModel = new Model(g_pD3DDevice, g_pImmediateContext);
-	g_pModel->LoadObjModel((char*)"Assets/sphere.obj" ,0.0f,0.0f,50.0f);
+	g_pModel->LoadObjModel((char*)"Assets/teapot.obj" ,0.0f,0.0f,50.0f);
 	g_pModel2 = new Model(g_pD3DDevice, g_pImmediateContext);
-	g_pModel2->LoadObjModel((char*)"Assets/sphere.obj", 0.0f, -2.0f, 50.0f);
+	g_pModel2->LoadObjModel((char*)"Assets/floor.obj", 0.0f, -2.0f, 50.0f);
 
 	//Set up and create vertex buffer
 	D3D11_BUFFER_DESC bufferDesc;
@@ -748,7 +748,7 @@ HRESULT InitialiseGraphics()
 
 	g_pImmediateContext->IASetInputLayout(g_pInputLayout);
 
-	g_pCamera = new camera(0.0f, 0.0f, 0.0f,0.0f);
+	g_pCamera = new camera(0.0f, 1.0f, 0.0f,0.0f);
 
 	hr = g_pModel->AddTexture((char*)"Assets/metal.jpg");
 	if (FAILED(hr))
@@ -767,7 +767,8 @@ HRESULT InitialiseGraphics()
 //Render Frame
 void RenderFrame(void)
 {
-	//g_pModel->LookAt_XZ(g_pCamera->GetPos().x, g_pCamera->GetPos().z);
+	g_pModel->LookAt_XZ(g_pCamera->GetPos().x, g_pCamera->GetPos().z);
+	g_pModel->MoveForward(0.001f);
 	g_pImmediateContext->OMSetBlendState(g_pAlphaBlendEnable, 0, 0xffffffff);
 	g_pImmediateContext->ClearRenderTargetView(g_pBackBufferRTView, g_clear_colour);
 
@@ -796,7 +797,7 @@ void Input()
 	if (aPressed == true)
 	{
 		//zDegrees += 0.01f;
-		g_pCamera->Strafe(-0.1f);
+		g_pCamera->Strafe(-0.01f);
 		//g_pModel->IncRotation(0.0f, 0.0f, 0.1f);
 	}
 
@@ -819,7 +820,7 @@ void Input()
 	if (dPressed == true)
 	{
 		//zDegrees -= 0.01f;
-		g_pCamera->Strafe(0.1f);
+		g_pCamera->Strafe(0.01f);
 		//g_pModel->IncScale(0.01f);
 	}
 }

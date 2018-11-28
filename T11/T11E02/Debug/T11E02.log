@@ -1,0 +1,10 @@
+﻿  main.cpp
+d:\github\advanced-games-programing\t11\t11e02\main.cpp(313): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t11\t11e02\main.cpp(319): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t11\t11e02\main.cpp(379): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t11\t11e02\main.cpp(380): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t11\t11e02\main.cpp(394): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t11\t11e02\main.cpp(395): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t11\t11e02\main.cpp(585): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t11\t11e02\main.cpp(844): warning C4018: '<': signed/unsigned mismatch
+  T11E02.vcxproj -> D:\GitHub\Advanced-Games-Programing\T11\T11E02\Debug\T11E02.exe

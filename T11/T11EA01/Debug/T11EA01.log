@@ -1,0 +1,4 @@
+﻿  Model.cpp
+d:\github\advanced-games-programing\t11\t11ea01\model.cpp(250): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t11\t11ea01\model.cpp(252): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  T11EA01.vcxproj -> D:\GitHub\Advanced-Games-Programing\T11\T11EA01\Debug\T11EA01.exe

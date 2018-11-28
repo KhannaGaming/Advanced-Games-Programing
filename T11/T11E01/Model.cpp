@@ -224,14 +224,14 @@ void Model::LookAt_XZ(float xWorld, float zWorld)
 	float dx, dz;
 	dx = xWorld - m_x;
 	dz = zWorld - m_z;
-	m_yAngle = atan2(dx, dz);// *(180.0 / XM_PI);
+	m_yAngle = XMConvertToDegrees(atan2(dx, dz));// *(180.0 / XM_PI);
 
 }
 
 void Model::MoveForward(float distance)
 {
-	m_x += sin(m_yAngle * (XM_PI / 180.0))*distance;
-	m_z += cos(m_yAngle * (XM_PI / 180.0))*distance;
+	m_x += sin(m_yAngle)*distance;
+	m_z += cos(m_yAngle)*distance;
 
 }
 
