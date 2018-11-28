@@ -147,7 +147,7 @@ bool aPressed = false;
 bool sPressed = false;
 bool wPressed = false;
 bool dPressed = false;
-const string filename = "Assets/Sphere.obj";
+string fileName = "Assets/tiger.obj";
 
 
 
@@ -626,7 +626,7 @@ HRESULT InitialiseGraphics()
 	HRESULT hr = S_OK;
 	
 	g_pModel = new Model(g_pD3DDevice, g_pImmediateContext);
-	g_pModel->LoadObjModel((char*)"Assets/sphere.obj",0.0f,0.0f,50.0f);
+	g_pModel->LoadObjModel((char*)"Assets/sphere.obj" ,0.0f,0.0f,50.0f);
 
 	//Set up and create vertex buffer
 	D3D11_BUFFER_DESC bufferDesc;

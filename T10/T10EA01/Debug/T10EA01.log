@@ -1,22 +1,9 @@
-﻿  LightManager.cpp
-d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(35): warning C4018: '<': signed/unsigned mismatch
-d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(43): warning C4018: '<': signed/unsigned mismatch
-d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(51): warning C4018: '<': signed/unsigned mismatch
-d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(63): warning C4018: '<': signed/unsigned mismatch
-d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(71): warning C4018: '<': signed/unsigned mismatch
-d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(83): warning C4018: '<': signed/unsigned mismatch
-d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(90): warning C4018: '<': signed/unsigned mismatch
-d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(97): warning C4018: '<': signed/unsigned mismatch
-d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(109): warning C4018: '<': signed/unsigned mismatch
-d:\github\advanced-games-programing\t10\t10ea01\lightmanager.cpp(117): warning C4018: '<': signed/unsigned mismatch
-  Model.cpp
-  main.cpp
-d:\github\advanced-games-programing\t10\t10ea01\main.cpp(309): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\github\advanced-games-programing\t10\t10ea01\main.cpp(315): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\github\advanced-games-programing\t10\t10ea01\main.cpp(375): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-d:\github\advanced-games-programing\t10\t10ea01\main.cpp(376): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-d:\github\advanced-games-programing\t10\t10ea01\main.cpp(390): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-d:\github\advanced-games-programing\t10\t10ea01\main.cpp(391): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-d:\github\advanced-games-programing\t10\t10ea01\main.cpp(279): warning C4101: 'ms': unreferenced local variable
-  Generating Code...
-  T10EA01.vcxproj -> D:\GitHub\Advanced-Games-Programing\T10\T10EA01\Debug\T10EA01.exe
+﻿  main.cpp
+c:\users\1khans16\downloads\advanced-games-programing\t10\t10ea01\main.cpp(309): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t10\t10ea01\main.cpp(315): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t10\t10ea01\main.cpp(375): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t10\t10ea01\main.cpp(376): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t10\t10ea01\main.cpp(390): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t10\t10ea01\main.cpp(391): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t10\t10ea01\main.cpp(279): warning C4101: 'ms': unreferenced local variable
+  T10EA01.vcxproj -> C:\Users\1khans16\Downloads\Advanced-Games-Programing\T10\T10EA01\Debug\T10EA01.exe
