@@ -169,7 +169,7 @@ struct CONSTANT_BUFFER0
 
 ////////////////////////////////////////////////////////////////////////
 //Change every tutorial
-const char g_TutorialName[100] = "T09E01\0";
+const char g_TutorialName[100] = "T013EA01\0";
 
 ////////////////////////////////////////////////////////////////////////
 //Forward declarations
@@ -739,8 +739,8 @@ void RenderFrame(void)
 	//	Aquire the states of all the devices
 	g_pDirectInput->ReadInputStates();
 	g_pDirectInput->IsKeyPressed();
-	g_pModel->LookAt_XZ(g_pModel3->GetPos().x, g_pModel3->GetPos().z);
-	g_pModel->MoveForward(0.001f);
+	g_pModel->LookAt_XYZ(g_pModel3->GetPos().x, g_pModel3->GetPos().y, g_pModel3->GetPos().z);
+	g_pModel->MoveForwardIncY(0.001f);
 	for (int i = 0; i < g_vModels.size(); i++)
 	{
 		if (g_pModel->CheckCollision(g_vModels[i]))
@@ -754,7 +754,7 @@ void RenderFrame(void)
 
 	g_pModel3->LookAt_XZ(g_pModel->GetPos().x, g_pModel->GetPos().z);
 
-	//g_pModel3->IncPos(0,  0.001f,0);
+	g_pModel3->IncPos(0,  0.001f,0);
 
 	//g_pModel3->MoveForward(0.001f);
 

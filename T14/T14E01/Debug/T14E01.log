@@ -1,0 +1,11 @@
+﻿  main.cpp
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\main.cpp(320): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\main.cpp(321): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\main.cpp(335): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\main.cpp(336): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\main.cpp(538): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\main.cpp(719): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\main.cpp(736): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\main.cpp(773): warning C4018: '<': signed/unsigned mismatch
+  T14E01.vcxproj -> C:\Users\1khans16\Downloads\Advanced-Games-Programing\T14\T14E01\Debug\T14E01.exe

@@ -24,6 +24,7 @@ public:
 	float GetBoundingSphereRaius();
 	bool CheckCollision(Model* modelToCompare);
 
+
 private:
 	HRESULT SetSamplerState();
 	void CalculateModelCentrePoint();

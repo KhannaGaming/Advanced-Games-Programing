@@ -1,3 +1,10 @@
-﻿  DirectInput.cpp
+﻿  main.cpp
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  T13EA01.vcxproj -> D:\GitHub\Advanced-Games-Programing\T13\T13EA01\Debug\T13EA01.exe
+c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(318): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(319): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(333): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(334): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(530): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(744): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(781): warning C4018: '<': signed/unsigned mismatch
+  T13EA01.vcxproj -> C:\Users\1khans16\Downloads\Advanced-Games-Programing\T13\T13EA01\Debug\T13EA01.exe

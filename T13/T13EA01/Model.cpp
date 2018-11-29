@@ -144,7 +144,7 @@ void Model::Draw(XMMATRIX* view, XMMATRIX* projection)
 	XMMATRIX  world;
 
 	world = XMMatrixScaling(m_scale, m_scale, m_scale);
-	world *= XMMatrixRotationRollPitchYaw(m_xAngle, m_yAngle, m_zAngle);
+	world *= XMMatrixRotationRollPitchYaw(XMConvertToRadians(m_xAngle), XMConvertToRadians(m_yAngle), XMConvertToRadians(m_zAngle));
 	world *= XMMatrixTranslation(m_x, m_y, m_z);
 
 	model_cb_values.WorldViewProjection = world * (*view)*(*projection);
@@ -226,7 +226,7 @@ void Model::LookAt_XZ(float xWorld, float zWorld)
 	float dx, dz;
 	dx = xWorld - m_x;
 	dz = zWorld - m_z;
-	m_yAngle = XMConvertToDegrees(atan2(dx, dz));// *(180.0 / XM_PI);
+	m_yAngle = atan2(dx, dz)*(180.0 / XM_PI);
 
 }
 
@@ -236,22 +236,23 @@ void Model::LookAt_XYZ(float xWorld, float yWorld, float zWorld)
 	dx = xWorld - m_x;
 	dy = yWorld - m_y;
 	dz = zWorld - m_z;
-	m_xAngle = -XMConvertToDegrees(atan2(dy, dx - dz));// *180.0 / XM_PI;
-	m_yAngle = XMConvertToDegrees(atan2(dx, dz));
+	m_xAngle = -atan2(dy, dx - dz)*(180.0 / XM_PI);// *180.0 / XM_PI;
+	m_yAngle = atan2(dx, dz)*(180.0 / XM_PI);
 }
 
 void Model::MoveForward(float distance)
 {
-	m_x += sin(XMConvertToRadians(m_yAngle))*distance;
-	m_z += cos(XMConvertToRadians(m_yAngle))*distance;
+	m_x += sin(m_yAngle* (XM_PI / 180.0))*distance;
+	m_z += cos(m_yAngle* (XM_PI / 180.0))*distance;
 
 }
 
 void Model::MoveForwardIncY(float distance)
 {
-	m_x += sin(XMConvertToRadians(m_yAngle))*distance* cos(m_xAngle * (XM_PI / 180.0));
-	m_y += -sin(XMConvertToRadians(m_xAngle))*distance;
-	m_z += cos(XMConvertToRadians(m_yAngle))*distance* cos(m_xAngle * (XM_PI / 180.0));
+	m_x += sin(m_yAngle * (XM_PI / 180.0)) * distance * cos(m_xAngle * (XM_PI / 180.0));
+	m_y += -sin(m_xAngle * (XM_PI / 180.0)) * distance;
+	m_z += cos(m_yAngle * (XM_PI / 180.0)) * distance * cos(m_xAngle * (XM_PI / 180.0));
+
 }
 
 XMVECTOR Model::GetBoundingSphereWorldSpacePosition()
@@ -288,6 +289,7 @@ bool Model::CheckCollision(Model * modelToCompare)
 
 	return false;
 }
+
 
 HRESULT Model::SetSamplerState()
 {
