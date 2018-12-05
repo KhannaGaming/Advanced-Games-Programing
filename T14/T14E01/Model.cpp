@@ -173,9 +173,9 @@ void Model::Draw(XMMATRIX* view, XMMATRIX* projection)
 	m_pImmediateContext->PSSetShader(m_pPShader, 0, 0);
 	m_pImmediateContext->IASetInputLayout(m_pInputLayout);
 
-	m_pObject->Draw();
 	m_pImmediateContext->PSSetSamplers(0, 1, &m_pSampler0);
 	m_pImmediateContext->PSSetShaderResources(0, 1, &m_pTexture0);
+	m_pObject->Draw();
 }
 
 void Model::SetPos(float xpos, float ypos, float zpos)

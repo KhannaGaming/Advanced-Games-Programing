@@ -1,33 +1,34 @@
 cbuffer CB0
 {
 	matrix WVPMatrix;//64 bytes
-	float4 colour;// 16 bytes
 };
 
-Texture2D			texture0;
+TextureCube			texture0;
 SamplerState		sampler0;
 
 struct VOut
 {
 	float4 position : SV_POSITION;
 	float4 color : COLOR;
-	float2 texcoord : TEXCOORD;
+	float3 texcoord : TEXCOORD;
+	float3 normal : NORMAL;
 };
 
-VOut SkyBoxVS(float4 position : POSITION, float2 texcoord : TEXCOORD, float3 normal : NORMAL)
+VOut SkyBoxVS(float4 position : POSITION, float4 color : COLOR, float3 texcoord : TEXCOORD, float3 normal : NORMAL)
 {
 	VOut output;
 
 	output.position = mul(WVPMatrix, position);
 
-	output.color = colour;
+	output.color = color;
 
-	output.texcoord = texcoord;
+	output.texcoord = position.xyz;
+	output.normal = normalize(normal);
 
 	return output;
 }
 
-float4 SkyBoxPS(float4 position : SV_POSITION, float4 color : COLOR, float2 texcoord : TEXCOORD) :SV_TARGET
+float4 SkyBoxPS(float4 position : SV_POSITION, float4 color : COLOR, float3 texcoord : TEXCOORD, float3 normal : NORMAL) :SV_TARGET
 {
 	return color * texture0.Sample(sampler0, texcoord);
 }

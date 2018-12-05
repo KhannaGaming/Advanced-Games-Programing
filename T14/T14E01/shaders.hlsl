@@ -24,12 +24,12 @@ VOut VShader(float4 position : POSITION, float4 color : COLOR, float2 texcoord :
 	VOut output;
 	output.position = mul(WVPMatrix, position);
 
-	float diffuse_amount = dot(directional_light_vector, normal);
+	float diffuse_amount = dot(directional_light_vector.xyz, normal);
 
 	diffuse_amount = saturate(diffuse_amount);
 
 	float4 lightvector = point_light_position - position;		// Get vector from vertex light
-	float point_amount = dot(normalize(lightvector), normal);	//Normalise light vector then get
+	float point_amount = dot(normalize(lightvector).xyz, normal);	//Normalise light vector then get
 																//dot product with vertex normal
 	point_amount = saturate(point_amount);						//Ensure values between 0 and 1
 

@@ -12,6 +12,8 @@
 #include<windowsx.h>
 #include "text2D.h"
 #include "Model.h"
+#include "ReflectionModel.h"
+
 #include "DirectInput.h"
 #include"SkyBox.h"
 /*Release
@@ -65,6 +67,7 @@ Model* g_pModel2;
 Model* g_pModel3;
 Model* g_pModel4;
 Model* g_pModel5;
+ReflectionModel* g_pReflectionModel;
 vector<Model*> g_vModels;
 DirectInput* g_pDirectInput;
 SkyBox* g_pSkyBox;
@@ -535,6 +538,13 @@ void ShutdownD3D()
 		g_pDirectInput = nullptr;
 		g_pCamera = nullptr;
 	}
+
+	if (g_pReflectionModel)
+	{
+		delete g_pReflectionModel;
+		g_pReflectionModel = nullptr;
+	}
+
 	for (int i = 0; i < g_vModels.size(); i++)
 	{
 		if (g_vModels[i])
@@ -581,7 +591,7 @@ HRESULT InitialiseGraphics()
 	HRESULT hr = S_OK;
 	
 	g_pModel = new Model(g_pD3DDevice, g_pImmediateContext);
-	g_pModel->LoadObjModel((char*)"Assets/sphere.obj" ,-50.0f,5.0f,50.0f, (char*)"Assets/metal.jpg");
+	g_pModel->LoadObjModel((char*)"Assets/sphere.obj" ,-50.0f,1.0f,50.0f, (char*)"Assets/metal.jpg");
 	g_vModels.push_back(g_pModel);
 	g_pModel2 = new Model(g_pD3DDevice, g_pImmediateContext);
 	g_pModel2->LoadObjModel((char*)"Assets/floor.obj", 0.0f, -2.0f, 50.0f, (char*)"Assets/metal.jpg");
@@ -596,6 +606,9 @@ HRESULT InitialiseGraphics()
 	g_pModel5 = new Model(g_pD3DDevice, g_pImmediateContext);
 	g_pModel5->LoadObjModel((char*)"Assets/teapot.obj", -50.0f, 0.0f, 100.0f, (char*)"Assets/metal.jpg");
 	g_vModels.push_back(g_pModel5);
+
+	g_pReflectionModel = new ReflectionModel(g_pD3DDevice, g_pImmediateContext);
+	g_pReflectionModel->LoadObjModel((char*)"Assets/sphere.obj", 0.0f, 1.0f, 50.0f, (char*)"Assets/skybox02.dds");
 
 	//Set up and create vertex buffer
 	D3D11_BUFFER_DESC bufferDesc;
@@ -713,8 +726,7 @@ HRESULT InitialiseGraphics()
 	g_pCamera = new camera(0.0f, 1.0f, 0.0f,0.0f,0.0f);
 
 	g_pSkyBox = new SkyBox(g_pD3DDevice, g_pImmediateContext,g_pVertexBuffer,g_pCamera);
-	g_pSkyBox->Init(-50.0f, 0.0f, 50.0);
-
+	g_pSkyBox->Init(-50.0f, 0.0f, 50.0,  (char*)"Assets/skybox02.dds");
 	// Draw Objects Here
 	for (int i = 0; i < g_vModels.size(); i++)
 	{
@@ -732,7 +744,7 @@ void RenderFrame(void)
 	g_pDirectInput->ReadInputStates();
 	g_pDirectInput->IsKeyPressed();
 	g_pModel->LookAt_XYZ(g_pModel3->GetPos().x, g_pModel3->GetPos().y, g_pModel3->GetPos().z);
-	g_pModel->MoveForwardIncY(0.001f);
+	//g_pModel->MoveForwardIncY(0.001f);
 	for (int i = 0; i < g_vModels.size(); i++)
 	{
 		if (g_pModel->CheckCollision(g_vModels[i]))
@@ -756,7 +768,7 @@ void RenderFrame(void)
 	g_pModel5->LookAt_XZ(g_pModel->GetPos().x, g_pModel->GetPos().z);
 	//g_pModel5->MoveForward(0.001f);
 
-	g_pImmediateContext->OMSetBlendState(g_pAlphaBlendEnable, 0, 0xffffffff);
+	//g_pImmediateContext->OMSetBlendState(g_pAlphaBlendEnable, 0, 0xffffffff);
 	g_pImmediateContext->ClearRenderTargetView(g_pBackBufferRTView, g_clear_colour);
 
 	g_pImmediateContext->ClearDepthStencilView(g_pZBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
@@ -775,8 +787,8 @@ void RenderFrame(void)
 		g_vModels[i]->Draw(&view, &projection);
 	}
 	
-	
 	g_pSkyBox->Draw(&view, &projection);
+	g_pReflectionModel->Draw(&view, &projection);
 
 	g_pImmediateContext->OMSetBlendState(g_pAlphaBlendDisable, 0, 0xffffffff);
 
