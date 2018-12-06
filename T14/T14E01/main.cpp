@@ -67,7 +67,7 @@ Model* g_pModel2;
 Model* g_pModel3;
 Model* g_pModel4;
 Model* g_pModel5;
-ReflectionModel* g_pReflectionModel;
+Model* g_pReflectionModel;
 vector<Model*> g_vModels;
 DirectInput* g_pDirectInput;
 SkyBox* g_pSkyBox;
@@ -539,12 +539,6 @@ void ShutdownD3D()
 		g_pCamera = nullptr;
 	}
 
-	if (g_pReflectionModel)
-	{
-		delete g_pReflectionModel;
-		g_pReflectionModel = nullptr;
-	}
-
 	for (int i = 0; i < g_vModels.size(); i++)
 	{
 		if (g_vModels[i])
@@ -590,25 +584,26 @@ HRESULT InitialiseGraphics()
 {
 	HRESULT hr = S_OK;
 	
-	g_pModel = new Model(g_pD3DDevice, g_pImmediateContext);
+	g_pModel = new Model(g_pD3DDevice, g_pImmediateContext,false);
 	g_pModel->LoadObjModel((char*)"Assets/sphere.obj" ,-50.0f,1.0f,50.0f, (char*)"Assets/metal.jpg");
 	g_vModels.push_back(g_pModel);
-	g_pModel2 = new Model(g_pD3DDevice, g_pImmediateContext);
+	g_pModel2 = new Model(g_pD3DDevice, g_pImmediateContext,false);
 	g_pModel2->LoadObjModel((char*)"Assets/floor.obj", 0.0f, -2.0f, 50.0f, (char*)"Assets/metal.jpg");
 
 	g_vModels.push_back(g_pModel2);
-	g_pModel3 = new Model(g_pD3DDevice, g_pImmediateContext);
+	g_pModel3 = new Model(g_pD3DDevice, g_pImmediateContext,false);
 	g_pModel3->LoadObjModel((char*)"Assets/teapot.obj", 50.0f, 0.0f, 50.0f, (char*)"Assets/metal.jpg");
 	g_vModels.push_back(g_pModel3);
-	g_pModel4 = new Model(g_pD3DDevice, g_pImmediateContext);
+	g_pModel4 = new Model(g_pD3DDevice, g_pImmediateContext,false);
 	g_pModel4->LoadObjModel((char*)"Assets/teapot.obj", 50.0f, 0.0f, 100.0f, (char*)"Assets/metal.jpg");
 	g_vModels.push_back(g_pModel4);
-	g_pModel5 = new Model(g_pD3DDevice, g_pImmediateContext);
+	g_pModel5 = new Model(g_pD3DDevice, g_pImmediateContext,false);
 	g_pModel5->LoadObjModel((char*)"Assets/teapot.obj", -50.0f, 0.0f, 100.0f, (char*)"Assets/metal.jpg");
 	g_vModels.push_back(g_pModel5);
 
-	g_pReflectionModel = new ReflectionModel(g_pD3DDevice, g_pImmediateContext);
-	g_pReflectionModel->LoadObjModel((char*)"Assets/sphere.obj", 0.0f, 1.0f, 50.0f, (char*)"Assets/skybox02.dds");
+	g_pReflectionModel = new Model(g_pD3DDevice, g_pImmediateContext,true);
+	g_pReflectionModel->LoadObjModel((char*)"Assets/sphere.obj", 0.0f, 1.0f, 50.0f, (char*)"Assets/skybox01.dds");
+	g_vModels.push_back(g_pReflectionModel);
 
 	//Set up and create vertex buffer
 	D3D11_BUFFER_DESC bufferDesc;
@@ -788,7 +783,7 @@ void RenderFrame(void)
 	}
 	
 	g_pSkyBox->Draw(&view, &projection);
-	g_pReflectionModel->Draw(&view, &projection);
+	//g_pReflectionModel->Draw(&view, &projection);
 
 	g_pImmediateContext->OMSetBlendState(g_pAlphaBlendDisable, 0, 0xffffffff);
 
