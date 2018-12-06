@@ -20,8 +20,11 @@ ParticleGenerator::ParticleGenerator(ID3D11Device* D3DDevice, ID3D11DeviceContex
 	m_pImmediateContext = ImmediateContext;
 	m_x, m_y, m_z = 0;
 	m_xAngle, m_yAngle, m_zAngle = 0;
-	m_scale = 3.0f;
-
+	m_scale = 0.3f;
+	m_timePrevious = (float(timeGetTime()) / 1000.0f);
+	m_untilParticle = 4.0f;
+	m_isActive = true;
+	particalType = RAINBOW_FOUNTAIN;
 	for (int i = 0; i < 100; i++)
 	{
 		Particle* particle = new Particle();
@@ -160,64 +163,130 @@ HRESULT ParticleGenerator::LoadObjModel(char * fileName, float xpos, float ypos,
 
 void ParticleGenerator::Draw(XMMATRIX* view, XMMATRIX* projection, XMVECTOR* cameraposition)
 {
-
+	XMMATRIX  world;
+	PARTICAL_CONSTANT_BUFFER0 partical_cb_values;
 	
+	UINT stride = sizeof(XMFLOAT3);
+	UINT offset = 0;
+	float timeNow = (float(timeGetTime()) / 1000.0f);
+	float deltaTime = timeNow-m_timePrevious;
+	m_timePrevious = timeNow;
+	m_untilParticle -= deltaTime;
 
-	//DrawOne(&test, view, projection, cameraposition);
-	//Point Light
-	/*g_point_light_colour = XMVectorSet(0.5f, 0.0f, 0.0f, 0.0f);
-	g_point_light_position = XMVectorSet(1.0f, 1.0f, 0.0f, 0.0f);*/
-
-
-	/*m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	if (!isShiney)
+	if (m_untilParticle <= 0.0f)
 	{
+		if (m_isActive)//a bool to check if the particle engine is on or off. Make a getter/setter and use it in main
+		{
+			it = m_free.begin();//point to the beggining of the free list
+								//add a new particle to the back of m_active from the front of m_free
+			if (m_free.size() != NULL)//safety check
+			{
+				switch (particalType)//the name of my enum
+				{
+				case RAINBOW_FOUNTAIN:
+				{
+					m_age = 1.0f;
+					m_untilParticle = 0.008f;
+					////////////////////////initialise the particle NOTE: all of this is adjustable for different effects////////////////////////
+					(*it)->color = XMFLOAT4(RandomZeroToOne(), RandomZeroToOne(), RandomZeroToOne(), 1.0f);
+					(*it)->gravity = 4.5f;
+					(*it)->position = XMFLOAT3(m_x, m_y, m_z);
+					(*it)->velocity = XMFLOAT3(RandomNegOneToPosOne(), 0.0f, -RandomZeroToOne());
+						////////////////////////////////////////////////////////////////////////////////////////////////
+						break;
+				}
+				default:
+				{
+					break;
+				}
+				}
+				(*it)->age = 0.0f;//set age to 0. this is used for knowing when to delete the particle
 
-		XMMATRIX Rotation;
-		Rotation = XMMatrixRotationX(XMConvertToRadians(90));
-
-		XMMATRIX transpose;
-		MODEL_CONSTANT_BUFFER0 model_cb_values;
-		XMMATRIX  world;
-
-		world = XMMatrixScaling(m_scale, m_scale, m_scale);
-		world *= XMMatrixRotationRollPitchYaw(XMConvertToRadians(m_xAngle), XMConvertToRadians(m_yAngle), XMConvertToRadians(m_zAngle));
-		world *= XMMatrixTranslation(m_x, m_y, m_z);
-
-		XMMATRIX A = world;
-		A.r[3] = XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f);
-		XMVECTOR det = XMMatrixDeterminant(A);		
-		model_cb_values.World = XMMatrixTranspose(XMMatrixInverse(&det,A));
-		model_cb_values.WorldViewProjection = world * (*view)*(*projection);
-
-		m_pImmediateContext->UpdateSubresource(m_pConstantBuffer, 0, 0, &model_cb_values, 0, 0);
-	}
-	else
-	{
-		XMMATRIX transpose;
-		REFLECTION_CONSTANT_BUFFER0 reflect_cb_values;
-		XMMATRIX  world;
-
-		world = XMMatrixScaling(m_scale, m_scale, m_scale);
-		world *= XMMatrixTranslation(m_x, m_y, m_z);
-
-		reflect_cb_values.WorldView = world * (*view);
-		reflect_cb_values.WorldViewProjection = world * (*view)*(*projection);
-
-		m_pImmediateContext->UpdateSubresource(m_pConstantBuffer, 0, 0, &reflect_cb_values, 0, 0);
+								  //////add the particle from the front of the available list to the back of the active list and remove it
+				m_active.push_back(*it);
+				m_free.pop_front();
+			}
+		}
+		else m_untilParticle = 0.001f;
 	}
 
-	m_pImmediateContext->VSSetConstantBuffers(0, 1, &m_pConstantBuffer);
-	m_pImmediateContext->PSSetConstantBuffers(0, 1, &m_pConstantBuffer);
+	if (m_active.size() != NULL)//safety check
+	{
+		it = m_active.begin();//point the iterator to the front of the active list ready for processing
+		while (it != m_active.end())//move all of the particles
+		{
 
+			switch (particalType)
+			{
+			case RAINBOW_FOUNTAIN:
+			{
 
-	m_pImmediateContext->VSSetShader(m_pVShader, 0, 0);
-	m_pImmediateContext->PSSetShader(m_pPShader, 0, 0);
-	m_pImmediateContext->IASetInputLayout(m_pInputLayout);
+				/////////////////////////ALL of this is adjustable for different effects///////////////////////////////////////////////////////////
+				(*it)->age += deltaTime;
+				(*it)->velocity.y -= (*it)->gravity*(deltaTime);
+				(*it)->position.x += (*it)->velocity.x*(deltaTime);
+				(*it)->position.y += (*it)->velocity.y*(deltaTime);
+				(*it)->position.z += (*it)->velocity.z*(deltaTime);
+				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				break;
+			}
+			default:
+			{
+				break;
+			}
+			}
+			world = XMMatrixIdentity();
+			switch (particalType)
+			{
+			case RAINBOW_FOUNTAIN:
+			{
+				/*set scale and world transforms here*/
+				break;
+			}
+			default:
+			{
+				break;
+			}
+			}
+			LookAt_XZ(cameraposition->x, cameraposition->z);
+			world *= XMMatrixScaling(m_scale, m_scale, m_scale);
+			world *= XMMatrixRotationRollPitchYaw(XMConvertToRadians(m_xAngle), XMConvertToRadians(m_yAngle), XMConvertToRadians(m_zAngle));
+			world *= XMMatrixTranslation((*it)->position.x, (*it)->position.y, (*it)->position.z);
 
-	m_pImmediateContext->PSSetSamplers(0, 1, &m_pSampler0);
-	m_pImmediateContext->PSSetShaderResources(0, 1, &m_pTexture0);*/
+			//constant buffer stuff for shader
+			partical_cb_values.WorldViewProjection = (world) * (*view)*(*projection);
+			partical_cb_values.Color = XMVectorSet((*it)->color.x, (*it)->color.y, (*it)->color.z, 0.0f);
+
+			m_pImmediateContext->VSSetConstantBuffers(0, 1, &m_pConstantBuffer);
+			m_pImmediateContext->UpdateSubresource(m_pConstantBuffer, 0, 0, &partical_cb_values, 0, 0);
+
+			//set the shader objects as active
+			m_pImmediateContext->VSSetShader(m_pVShader, 0, 0);
+			m_pImmediateContext->PSSetShader(m_pPShader, 0, 0);
+			m_pImmediateContext->IASetInputLayout(m_pInputLayout);
+
+			m_pImmediateContext->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
+
+			m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+			m_pImmediateContext->RSSetState(m_pRasterParticle);//set backface culling to on
+			m_pImmediateContext->Draw(6, 0);//draw the particle
+			m_pImmediateContext->RSSetState(m_pRasterSolid);//set backface culling to off
+			if ((*it)->age >= m_age)//check the age of the current particle
+			{
+				it++;
+				m_active.front()->age = m_age;
+				m_active.front()->position = { (RandomNegOneToPosOne() + m_x * 10)*(RandomZeroToOne() * 10),m_y + 5.0f, /*position.z*/ cameraposition->z + 7.0f };
+				m_active.front()->velocity = { /*RandomNegOneToPosOne()*/0.0f, 4.50f, RandomNegOneToPosOne() };
+				m_free.push_back(m_active.front());//move the (now previously) current active particle to the back of the pool			
+				m_active.pop_front();//remove the particle			
+			}
+			else it++;
+			}//end of while
+		}//end of if(m_active.size()!=NULL)
+	
+	//////////DrawOne(&test, view, projection, cameraposition);
+	
 }
 
 void ParticleGenerator::SetPos(float xpos, float ypos, float zpos)
@@ -470,5 +539,26 @@ void ParticleGenerator::DrawOne(Particle* one, XMMATRIX* view, XMMATRIX* project
 	m_pImmediateContext->PSSetSamplers(0, 1, &m_pSampler0);
 	m_pImmediateContext->PSSetShaderResources(0, 1, &m_pTexture0);
 	m_pImmediateContext->Draw(6, 0);
+}
+
+float ParticleGenerator::RandomZeroToOne()
+{
+	float randomNumber = -2.0f;
+	while (randomNumber >= 1.0f || randomNumber <=0.0f)
+	{
+		randomNumber = (float)rand()/(float)32767.0f;// float(rand() / 32767);
+	}
+	return randomNumber;
+}
+
+float ParticleGenerator::RandomNegOneToPosOne()
+{
+	float randomNumber = -2.0f;
+	while (randomNumber > 1.0f || randomNumber <-1.0f)
+	{
+		randomNumber = ((float)rand() / (float)32767.0f)- ((float)rand() / (float)32767.0f);// float(rand() / 32767);
+
+	}
+	return randomNumber;
 }
 

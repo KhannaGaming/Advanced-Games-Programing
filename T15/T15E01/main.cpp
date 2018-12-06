@@ -792,6 +792,7 @@ void RenderFrame(void)
 	}
 	
 	g_pSkyBox->Draw(&view, &projection);
+	//g_pParticleGenerator->SetPos(g_pCamera->GetPos().x, g_pCamera->GetPos().y, g_pCamera->GetPos().z+2);
 	g_pParticleGenerator->Draw(&view, &projection, &g_pCamera->GetPos());
 	//g_pReflectionModel->Draw(&view, &projection);
 

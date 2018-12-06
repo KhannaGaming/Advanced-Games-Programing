@@ -1,11 +1,11 @@
 ﻿  main.cpp
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-c:\users\1khans16\downloads\advanced-games-programing\t15\t15e01\main.cpp(325): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t15\t15e01\main.cpp(326): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t15\t15e01\main.cpp(340): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t15\t15e01\main.cpp(341): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t15\t15e01\main.cpp(549): warning C4018: '<': signed/unsigned mismatch
-c:\users\1khans16\downloads\advanced-games-programing\t15\t15e01\main.cpp(735): warning C4018: '<': signed/unsigned mismatch
-c:\users\1khans16\downloads\advanced-games-programing\t15\t15e01\main.cpp(752): warning C4018: '<': signed/unsigned mismatch
-c:\users\1khans16\downloads\advanced-games-programing\t15\t15e01\main.cpp(789): warning C4018: '<': signed/unsigned mismatch
-  T15E01.vcxproj -> C:\Users\1khans16\Downloads\Advanced-Games-Programing\T15\T15E01\Debug\T15E01.exe
+d:\github\advanced-games-programing\t15\t15e01\main.cpp(325): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t15\t15e01\main.cpp(326): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t15\t15e01\main.cpp(340): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t15\t15e01\main.cpp(341): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t15\t15e01\main.cpp(549): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t15\t15e01\main.cpp(735): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t15\t15e01\main.cpp(752): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t15\t15e01\main.cpp(789): warning C4018: '<': signed/unsigned mismatch
+  T15E01.vcxproj -> D:\GitHub\Advanced-Games-Programing\T15\T15E01\Debug\T15E01.exe

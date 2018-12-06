@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include <list>
+
 using namespace std;
 
 struct Particle
@@ -18,8 +19,9 @@ struct Particle
 	XMFLOAT3 position;
 	XMFLOAT3 velocity;
 	XMFLOAT4 color;
+	float age;
 };
-
+enum typeOfPartical { RAINBOW_FOUNTAIN };
 class ParticleGenerator
 {
 public:
@@ -68,12 +70,15 @@ private:
 	float			m_pTexture;
 	char*			m_textureName;
 	bool isShiney;
+	bool m_isActive;
 	float m_timePrevious;
 	float m_untilParticle;
 	float RandomZeroToOne();
 	float RandomNegOneToPosOne();
-
+	float m_age;
+	typeOfPartical particalType;
 	list<Particle*> m_free;
 	list<Particle*> m_active;
+	list<Particle*>::iterator it;//iteration list for pointing to the correct particle in the list
 };
 
