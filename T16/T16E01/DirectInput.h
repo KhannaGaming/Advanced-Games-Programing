@@ -13,6 +13,8 @@
 #include<windowsx.h>
 #include <dinput.h>
 #include"camera.h"
+#include "SceneNode.h"
+
 class DirectInput
 {
 public:
@@ -20,7 +22,8 @@ public:
 	~DirectInput();
 	HRESULT InitInput();
 	void ReadInputStates();
-	void IsKeyPressed();
+	void CheckKeysPressed();
+	bool IsKeyPressed(unsigned char DI_keycode);
 
 private:
 	IDirectInput8 * m_direct_input;

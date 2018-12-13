@@ -13,6 +13,21 @@ SceneNode::SceneNode()
 
 SceneNode::~SceneNode()
 {
+	int maxChildSize = m_children.size();
+	for (int i = 0; i < maxChildSize; i++)
+	{
+		delete m_children[i];
+		m_children[i] = nullptr;
+		//m_children.pop_back();//erase(m_children.begin() + i);
+	}
+	
+	//	delete m_p_model;
+		m_p_model = nullptr;
+	
+	for (int i = 0; i < maxChildSize; i++)
+	{
+		 m_children.pop_back();
+	}
 }
 
 void SceneNode::SetModel(Model * model)
@@ -154,4 +169,9 @@ void SceneNode::MoveForwardIncY(float distance)
 	m_x += sin(m_yAngle * (XM_PI / 180.0)) * distance * cos(m_xAngle * (XM_PI / 180.0));
 	m_y += -sin(m_xAngle * (XM_PI / 180.0)) * distance;
 	m_z += cos(m_yAngle * (XM_PI / 180.0)) * distance * cos(m_xAngle * (XM_PI / 180.0));
+}
+
+vector<SceneNode*> SceneNode::GetChildren()
+{
+	return m_children;
 }

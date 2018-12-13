@@ -77,6 +77,14 @@ ParticleGenerator* g_pParticleGenerator;
 SceneNode* g_root_node;
 SceneNode* g_node1;
 SceneNode* g_node2;
+SceneNode* g_node3;
+SceneNode* g_node4;
+SceneNode* g_node5;
+SceneNode* g_node6;
+SceneNode* g_node7;
+SceneNode* g_node8;
+SceneNode* g_node9;
+SceneNode* g_node10;
 	//Define vertices of a triangle - screen coordinates -1.0 to +1.0
 
 
@@ -532,6 +540,22 @@ HRESULT InitialiseD3D()
 // Clean up D3D objects
 void ShutdownD3D()
 {
+	int maxModels = g_vModels.size();
+	for (int i = 0; i < maxModels; i++)
+	{
+		if (g_vModels[i])
+		{
+			delete g_vModels[i];
+			g_vModels[i] = nullptr;
+		}
+	}
+	for (int i = 0; i < maxModels; i++)
+	{
+		g_vModels.pop_back();
+	}
+	delete g_root_node;
+	g_root_node = nullptr;
+
 	if (g_pParticleGenerator)
 	{
 		delete g_pParticleGenerator;
@@ -550,14 +574,6 @@ void ShutdownD3D()
 		g_pCamera = nullptr;
 	}
 
-	for (int i = 0; i < g_vModels.size(); i++)
-	{
-		if (g_vModels[i])
-		{
-			delete g_vModels[i];
-			g_vModels[i] = nullptr;
-		}
-	}
 
 	if (g_pAlphaBlendDisable) g_pAlphaBlendDisable->Release();
 	if (g_pAlphaBlendEnable) g_pAlphaBlendEnable->Release();
@@ -733,23 +749,59 @@ HRESULT InitialiseGraphics()
 	g_root_node = new SceneNode();
 	g_node1 = new SceneNode();
 	g_node2 = new SceneNode();
+	g_node3 = new SceneNode();
+	g_node4 = new SceneNode();
+	g_node5 = new SceneNode();
+	g_node6 = new SceneNode();
+	g_node7 = new SceneNode();
+	g_node8 = new SceneNode();
+	g_node9 = new SceneNode();
+	g_node10 = new SceneNode();
 	g_pCamera = new camera(0.0f, 1.0f, 0.0f,0.0f,0.0f);
-	g_node1->SetCamera(g_pCamera);
-	//g_node1->SetModel(g_pModel);
-	g_node2->SetModel(g_pModel3);
+	g_node1->SetModel(g_pModel3);
+	g_node2->SetModel(g_pModel);
+	g_node3->SetModel(g_pModel);
+	g_node4->SetModel(g_pModel);
+	g_node5->SetModel(g_pModel);
+	g_node6->SetModel(g_pModel3);
+	g_node7->SetModel(g_pModel);
+	g_node8->SetModel(g_pModel);
+	g_node9->SetModel(g_pModel);
+	g_node10->SetModel(g_pModel);
 	g_root_node->addChildNode(g_node1);
+	g_root_node->addChildNode(g_node6);
 	g_node1->addChildNode(g_node2);
-	//g_node1->SetPos(-50.0f, 1.0f, 50.0f);
-	g_node2->SetPos(0.0f, 0.0f, 30.0f);
+	g_node1->SetPos(-30.0f, 0.0f, 10.0f);
+	g_node2->SetPos(10.0f, 0.0f, 20.0f);
+	g_node1->addChildNode(g_node3);
+	g_node3->SetPos(-10.0f, 0.0f, 10.0f);
+	g_node1->addChildNode(g_node4);
+	g_node4->SetPos(-10.0f, 0.0f, -10.0f);
+	g_node1->addChildNode(g_node5);
+	g_node5->SetPos(10.0f, 0.0f, -10.0f);
+	g_node6->addChildNode(g_node7);
+	g_node6->SetPos(30.0f, 0.0f, 10.0f);
+	g_node7->SetPos(10.0f, 0.0f, 10.0f);
+	g_node6->addChildNode(g_node8);
+	g_node8->SetPos(-10.0f, 0.0f, 10.0f);
+	g_node6->addChildNode(g_node9);
+	g_node9->SetPos(-10.0f, 0.0f, -10.0f);
+	g_node6->addChildNode(g_node10);
+	g_node10->SetPos(10.0f, 0.0f, -10.0f);
+
 
 	g_pSkyBox = new SkyBox(g_pD3DDevice, g_pImmediateContext,g_pVertexBuffer,g_pCamera);
 	g_pSkyBox->Init(-50.0f, 0.0f, 50.0,  (char*)"Assets/skybox01.dds");
-	// Draw Objects Here
+	
 	for (int i = 0; i < g_vModels.size(); i++)
 	{
 		g_vModels[i]->AddTexture();
 	
 	}
+		g_node1->detachNode(g_node2);
+		g_node6->addChildNode(g_node2);
+		g_node6->detachNode(g_node2);
+		g_node1->addChildNode(g_node2);
 	g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	return S_OK;
 }
@@ -760,7 +812,8 @@ void RenderFrame(void)
 {
 	//	Aquire the states of all the devices
 	g_pDirectInput->ReadInputStates();
-	g_pDirectInput->IsKeyPressed();
+	g_pDirectInput->CheckKeysPressed();
+	
 	for (int i = 0; i < g_vModels.size(); i++)
 	{
 		if (g_pModel->CheckCollision(g_vModels[i]))
@@ -771,7 +824,11 @@ void RenderFrame(void)
 			}
 		}
 	}
-	//g_node1->IncRotation(XMConvertToRadians( 1.0f), XMConvertToRadians(1.0f), 0);
+	g_node1->IncRotation(0, XMConvertToRadians(1.0f), 0);
+	g_node3->IncRotation(XMConvertToRadians(1.0f), 0, 0);
+	g_node6->IncRotation(0, XMConvertToRadians(1.0f), 0);
+	g_node8->IncRotation(XMConvertToRadians(1.0f), 0, 0);
+
 	g_pImmediateContext->ClearRenderTargetView(g_pBackBufferRTView, g_clear_colour);
 
 	g_pImmediateContext->ClearDepthStencilView(g_pZBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
@@ -782,8 +839,8 @@ void RenderFrame(void)
 
 	projection = XMMatrixPerspectiveFovLH(XMConvertToRadians(45.0), g_rect_width / g_rect_height, 1.0, 200.0);
 	view = g_pCamera->GetViewMatrix();
-	g_node1->SetPos(g_pCamera->GetPos().x, g_pCamera->GetPos().y, g_pCamera->GetPos().z);
-	g_node1->SetRotation(-g_pCamera->GetRot().x, g_pCamera->GetRot().y, g_pCamera->GetRot().z);
+	//g_node1->SetPos(g_pCamera->GetPos().x, g_pCamera->GetPos().y, g_pCamera->GetPos().z);
+	//g_node1->SetRotation(-g_pCamera->GetRot().x, g_pCamera->GetRot().y, g_pCamera->GetRot().z);
 
 	g_root_node->execute(&XMMatrixIdentity(), &view, &projection);
 	//// Draw Objects Here

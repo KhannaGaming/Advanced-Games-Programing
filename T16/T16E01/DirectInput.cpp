@@ -97,7 +97,7 @@ void DirectInput::ReadInputStates()
 	DWORD dwResult = XInputGetState(0, &m_xbox_state);	
 }
 
-void DirectInput::IsKeyPressed()
+void DirectInput::CheckKeysPressed()
 {
 	// Keyboard
 	if (g_keyboard_keys_state[DIK_ESCAPE] & 0x80)
@@ -172,4 +172,8 @@ void DirectInput::IsKeyPressed()
 	{
 		m_pCamera->RotateAroundY(-m_controller_horizontal_move_speed);
 	}
+}
+bool DirectInput::IsKeyPressed(unsigned char DI_keycode)
+{	
+		return g_keyboard_keys_state[DI_keycode];
 }

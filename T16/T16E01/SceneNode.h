@@ -36,6 +36,7 @@ public:
 	void LookAt_XYZ(float xWorld, float yWorld, float zWorld);
 	void MoveForward(float distance);
 	void MoveForwardIncY(float distance);
+	vector<SceneNode*> GetChildren();
 private:
 	Model* m_p_model;
 	camera* m_p_camera;
