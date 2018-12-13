@@ -1,0 +1,75 @@
+﻿  camera.cpp
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\camera.cpp(12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\camera.cpp(13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\camera.cpp(14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\camera.cpp(33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\camera.cpp(39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\camera.cpp(40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  DirectInput.cpp
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  LightManager.cpp
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\lightmanager.cpp(35): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\lightmanager.cpp(43): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\lightmanager.cpp(51): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\lightmanager.cpp(63): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\lightmanager.cpp(71): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\lightmanager.cpp(83): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\lightmanager.cpp(90): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\lightmanager.cpp(97): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\lightmanager.cpp(109): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\lightmanager.cpp(117): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\main.cpp(337): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\main.cpp(338): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\main.cpp(352): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\main.cpp(353): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\main.cpp(796): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\main.cpp(817): warning C4018: '<': signed/unsigned mismatch
+  Model.cpp
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\model.cpp(355): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\model.cpp(365): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\model.cpp(366): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\model.cpp(371): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\model.cpp(372): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\model.cpp(377): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\model.cpp(378): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\model.cpp(379): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\model.cpp(443): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\model.cpp(477): warning C4018: '<': signed/unsigned mismatch
+  objfilemodel.cpp
+  ParticleGenerator.cpp
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\particlegenerator.cpp(342): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\particlegenerator.cpp(352): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\particlegenerator.cpp(353): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\particlegenerator.cpp(358): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\particlegenerator.cpp(359): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\particlegenerator.cpp(365): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\particlegenerator.cpp(366): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\particlegenerator.cpp(367): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  ReflectionModel.cpp
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\reflectionmodel.cpp(205): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\reflectionmodel.cpp(215): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\reflectionmodel.cpp(216): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\reflectionmodel.cpp(221): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\reflectionmodel.cpp(222): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\reflectionmodel.cpp(228): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\reflectionmodel.cpp(229): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\reflectionmodel.cpp(230): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\reflectionmodel.cpp(295): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\reflectionmodel.cpp(329): warning C4018: '<': signed/unsigned mismatch
+  SceneNode.cpp
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\scenenode.cpp(87): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\scenenode.cpp(117): warning C4018: '<': signed/unsigned mismatch
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\scenenode.cpp(148): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\scenenode.cpp(157): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\scenenode.cpp(158): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\scenenode.cpp(163): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\scenenode.cpp(164): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\scenenode.cpp(169): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\scenenode.cpp(170): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\1khans16\downloads\advanced-games-programing\t17\t17e01\scenenode.cpp(171): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  SkyBox.cpp
+  text2D.cpp
+  Generating Code...
+  T17E01.vcxproj -> C:\Users\1khans16\Downloads\Advanced-Games-Programing\T17\T17E01\Debug\T17E01.exe
