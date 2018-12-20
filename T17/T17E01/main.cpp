@@ -64,27 +64,18 @@ XMVECTOR g_directional_light_colour;
 XMVECTOR g_ambient_light_color;
 XMVECTOR g_point_light_position;
 XMVECTOR g_point_light_colour;
-Model* g_pModel;
-Model* g_pModel2;
-Model* g_pModel3;
-Model* g_pModel4;
-Model* g_pModel5;
+Model* g_SpaceShip;
+Model* g_pAsteroid;
 Model* g_pReflectionModel;
 vector<Model*> g_vModels;
 DirectInput* g_pDirectInput;
 SkyBox* g_pSkyBox;
 ParticleGenerator* g_pParticleGenerator;
 SceneNode* g_root_node;
-SceneNode* g_node1;
-SceneNode* g_node2;
-SceneNode* g_node3;
-SceneNode* g_node4;
-SceneNode* g_node5;
-SceneNode* g_node6;
-SceneNode* g_node7;
-SceneNode* g_node8;
-SceneNode* g_node9;
-SceneNode* g_node10;
+SceneNode* g_SpaceShipNode; 
+SceneNode* g_SpaceShipNode2;
+SceneNode* g_AsteroidNode;
+SceneNode* g_CameraNode;
 	//Define vertices of a triangle - screen coordinates -1.0 to +1.0
 
 
@@ -157,8 +148,8 @@ POS_COL_TEX_NORM_VERTEX vertices[] =
 float g_clear_colour[4] = { 0.0f,0.0f,0.0f,1.0f };
 float g_x = 0;
 float g_y = 0;
-float g_rect_width = 600;
-float g_rect_height = 600;
+float g_rect_width = 1000;
+float g_rect_height = 1000;
 const float speed = 0.06f;
 float xpos=0;
 float ypos=0;
@@ -166,7 +157,7 @@ float zpos=10;
 float xDegrees = 0;
 float yDegrees = 0;
 float zDegrees = 0;
-
+float farClipPlane = 1000.0f;
 bool aPressed = false;
 bool sPressed = false;
 bool wPressed = false;
@@ -198,7 +189,7 @@ HRESULT InitialiseD3D();
 void ShutdownD3D();
 void RenderFrame(void);
 HRESULT InitialiseGraphics(void);
-
+void SetCamera();
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -611,28 +602,17 @@ HRESULT InitialiseGraphics()
 {
 	HRESULT hr = S_OK;
 
-	g_pModel = new Model(g_pD3DDevice, g_pImmediateContext,false);
-	g_pModel->LoadObjModel((char*)"Assets/sphere.obj" ,0.0f,0.0f,0.0f, (char*)"Assets/metal.jpg");
-	g_vModels.push_back(g_pModel);
-	//g_pModel2 = new Model(g_pD3DDevice, g_pImmediateContext,false);
-	//g_pModel2->LoadObjModel((char*)"Assets/floor.obj", 0.0f, -2.0f, 50.0f, (char*)"Assets/metal.jpg");
-
-	//g_vModels.push_back(g_pModel2);
-	g_pModel3 = new Model(g_pD3DDevice, g_pImmediateContext,false);
-	g_pModel3->LoadObjModel((char*)"Assets/teapot.obj", 0.0f, 0.0f, 0.0f, (char*)"Assets/metal.jpg");
-	g_vModels.push_back(g_pModel3);
-	//g_pModel4 = new Model(g_pD3DDevice, g_pImmediateContext,false);
-	//g_pModel4->LoadObjModel((char*)"Assets/teapot.obj", 50.0f, 0.0f, 100.0f, (char*)"Assets/metal.jpg");
-	//g_vModels.push_back(g_pModel4);
-	//g_pModel5 = new Model(g_pD3DDevice, g_pImmediateContext,false);
-	//g_pModel5->LoadObjModel((char*)"Assets/teapot.obj", -50.0f, 0.0f, 100.0f, (char*)"Assets/metal.jpg");
-	//g_vModels.push_back(g_pModel5);
-
-	//g_pReflectionModel = new Model(g_pD3DDevice, g_pImmediateContext,true);
-	//g_pReflectionModel->LoadObjModel((char*)"Assets/sphere.obj", 0.0f, 1.0f, 50.0f, (char*)"Assets/skybox01.dds");
-	//g_vModels.push_back(g_pReflectionModel);
+	g_SpaceShip = new Model(g_pD3DDevice, g_pImmediateContext,false);
+	g_SpaceShip->LoadObjModel((char*)"Assets/SpaceShip.obj", 0.0f, 0.0f, 0.0f, (char*)"Assets/maps/Luminaris_Diffuse.jpg");
+	g_vModels.push_back(g_SpaceShip);
+	
+	g_pAsteroid = new Model(g_pD3DDevice, g_pImmediateContext,false);
+	g_pAsteroid->LoadObjModel((char*)"Assets/SpaceShip.obj" ,0.0f,0.0f,0.0f, (char*)"Assets/metal.jpg");
+	g_vModels.push_back(g_pAsteroid);
+	
 	
 	g_pParticleGenerator = new ParticleGenerator(g_pD3DDevice, g_pImmediateContext, false);
+	g_pParticleGenerator->AddTexture((char*)"Assets/ring.png");
 	g_pParticleGenerator->CreateParticle();
 	//Set up and create vertex buffer
 	D3D11_BUFFER_DESC bufferDesc;
@@ -747,49 +727,25 @@ HRESULT InitialiseGraphics()
 
 	g_pImmediateContext->IASetInputLayout(g_pInputLayout);
 	g_root_node = new SceneNode();
-	g_node1 = new SceneNode();
-	g_node2 = new SceneNode();
-	g_node3 = new SceneNode();
-	g_node4 = new SceneNode();
-	g_node5 = new SceneNode();
-	g_node6 = new SceneNode();
-	g_node7 = new SceneNode();
-	g_node8 = new SceneNode();
-	g_node9 = new SceneNode();
-	g_node10 = new SceneNode();
+	g_SpaceShipNode = new SceneNode();
+	g_SpaceShipNode2 = new SceneNode();
+
+	g_AsteroidNode = new SceneNode();
+	g_CameraNode = new SceneNode();
 	g_pCamera = new camera(0.0f, 1.0f, 0.0f,0.0f,0.0f);
-	g_node1->SetModel(g_pModel3);
-	g_node2->SetModel(g_pModel);
-	g_node3->SetModel(g_pModel);
-	g_node4->SetModel(g_pModel);
-	g_node5->SetModel(g_pModel);
-	g_node6->SetModel(g_pModel3);
-	g_node7->SetModel(g_pModel);
-	g_node8->SetModel(g_pModel);
-	g_node9->SetModel(g_pModel);
-	g_node10->SetModel(g_pModel);
-	g_root_node->addChildNode(g_node1);
-	g_root_node->addChildNode(g_node6);
-	g_node1->addChildNode(g_node2);
-	g_node1->SetPos(-30.0f, 0.0f, 10.0f);
-	g_node2->SetPos(10.0f, 0.0f, 20.0f);
-	g_node1->addChildNode(g_node3);
-	g_node3->SetPos(-10.0f, 0.0f, 10.0f);
-	g_node1->addChildNode(g_node4);
-	g_node4->SetPos(-10.0f, 0.0f, -10.0f);
-	g_node1->addChildNode(g_node5);
-	g_node5->SetPos(10.0f, 0.0f, -10.0f);
-	g_node6->addChildNode(g_node7);
-	g_node6->SetPos(30.0f, 0.0f, 10.0f);
-	g_node7->SetPos(10.0f, 0.0f, 10.0f);
-	g_node6->addChildNode(g_node8);
-	g_node8->SetPos(-10.0f, 0.0f, 10.0f);
-	g_node6->addChildNode(g_node9);
-	g_node9->SetPos(-10.0f, 0.0f, -10.0f);
-	g_node6->addChildNode(g_node10);
-	g_node10->SetPos(10.0f, 0.0f, -10.0f);
-
-
+	g_SpaceShipNode->SetModel(g_SpaceShip);
+	g_SpaceShipNode2->SetModel(g_SpaceShip);
+	g_AsteroidNode->SetModel(g_pAsteroid);
+	g_root_node->addChildNode(g_AsteroidNode);
+	//g_CameraNode->SetCamera(g_pCamera);
+	
+	g_root_node->addChildNode(g_CameraNode);
+	g_root_node->addChildNode(g_SpaceShipNode);
+	g_root_node->addChildNode(g_SpaceShipNode2);
+	//SetCamera();
+	g_SpaceShipNode->SetPos(-50, 50, 50.0f);
+	g_SpaceShipNode2->SetPos(50, 0, 50.0f);
+	g_AsteroidNode->SetPos(0, -50, 100.0f);
 	g_pSkyBox = new SkyBox(g_pD3DDevice, g_pImmediateContext,g_pVertexBuffer,g_pCamera);
 	g_pSkyBox->Init(-50.0f, 0.0f, 50.0,  (char*)"Assets/skybox01.dds");
 	
@@ -798,10 +754,7 @@ HRESULT InitialiseGraphics()
 		g_vModels[i]->AddTexture();
 	
 	}
-		g_node1->detachNode(g_node2);
-		g_node6->addChildNode(g_node2);
-		g_node6->detachNode(g_node2);
-		g_node1->addChildNode(g_node2);
+
 	g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	return S_OK;
 }
@@ -813,10 +766,10 @@ void RenderFrame(void)
 	//	Aquire the states of all the devices
 	g_pDirectInput->ReadInputStates();
 	g_pDirectInput->CheckKeysPressed();
-	
+	//SetCamera();
 	for (int i = 0; i < g_vModels.size(); i++)
 	{
-		if (g_pModel->CheckCollision(g_vModels[i]))
+		if (g_SpaceShip->CheckCollision(g_vModels[i]))
 		{
 			if (i != 1)
 			{
@@ -824,25 +777,35 @@ void RenderFrame(void)
 			}
 		}
 	}
-	g_node1->IncRotation(0, XMConvertToRadians(1.0f), 0);
-	g_node3->IncRotation(XMConvertToRadians(1.0f), 0, 0);
-	g_node6->IncRotation(0, XMConvertToRadians(1.0f), 0);
-	g_node8->IncRotation(XMConvertToRadians(1.0f), 0, 0);
+	//g_SpaceShipNode->SetRotation(g_pCamera->GetRot().x, g_pCamera->GetRot().y, g_pCamera->GetRot().z);
 
+	//g_SpaceShipNode->SetPos(g_pCamera->GetPos().x, g_pCamera->GetPos().y, g_pCamera->GetPos().z + 10.0f);
+	g_pParticleGenerator->SetPos(g_SpaceShipNode->GetPos());
+	g_pParticleGenerator->IncPos(0, 0, -3.5f);
 	g_pImmediateContext->ClearRenderTargetView(g_pBackBufferRTView, g_clear_colour);
-
+	g_SpaceShipNode->LookAt_XYZ(g_AsteroidNode->GetPos().x, g_AsteroidNode->GetPos().y, g_AsteroidNode->GetPos().z);
+	g_SpaceShipNode2->LookAt_XYZ(g_SpaceShipNode->GetPos().x, g_SpaceShipNode->GetPos().y, g_SpaceShipNode->GetPos().z);
+	g_AsteroidNode->LookAt_XYZ(g_SpaceShipNode2->GetPos().x, g_SpaceShipNode2->GetPos().y, g_SpaceShipNode2->GetPos().z);
+	g_SpaceShipNode->MoveForwardIncY(0.01f);
+	//g_SpaceShipNode->IncPos(0, 0.01f, 0);
+	g_SpaceShipNode2->MoveForwardIncY(0.01f);
+	g_AsteroidNode->MoveForwardIncY(0.01f);
 	g_pImmediateContext->ClearDepthStencilView(g_pZBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	//Render HERE
-
+	//g_SpaceShipNode->IncRotation(0, 0.01f, 0);
+	//g_pCamera->SetRot(g_SpaceShipNode->GetRotation().x, g_SpaceShipNode->GetRotation().y, g_SpaceShipNode->GetRotation().z);
+//	g_pCamera->SetPos(g_SpaceShipNode->GetPos().x, g_SpaceShipNode->GetPos().y, g_SpaceShipNode->GetPos().z-10.0f);
+	
 	//Upload the new values for the constant buffer
 	XMMATRIX   projection, view;
 
-	projection = XMMatrixPerspectiveFovLH(XMConvertToRadians(45.0), g_rect_width / g_rect_height, 1.0, 200.0);
+	projection = XMMatrixPerspectiveFovLH(XMConvertToRadians(45.0), g_rect_width / g_rect_height, 1.0, farClipPlane);
 	view = g_pCamera->GetViewMatrix();
 	//g_node1->SetPos(g_pCamera->GetPos().x, g_pCamera->GetPos().y, g_pCamera->GetPos().z);
 	//g_node1->SetRotation(-g_pCamera->GetRot().x, g_pCamera->GetRot().y, g_pCamera->GetRot().z);
 
 	g_root_node->execute(&XMMatrixIdentity(), &view, &projection);
+	//g_CameraNode->execute(&XMMatrixIdentity(), &view, &projection);
 	//// Draw Objects Here
 	//for (int i = 0; i < g_vModels.size(); i++)
 	//{
@@ -858,6 +821,12 @@ void RenderFrame(void)
 
 	//Display what has just been rendered;
 	g_pSwapChain->Present(0, 0);
+}
+
+void SetCamera()
+{
+	g_CameraNode->SetRotation(g_pCamera->GetRot().x, g_pCamera->GetRot().y, g_pCamera->GetRot().z);
+	g_CameraNode->SetPos(g_pCamera->GetPos().x, g_pCamera->GetPos().y, g_pCamera->GetPos().z);
 }
 
 

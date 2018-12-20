@@ -120,6 +120,14 @@ void DirectInput::CheckKeysPressed()
 	{
 		m_pCamera->Strafe(-0.01f);
 	}
+	if (g_keyboard_keys_state[DIK_Q] & 0x80)
+	{
+		m_pCamera->Up(0.01f);
+	}
+	if (g_keyboard_keys_state[DIK_E] & 0x80)
+	{
+		m_pCamera->Up(-0.01f);
+	}
 
 	//	Mouse
 	if (m_mouse_state.lX > 0)

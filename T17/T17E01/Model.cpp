@@ -178,20 +178,19 @@ void Model::Draw(XMMATRIX* view, XMMATRIX* projection)
 	g_point_light_position = XMVectorSet(1.0f, 1.0f, 0.0f, 0.0f);*/
 
 
-	m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	//m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	if (!isShiney)
 	{
 
 		XMMATRIX Rotation;
 		Rotation = XMMatrixRotationX(XMConvertToRadians(90));
-
 		XMMATRIX transpose;
 		MODEL_CONSTANT_BUFFER0 model_cb_values;
 		XMMATRIX  world;
 
 		world = XMMatrixScaling(m_scale, m_scale, m_scale);
-		world *= XMMatrixRotationRollPitchYaw(XMConvertToRadians(m_xAngle), XMConvertToRadians(m_yAngle), XMConvertToRadians(m_zAngle));
+		world *= XMMatrixRotationQuaternion(XMVectorSet( XMConvertToRadians(m_xAngle), XMConvertToRadians(m_yAngle), XMConvertToRadians(m_zAngle),1.0f));
 		world *= XMMatrixTranslation(m_x, m_y, m_z);
 
 		XMMATRIX A = world;
@@ -327,7 +326,6 @@ void Model::IncRotation(float xAmount, float yAmount, float zAmount)
 	m_xAngle += xAmount;
 	m_yAngle += yAmount;
 	m_zAngle += zAmount;
-
 }
 
 void Model::IncScale(float scaleAmount)

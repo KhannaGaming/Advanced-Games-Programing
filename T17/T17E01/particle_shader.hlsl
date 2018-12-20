@@ -12,7 +12,11 @@ struct VOut
 	float2 texcoord : TEXCOORD;
 };
 
-VOut ParticleVS(float4 position : POSITION)
+
+Texture2D texture0;
+SamplerState sampler0;
+
+VOut ParticleVS(float4 position : POSITION, float2 texcoord : TEXCOORD)
 {
 	VOut output;
 
@@ -22,7 +26,7 @@ VOut ParticleVS(float4 position : POSITION)
 
 	output.color = colour;
 
-	output.texcoord = position.xyz;
+	output.texcoord = texcoord;
 
 	return output;
 }
@@ -30,7 +34,7 @@ VOut ParticleVS(float4 position : POSITION)
 float4 ParticlePS(in VOut input) :SV_TARGET
 {
 	float distsq = input.texcoord.x*input.texcoord.x + input.texcoord.y*input.texcoord.y;
-	clip(1.f - distsq);
+	//clip(1.f - distsq);
 
-	return input.color;// *texture0.Sample(sampler0, input.texcoord);
+    return input.color * texture0.Sample(sampler0, input.texcoord);
 }

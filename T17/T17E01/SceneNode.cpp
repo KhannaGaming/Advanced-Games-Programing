@@ -154,7 +154,12 @@ void SceneNode::LookAt_XYZ(float xWorld, float yWorld, float zWorld)
 	dx = xWorld - m_x;
 	dy = yWorld - m_y;
 	dz = zWorld - m_z;
-	m_xAngle = -atan2(dy, dx - dz)*(180.0 / XM_PI);// *180.0 / XM_PI;
+	//m_xAngle = atan2(dy, dx)*(180.0 / XM_PI);// *180.0 / XM_PI;
+	
+	
+	float pyth = sqrt(pow(dx, 2) + pow(dy, 2) + pow(dz, 2));
+
+	m_xAngle = -atan2(dy, pyth)*180.0 / XM_PI;
 	m_yAngle = atan2(dx, dz)*(180.0 / XM_PI);
 }
 

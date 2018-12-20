@@ -37,6 +37,7 @@ public:
 	void MoveForward(float distance);
 	void MoveForwardIncY(float distance);
 	vector<SceneNode*> GetChildren();
+	XMVECTOR get_world_centre_position();
 private:
 	Model* m_p_model;
 	camera* m_p_camera;
@@ -44,6 +45,7 @@ private:
 	float m_x, m_y, m_z;
 	float m_xAngle, m_yAngle, m_zAngle;
 	float m_scale;
+	float m_world_centre_x, m_world_centre_y, m_world_centre_z;
 
 };
 

@@ -43,15 +43,21 @@ void camera::RotateAroundY(float rotation_amount)
 void camera::Forward(float distance_amount)
 {
 	m_x += m_dx * distance_amount;
+	m_y += m_dy * distance_amount;
 	m_z += m_dz * distance_amount;
 }
 
 void camera::Strafe(float distance_amount)
 {
-	m_lookat = XMVectorSet(m_x + m_dx, m_y, m_z + m_dz, 0.0);
-	m_x += XMVector3Cross(m_position, m_lookat).x * distance_amount;
+	XMVECTOR forward = m_position - m_lookat;
+	XMVECTOR right = XMVector3Normalize(forward);
+	right = XMVector3Cross(m_up, right);
+	m_x -= right.x * distance_amount;
+	m_z -= right.z * distance_amount;
+	/*m_lookat = XMVectorSet(m_x + m_dx, m_y , m_z + m_dz, 0.0);
+	m_x += XMVector3Cross(m_position, m_lookat).x * distance_amount;	
 	m_z += XMVector3Cross(m_position, m_lookat).z * distance_amount;
-	m_lookat = XMVectorSet(m_x + m_dx, m_y + m_dy, m_z + m_dz, 0.0);
+	m_lookat = XMVectorSet(m_x + m_dx, m_y + m_dy, m_z + m_dz, 0.0);*/
 }
 
 void camera::Up(float distance_amount)
@@ -76,8 +82,23 @@ XMVECTOR camera::GetPos()
 	return Position;
 }
 
+void camera::SetPos(float x, float y, float z)
+{
+	m_x = x;
+	m_y = y;
+	m_z = z;
+}
+
+void camera::SetRot(float x, float y, float z)
+{
+	m_dx = sin(x *(XM_PI / 180.0f));
+	m_dy = sin(y *(XM_PI / 180.0f));
+	m_dz = cos(z *(XM_PI / 180.0f));
+}
+
 XMVECTOR camera::GetRot()
 {
+
 	XMVECTOR Rotation = XMVectorSet(m_camera_rotation_pitch, m_camera_rotation_yaw, 0, 0);
 	return Rotation;
 }

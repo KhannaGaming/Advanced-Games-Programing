@@ -26,7 +26,7 @@ SkyBox::SkyBox(ID3D11Device* D3DDevice, ID3D11DeviceContext* ImmediateContext,ID
 	m_pImmediateContext = ImmediateContext;
 	m_x, m_y, m_z = 0;
 	m_xAngle, m_yAngle, m_zAngle = 0;
-	m_scale = 80.0f;
+	m_scale = 200.0f;
 }
 
 

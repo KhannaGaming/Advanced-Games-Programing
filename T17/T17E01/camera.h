@@ -16,6 +16,8 @@ public:
 	void Up(float distance_amount);
 	XMMATRIX GetViewMatrix();
 	XMVECTOR GetPos();
+	void SetPos(float x, float y, float z);
+	void SetRot(float x, float y, float z);
 	XMVECTOR GetRot();
 private:
 	float m_x, m_y, m_z, m_dx, m_dy, m_dz, m_camera_rotation_yaw, m_camera_rotation_pitch;

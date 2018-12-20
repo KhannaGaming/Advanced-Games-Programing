@@ -20,12 +20,12 @@ ParticleGenerator::ParticleGenerator(ID3D11Device* D3DDevice, ID3D11DeviceContex
 	m_pImmediateContext = ImmediateContext;
 	m_x, m_y, m_z = 0;
 	m_xAngle, m_yAngle, m_zAngle = 0;
-	m_scale = 0.3f;
+	m_scale = 0.05f;
 	m_timePrevious = (float(timeGetTime()) / 1000.0f);
-	m_untilParticle = 4.0f;
+	m_untilParticle = 0.0f;
 	m_isActive = true;
 	particalType = RAINBOW_FOUNTAIN;
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 1000; i++)
 	{
 		Particle* particle = new Particle();
 		particle->color = XMFLOAT4(1.0f, 0.0f, 0.3f, 1.0f);
@@ -58,7 +58,7 @@ HRESULT ParticleGenerator::LoadObjModel(char * fileName, float xpos, float ypos,
 {
 	HRESULT hr;
 	m_textureName = textureName;
-	SetPos(xpos, ypos, zpos);
+	SetPos(XMVectorSet( xpos, ypos, zpos,0));
 
 
 	//Load and compile the pixel and vertex shaders- use vs_5_0 to target DX11 hardware only
@@ -185,11 +185,11 @@ void ParticleGenerator::Draw(XMMATRIX* view, XMMATRIX* projection, XMVECTOR* cam
 				{
 				case RAINBOW_FOUNTAIN:
 				{
-					m_age = 1.0f;
+					m_age = 0.8f;
 					m_untilParticle = 0.008f;
 					////////////////////////initialise the particle NOTE: all of this is adjustable for different effects////////////////////////
-					(*it)->color = XMFLOAT4(RandomZeroToOne(), RandomZeroToOne(), RandomZeroToOne(), 1.0f);
-					(*it)->gravity = 4.5f;
+					(*it)->color = XMFLOAT4(0.901, 0.49, 0, 1.0f);
+					(*it)->gravity = 0;
 					(*it)->position = XMFLOAT3(m_x, m_y, m_z);
 					(*it)->velocity = XMFLOAT3(RandomNegOneToPosOne(), 0.0f, -RandomZeroToOne());
 						////////////////////////////////////////////////////////////////////////////////////////////////
@@ -289,11 +289,11 @@ void ParticleGenerator::Draw(XMMATRIX* view, XMMATRIX* projection, XMVECTOR* cam
 	
 }
 
-void ParticleGenerator::SetPos(float xpos, float ypos, float zpos)
+void ParticleGenerator::SetPos(XMVECTOR position)
 {
-	m_x = xpos;
-	m_y = ypos;
-	m_z = zpos;
+	m_x = position.x;
+	m_y = position.y;
+	m_z = position.z;
 }
 
 XMVECTOR ParticleGenerator::GetPos()
@@ -322,10 +322,10 @@ void ParticleGenerator::IncScale(float scaleAmount)
 	m_scale += scaleAmount;
 }
 
-HRESULT ParticleGenerator::AddTexture()
+HRESULT ParticleGenerator::AddTexture(char* textureName)
 {
 	HRESULT hr;
-	hr = D3DX11CreateShaderResourceViewFromFile(m_pD3DDevice,(char*)m_textureName, NULL, NULL, &m_pTexture0, NULL);
+	hr = D3DX11CreateShaderResourceViewFromFile(m_pD3DDevice,(char*)textureName, NULL, NULL, &m_pTexture0, NULL);
 	if (FAILED(hr))
 	{
 		return hr;

@@ -29,12 +29,12 @@ public:
 	~ParticleGenerator();
 	HRESULT LoadObjModel(char* filename, float xpos, float ypos, float zpos, char* textureName);
 	void Draw(XMMATRIX* view, XMMATRIX* projection, XMVECTOR* cameraposition);
-	void SetPos(float xpos, float ypos, float zpos);
+	void SetPos(XMVECTOR position);
 	XMVECTOR GetPos();
 	void IncPos(float xAmount, float yAmount, float zAmount);
 	void IncRotation(float xAmount, float yAmount, float zAmount);
 	void IncScale(float scaleAmount);
-	HRESULT AddTexture();
+	HRESULT AddTexture(char* textureName);
 	void LookAt_XZ(float xWorld, float zWorld);
 	void LookAt_XYZ(float xWorld,float yWorld, float zWorld);
 
