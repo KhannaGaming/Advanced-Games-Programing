@@ -1,10 +1,44 @@
-﻿  main.cpp
+﻿  DirectInput.cpp
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(318): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(319): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(333): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(334): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(530): warning C4018: '<': signed/unsigned mismatch
-c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(744): warning C4018: '<': signed/unsigned mismatch
-c:\users\1khans16\downloads\advanced-games-programing\t13\t13ea01\main.cpp(781): warning C4018: '<': signed/unsigned mismatch
-  T13EA01.vcxproj -> C:\Users\1khans16\Downloads\Advanced-Games-Programing\T13\T13EA01\Debug\T13EA01.exe
+  LightManager.cpp
+d:\github\advanced-games-programing\t13\t13ea01\lightmanager.cpp(35): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t13\t13ea01\lightmanager.cpp(43): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t13\t13ea01\lightmanager.cpp(51): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t13\t13ea01\lightmanager.cpp(63): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t13\t13ea01\lightmanager.cpp(71): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t13\t13ea01\lightmanager.cpp(83): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t13\t13ea01\lightmanager.cpp(90): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t13\t13ea01\lightmanager.cpp(97): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t13\t13ea01\lightmanager.cpp(109): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t13\t13ea01\lightmanager.cpp(117): warning C4018: '<': signed/unsigned mismatch
+  Model.cpp
+d:\github\advanced-games-programing\t13\t13ea01\model.cpp(229): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\model.cpp(239): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\model.cpp(240): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\model.cpp(245): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\model.cpp(246): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\model.cpp(252): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\model.cpp(253): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\model.cpp(254): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\model.cpp(319): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t13\t13ea01\model.cpp(353): warning C4018: '<': signed/unsigned mismatch
+  camera.cpp
+d:\github\advanced-games-programing\t13\t13ea01\camera.cpp(12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\camera.cpp(13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\camera.cpp(14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\camera.cpp(33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\camera.cpp(39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\camera.cpp(40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\github\advanced-games-programing\t13\t13ea01\main.cpp(318): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\main.cpp(319): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\main.cpp(333): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\main.cpp(334): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t13\t13ea01\main.cpp(530): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t13\t13ea01\main.cpp(744): warning C4018: '<': signed/unsigned mismatch
+d:\github\advanced-games-programing\t13\t13ea01\main.cpp(781): warning C4018: '<': signed/unsigned mismatch
+  objfilemodel.cpp
+  text2D.cpp
+  Generating Code...
+  T13EA01.vcxproj -> D:\GitHub\Advanced-Games-Programing\T13\T13EA01\Debug\T13EA01.exe

@@ -1,0 +1,15 @@
+﻿  camera.cpp
+d:\github\advanced-games-programing\t07\t07e02\camera.cpp(11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t07\t07e02\camera.cpp(12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t07\t07e02\camera.cpp(23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\t07\t07e02\camera.cpp(24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+d:\github\advanced-games-programing\t07\t07e02\main.cpp(294): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t07\t07e02\main.cpp(300): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\advanced-games-programing\t07\t07e02\main.cpp(360): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t07\t07e02\main.cpp(361): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t07\t07e02\main.cpp(375): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t07\t07e02\main.cpp(376): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\github\advanced-games-programing\t07\t07e02\main.cpp(264): warning C4101: 'ms': unreferenced local variable
+  Generating Code...
+  T07E02.vcxproj -> D:\GitHub\Advanced-Games-Programing\T07\T07E02\x64\Debug\T07E02.exe

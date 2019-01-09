@@ -1,12 +1,1 @@
-﻿  Model.cpp
-c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\model.cpp(301): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\model.cpp(311): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\model.cpp(312): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\model.cpp(317): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\model.cpp(318): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\model.cpp(324): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\model.cpp(325): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\model.cpp(326): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\model.cpp(391): warning C4018: '<': signed/unsigned mismatch
-c:\users\1khans16\downloads\advanced-games-programing\t14\t14e01\model.cpp(425): warning C4018: '<': signed/unsigned mismatch
-  T14E01.vcxproj -> C:\Users\1khans16\Downloads\Advanced-Games-Programing\T14\T14E01\Debug\T14E01.exe
+﻿  T14E01.vcxproj -> D:\GitHub\Advanced-Games-Programing\T14\T14E01\Debug\T14E01.exe

@@ -8,4 +8,5 @@ d:\github\advanced-games-programing\t15\t15e01\main.cpp(549): warning C4018: '<'
 d:\github\advanced-games-programing\t15\t15e01\main.cpp(735): warning C4018: '<': signed/unsigned mismatch
 d:\github\advanced-games-programing\t15\t15e01\main.cpp(752): warning C4018: '<': signed/unsigned mismatch
 d:\github\advanced-games-programing\t15\t15e01\main.cpp(789): warning C4018: '<': signed/unsigned mismatch
+  LINK : D:\GitHub\Advanced-Games-Programing\T15\T15E01\Debug\T15E01.exe not found or not built by the last incremental link; performing full link
   T15E01.vcxproj -> D:\GitHub\Advanced-Games-Programing\T15\T15E01\Debug\T15E01.exe
