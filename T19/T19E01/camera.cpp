@@ -22,13 +22,13 @@ camera::~camera()
 void camera::RotateAroundX(float rotation_amount)
 {
 	m_camera_rotation_pitch += rotation_amount;
-	if (m_camera_rotation_pitch >= 90.0f)
+	if (m_camera_rotation_pitch >= 60.0f)
 	{
-		m_camera_rotation_pitch = 90.0f;
+		m_camera_rotation_pitch = 60.0f;
 	}
-	if (m_camera_rotation_pitch <= -90.0f)
+	if (m_camera_rotation_pitch <= -60.0f)
 	{
-		m_camera_rotation_pitch = -90.0f;
+		m_camera_rotation_pitch = -60.0f;
 	}
 	m_dy = sin(m_camera_rotation_pitch *(XM_PI / 180.0f));
 }
@@ -54,10 +54,6 @@ void camera::Strafe(float distance_amount)
 	right = XMVector3Cross(m_up, right);
 	m_x -= right.x * distance_amount;
 	m_z -= right.z * distance_amount;
-	/*m_lookat = XMVectorSet(m_x + m_dx, m_y , m_z + m_dz, 0.0);
-	m_x += XMVector3Cross(m_position, m_lookat).x * distance_amount;	
-	m_z += XMVector3Cross(m_position, m_lookat).z * distance_amount;
-	m_lookat = XMVectorSet(m_x + m_dx, m_y + m_dy, m_z + m_dz, 0.0);*/
 }
 
 void camera::Up(float distance_amount)

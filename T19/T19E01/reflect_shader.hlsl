@@ -16,6 +16,7 @@ struct VOut
 	float4 color : COLOR;
 	float3 texcoord : TEXCOORD;
 	float3 normal : NORMAL;
+    float3 viewDirection : TEXCOORD1;
 };
 
 VOut ReflectionVS(float4 position : POSITION, float3 texcoord : TEXCOORD, float3 normal : NORMAL)
@@ -35,10 +36,10 @@ VOut ReflectionVS(float4 position : POSITION, float3 texcoord : TEXCOORD, float3
 	wvnormal = normalize(wvnormal);
 
 	// obtain the reverse eye vector
-	float3 eyer = -normalize(wvpos);
-
+	float3 eye = -normalize(wvpos);
+    output.viewDirection = normalize(wvpos);
 	//compute the reflection vector
-	output.texcoord = 2.0 * dot(eyer, wvnormal)*wvnormal - eyer;
+	output.texcoord = 2.0 * dot(eye, wvnormal)*wvnormal - eye;
 	output.normal = normalize(normal);
 
 	return output;
@@ -54,6 +55,6 @@ float4 ReflectionPS(in VOut input) :SV_TARGET
 	float3 reflection = 2 * diffuse_amount*input.normal - directional_light_vector.xyz;
 	input.color = dot((0.5*input.texcoord),(0.5*reflection));;
 	input.color += ambient_light_colour + (directional_light_colour * diffuse_amount);
-
-	return input.color * texture0.Sample(sampler0, input.texcoord);
+    float4 specular = pow(saturate(dot(reflection, input.viewDirection)), 10.0f);
+    return saturate(input.color + specular) * texture0.Sample(sampler0, input.texcoord);
 }

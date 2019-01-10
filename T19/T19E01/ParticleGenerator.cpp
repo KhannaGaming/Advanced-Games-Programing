@@ -169,7 +169,7 @@ void ParticleGenerator::Draw(XMMATRIX* view, XMMATRIX* projection, XMVECTOR* cam
 	UINT stride = sizeof(XMFLOAT3);
 	UINT offset = 0;
 	float timeNow = (float(timeGetTime()) / 1000.0f);
-	float deltaTime = timeNow-m_timePrevious;
+	float deltaTime = timeNow - m_timePrevious;
 	m_timePrevious = timeNow;
 	m_untilParticle -= deltaTime;
 
@@ -258,6 +258,7 @@ void ParticleGenerator::Draw(XMMATRIX* view, XMMATRIX* projection, XMVECTOR* cam
 			partical_cb_values.Color = XMVectorSet((*it)->color.x, (*it)->color.y, (*it)->color.z, 0.0f);
 
 			m_pImmediateContext->VSSetConstantBuffers(0, 1, &m_pConstantBuffer);
+			m_pImmediateContext->PSSetConstantBuffers(0, 1, &m_pConstantBuffer);
 			m_pImmediateContext->UpdateSubresource(m_pConstantBuffer, 0, 0, &partical_cb_values, 0, 0);
 
 			//set the shader objects as active

@@ -18,6 +18,8 @@
 #include"SkyBox.h"
 #include "ParticleGenerator.h"
 #include "SceneNode.h"
+#include <ctime>
+
 /*Release
 d3d11.lib
 d3dcompiler.lib
@@ -56,7 +58,6 @@ ID3D11ShaderResourceView*	g_pTexture0;
 ID3D11ShaderResourceView*	g_pTexture1;
 ID3D11SamplerState*			g_pSampler0;
 Text2D*						g_pText2D;
-Text2D*						g_pText2D2;
 ID3D11BlendState* g_pAlphaBlendEnable; //14
 ID3D11BlendState* g_pAlphaBlendDisable; //14
 XMVECTOR g_directional_light_shines_from;
@@ -66,8 +67,12 @@ XMVECTOR g_point_light_position;
 XMVECTOR g_point_light_colour;
 Model* g_SpaceShip;
 Model* g_pAsteroid;
+Model* g_pAsteroid2;
+Model* g_pAsteroid3;
+Model* g_pAsteroid4;
 Model* g_pReflectionModel;
 Model* g_pCube;
+Model* g_pGuns;
 vector<Model*> g_vModels;
 DirectInput* g_pDirectInput;
 SkyBox* g_pSkyBox;
@@ -77,6 +82,17 @@ SceneNode* g_SpaceShipNode;
 SceneNode* g_SpaceShipNode2;
 SceneNode* g_AsteroidNode;
 SceneNode* g_CameraNode;
+SceneNode* g_PlayerGunsNode;
+vector<SceneNode*> g_vAsteroids;
+vector<Model*> g_vAsteroidModels;
+
+
+//========================================================
+//TEST
+ID3D11DeviceContext* pDeferredContext = NULL;
+ID3D11CommandList* pd3dCommandList = NULL;
+
+
 	//Define vertices of a triangle - screen coordinates -1.0 to +1.0
 
 
@@ -163,10 +179,7 @@ bool aPressed = false;
 bool sPressed = false;
 bool wPressed = false;
 bool dPressed = false;
-string fileName = "Assets/tiger.obj";
-
-
-
+int score = 0;
 //Const buffer structs. Pack to 16 bytes. Don't let any single element cross a 16 byte boundary
 struct CONSTANT_BUFFER0
 {
@@ -180,7 +193,7 @@ struct CONSTANT_BUFFER0
 
 ////////////////////////////////////////////////////////////////////////
 //Change every tutorial
-const char g_TutorialName[100] = "T013EA01\0";
+const char g_TutorialName[100] = "Space Runner";
 
 ////////////////////////////////////////////////////////////////////////
 //Forward declarations
@@ -191,7 +204,9 @@ void ShutdownD3D();
 void RenderFrame(void);
 HRESULT InitialiseGraphics(void);
 void SetCamera();
-
+void CreateAsteroids();
+float RandomNumberGenerator(int maxDistance);
+float RandomNumberGeneratorNoNegative(int maxDistance);
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Entry point to the program. Initializes everything and goes into a message processing 
@@ -504,7 +519,6 @@ HRESULT InitialiseD3D()
 	g_pImmediateContext->RSSetViewports(1, &viewport);
 
 	g_pText2D = new Text2D("Assets/font1.png", g_pD3DDevice, g_pImmediateContext);
-	g_pText2D2 = new Text2D("Assets/font1.png", g_pD3DDevice, g_pImmediateContext);
 
 	D3D11_BLEND_DESC b;
 	b.RenderTarget[0].BlendEnable = TRUE;
@@ -532,6 +546,46 @@ HRESULT InitialiseD3D()
 // Clean up D3D objects
 void ShutdownD3D()
 {
+
+
+	if (pd3dCommandList)
+	{
+		pd3dCommandList->Release();
+	}
+
+	if (pDeferredContext)
+	{
+		pDeferredContext->Release();
+	}
+
+	int maxAsteroidModels = g_vAsteroidModels.size();
+	for (int i = 0; i < maxAsteroidModels; i++)
+	{
+		if (g_vAsteroidModels[i])
+		{
+			delete g_vAsteroidModels[i];
+			g_vAsteroidModels[i] = nullptr;
+		}
+	}
+	for (int i = 0; i < maxAsteroidModels; i++)
+	{
+		g_vAsteroidModels.pop_back();
+	}
+
+	int maxAsteroids = g_vAsteroids.size();
+	for (int i = 0; i < maxAsteroids; i++)
+	{
+		if (g_vAsteroids[i])
+		{
+			delete g_vAsteroids[i];
+			g_vAsteroids[i] = nullptr;
+		}
+	}
+	for (int i = 0; i < maxAsteroids; i++)
+	{
+		g_vAsteroids.pop_back();
+	}
+
 	int maxModels = g_vModels.size();
 	for (int i = 0; i < maxModels; i++)
 	{
@@ -545,7 +599,8 @@ void ShutdownD3D()
 	{
 		g_vModels.pop_back();
 	}
-	delete g_root_node;
+
+	//delete g_root_node;
 	g_root_node = nullptr;
 
 	if (g_pParticleGenerator)
@@ -570,11 +625,7 @@ void ShutdownD3D()
 	if (g_pAlphaBlendDisable) g_pAlphaBlendDisable->Release();
 	if (g_pAlphaBlendEnable) g_pAlphaBlendEnable->Release();
 
-	if (g_pText2D2) 
-	{
-		delete g_pText2D2;
-		g_pText2D2 = nullptr;
-	}
+
 
 	if (g_pText2D)
 	{
@@ -604,19 +655,35 @@ HRESULT InitialiseGraphics()
 	HRESULT hr = S_OK;
 
 	g_SpaceShip = new Model(g_pD3DDevice, g_pImmediateContext,false);
-	g_SpaceShip->LoadObjModel((char*)"Assets/SpaceShip.obj", (char*)"Assets/maps/Luminaris_Diffuse.jpg");
+	g_SpaceShip->LoadObjModel((char*)"Assets/OBJs/SpaceShip.obj", (char*)"Assets/maps/Luminaris_Diffuse.jpg");
 	g_vModels.push_back(g_SpaceShip);
 	
-	g_pAsteroid = new Model(g_pD3DDevice, g_pImmediateContext,false);
-	g_pAsteroid->LoadObjModel((char*)"Assets/Sphere.obj", (char*)"Assets/metal.jpg");
-	g_vModels.push_back(g_pAsteroid);
+	g_pAsteroid = new Model(g_pD3DDevice, g_pImmediateContext, false);
+	g_pAsteroid->LoadObjModel((char*)"Assets/OBJs/asteroid.obj", (char*)"Assets/Textures/rock.png");
+	g_vAsteroidModels.push_back(g_pAsteroid);
+
+	g_pAsteroid2 = new Model(g_pD3DDevice, g_pImmediateContext, false);
+	g_pAsteroid2->LoadObjModel((char*)"Assets/OBJs/asteroid.obj", (char*)"Assets/Textures/rock02.png");
+	g_vAsteroidModels.push_back(g_pAsteroid2);
+
+	g_pAsteroid3 = new Model(g_pD3DDevice, g_pImmediateContext, false);
+	g_pAsteroid3->LoadObjModel((char*)"Assets/OBJs/asteroid.obj", (char*)"Assets/Textures/rock03.png");
+	g_vAsteroidModels.push_back(g_pAsteroid3);
+
+	g_pAsteroid4 = new Model(g_pD3DDevice, g_pImmediateContext, false);
+	g_pAsteroid4->LoadObjModel((char*)"Assets/OBJs/asteroid.obj", (char*)"Assets/Textures/rock04.png");
+	g_vAsteroidModels.push_back(g_pAsteroid4);
 	
 	g_pCube = new Model(g_pD3DDevice, g_pImmediateContext, false);
-	g_pCube->LoadObjModel((char*)"Assets/cube.obj", (char*)"Assets/metal.jpg");
+	g_pCube->LoadObjModel((char*)"Assets/OBJs/cube.obj", (char*)"Assets/Textures/metal.jpg");
 	g_vModels.push_back(g_pCube);
 	
+	g_pGuns = new Model(g_pD3DDevice, g_pImmediateContext, false);
+	g_pGuns->LoadObjModel((char*)"Assets/OBJs/guns.obj", (char*)"Assets/Textures/metal.jpg");
+	g_vModels.push_back(g_pGuns);
+
 	g_pParticleGenerator = new ParticleGenerator(g_pD3DDevice, g_pImmediateContext, false);
-	g_pParticleGenerator->AddTexture((char*)"Assets/ring.png");
+	g_pParticleGenerator->AddTexture((char*)"Assets/Textures/ring.png");
 	g_pParticleGenerator->CreateParticle();
 	//Set up and create vertex buffer
 	D3D11_BUFFER_DESC bufferDesc;
@@ -734,32 +801,44 @@ HRESULT InitialiseGraphics()
 	g_SpaceShipNode = new SceneNode();
 	g_SpaceShipNode2 = new SceneNode();
 
-	g_AsteroidNode = new SceneNode();
 	g_CameraNode = new SceneNode();
+	g_PlayerGunsNode = new SceneNode();
 	g_pCamera = new camera(0.0f, 1.0f, 0.0f,0.0f,0.0f);
 	g_SpaceShipNode->SetModel(g_SpaceShip);
 	g_SpaceShipNode2->SetModel(g_SpaceShip);
-	g_AsteroidNode->SetModel(g_pAsteroid);
 	g_CameraNode->SetModel(g_pCube);
-	//g_CameraNode->SetScale(1.0f);
-	g_root_node->addChildNode(g_AsteroidNode);
-	//g_CameraNode->SetCamera(g_pCamera);
-	
+	g_PlayerGunsNode->SetModel(g_pGuns);
+
 	g_root_node->addChildNode(g_CameraNode);
 	g_root_node->addChildNode(g_SpaceShipNode);
 	g_root_node->addChildNode(g_SpaceShipNode2);
-	//SetCamera();
+	g_CameraNode->addChildNode(g_PlayerGunsNode);
+	g_CameraNode->SetScale(0.1f);
 	g_SpaceShipNode->SetPos(XMVectorSet(-50, 50, 50.0f,0.0f));
 	g_SpaceShipNode2->SetPos(XMVectorSet(50, 0, 50.0f,0.0f));
-	g_AsteroidNode->SetPos(XMVectorSet(0, -50, 100.0f,0.0f));
 	g_pSkyBox = new SkyBox(g_pD3DDevice, g_pImmediateContext,g_pVertexBuffer,g_pCamera);
-	g_pSkyBox->Init(-50.0f, 0.0f, 50.0,  (char*)"Assets/skybox01.dds");
+	g_pSkyBox->Init(-50.0f, 0.0f, 50.0,  (char*)"Assets/space.dds");
 	
 	for (int i = 0; i < g_vModels.size(); i++)
 	{
 		g_vModels[i]->AddTexture();	
 	}
+	for (int i = 0; i < g_vAsteroidModels.size(); i++)
+	{
+		g_vAsteroidModels[i]->AddTexture();
+	}
 	g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	srand(time(NULL));
+	CreateAsteroids();
+
+
+	//==============================================================
+	//TEST
+	hr = g_pD3DDevice->CreateDeferredContext(0, &pDeferredContext);
+	if (FAILED(hr))return hr;
+
+
 	return S_OK;
 }
 
@@ -767,23 +846,17 @@ HRESULT InitialiseGraphics()
 //	Render Frame
 void RenderFrame(void)
 {
-	//	Aquire the states of all the devices
-	g_pDirectInput->ReadInputStates();
-	g_pDirectInput->CheckKeysPressed(g_CameraNode, g_root_node);
+
 	g_pImmediateContext->ClearRenderTargetView(g_pBackBufferRTView, g_clear_colour);
+		g_pDirectInput->ReadInputStates();
+		g_pDirectInput->CheckKeysPressed(g_CameraNode, g_root_node);
 
-	//g_SpaceShipNode->SetRotation(g_pCamera->GetRot().x, g_pCamera->GetRot().y, g_pCamera->GetRot().z);
-
-	//g_SpaceShipNode->SetPos(g_pCamera->GetPos().x, g_pCamera->GetPos().y, g_pCamera->GetPos().z + 10.0f);
+	
 	g_pParticleGenerator->SetPos(g_SpaceShipNode->GetPos());
-	g_SpaceShipNode->LookAt_XYZ(g_AsteroidNode->GetPos().x, g_AsteroidNode->GetPos().y, g_AsteroidNode->GetPos().z, g_root_node);
 	g_SpaceShipNode2->LookAt_XYZ(g_SpaceShipNode->GetPos().x, g_SpaceShipNode->GetPos().y, g_SpaceShipNode->GetPos().z, g_root_node);
-	g_AsteroidNode->LookAt_XYZ(g_SpaceShipNode2->GetPos().x, g_SpaceShipNode2->GetPos().y, g_SpaceShipNode2->GetPos().z, g_root_node);
-	g_SpaceShipNode->MoveForwardIncY(0.01f, g_root_node);
-	g_SpaceShipNode2->MoveForwardIncY(0.01f, g_root_node);
-	g_AsteroidNode->MoveForwardIncY(0.01f, g_root_node);
+	//g_SpaceShipNode->MoveForwardIncY(0.01f, g_root_node);
+	//g_SpaceShipNode2->MoveForwardIncY(0.01f, g_root_node);
 	g_pImmediateContext->ClearDepthStencilView(g_pZBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-
 
 	//Upload the new values for the constant buffer
 	XMMATRIX   projection, view;
@@ -794,16 +867,26 @@ void RenderFrame(void)
 
 	g_root_node->execute(&XMMatrixIdentity(), &view, &projection);
 
-	
 	g_pSkyBox->Draw(&view, &projection);
-	//g_pParticleGenerator->SetPos(g_pCamera->GetPos().x, g_pCamera->GetPos().y, g_pCamera->GetPos().z+2);
-	g_pParticleGenerator->Draw(&view, &projection, &g_pCamera->GetPos());
-	//g_pReflectionModel->Draw(&view, &projection);
+	//g_pParticleGenerator->Draw(&view, &projection, &g_pCamera->GetPos());
 
+	g_pImmediateContext->OMSetBlendState(g_pAlphaBlendEnable, 0, 0xffffffff);
+	
+	string scoreText = string( "Score ") + to_string(score);
+	g_pText2D->AddText(scoreText, -0.5f, +1.0f, 0.1f);
+	g_pText2D->RenderText();
 	g_pImmediateContext->OMSetBlendState(g_pAlphaBlendDisable, 0, 0xffffffff);
 
-	//Display what has just been rendered;
+
 	g_pSwapChain->Present(0, 0);
+
+	
+	//g_pSkyBox->Draw(&view, &projection);
+	//g_pParticleGenerator->Draw(&view, &projection, &g_pCamera->GetPos());
+
+
+
+
 }
 
 void SetCamera()
@@ -812,4 +895,47 @@ void SetCamera()
 	g_CameraNode->SetPos(XMVectorSet(g_pCamera->GetPos().x, g_pCamera->GetPos().y, g_pCamera->GetPos().z, 0.0f));
 }
 
+void CreateAsteroids()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		SceneNode* tempAsteroid = new SceneNode();
+		
+		tempAsteroid->SetModel(g_vAsteroidModels[rand()%4]);
+		g_root_node->addChildNode(tempAsteroid);
+		do
+		{
+			tempAsteroid->SetScale(RandomNumberGeneratorNoNegative(10));
+			tempAsteroid->SetRotation(RandomNumberGenerator(360), RandomNumberGenerator(360), RandomNumberGenerator(360));
+			tempAsteroid->SetPos(XMVectorSet(RandomNumberGenerator(100), RandomNumberGenerator(100), RandomNumberGenerator(100), 0.0f));
+		} while (sqrt(pow(tempAsteroid->GetPos().x-g_pCamera->GetPos().x,2)+ pow(tempAsteroid->GetPos().y - g_pCamera->GetPos().y, 2) + pow(tempAsteroid->GetPos().z - g_pCamera->GetPos().z, 2)) < 30);
+
+		g_vAsteroids.push_back(tempAsteroid);
+	}
+}
+
+float RandomNumberGenerator(int maxDistance)
+{
+	int randNum = 0;
+
+	do
+	{
+		randNum = rand() % maxDistance;
+		randNum -= maxDistance/2;
+	} while (randNum < (maxDistance / 2) && randNum > maxDistance);
+
+	return randNum;
+}
+
+float RandomNumberGeneratorNoNegative(int maxDistance)
+{
+	int randNum = 0;
+
+	do
+	{
+		randNum = rand() % maxDistance/ 2;
+	} while (randNum < (maxDistance / 2) && randNum > maxDistance);
+
+	return randNum;
+}
 

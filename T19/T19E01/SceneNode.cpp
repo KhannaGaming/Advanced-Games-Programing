@@ -459,9 +459,6 @@ bool SceneNode::check_collision_ray(XMVECTOR ray_position, XMVECTOR direction_ra
 				XMVECTOR p3 = XMVectorSet(m_p_model->GetObjectA()->vertices[i + 2].Pos.x,
 					m_p_model->GetObjectA()->vertices[i + 2].Pos.y,
 					m_p_model->GetObjectA()->vertices[i + 2].Pos.z, 0.0f);
-				//XMMATRIX local_matrix = 
-				//m_local_world_matrix
-
 			}
 		}
 		

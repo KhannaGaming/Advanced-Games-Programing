@@ -1,5 +1,5 @@
 #include "DirectInput.h"
-
+#include <atomic>
 
 
 DirectInput::DirectInput(HINSTANCE g_hInst, HWND g_hWnd, camera* Camera)
@@ -224,6 +224,7 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 			g_cam_node->SetPos(m_pCamera->GetPos());//15
 		}
 	}
+	
 
 	//	Mouse
 	if (m_mouse_state.lX > 0)
