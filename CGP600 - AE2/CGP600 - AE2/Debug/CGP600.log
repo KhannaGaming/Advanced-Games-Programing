@@ -1,0 +1,11 @@
+﻿  ParticleGenerator.cpp
+d:\github\advanced-games-programing\cgp600 - ae2\cgp600 - ae2\particlegenerator.cpp(210): warning C4305: 'argument': truncation from 'double' to 'FLOAT'
+d:\github\advanced-games-programing\cgp600 - ae2\cgp600 - ae2\particlegenerator.cpp(377): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\cgp600 - ae2\cgp600 - ae2\particlegenerator.cpp(387): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\cgp600 - ae2\cgp600 - ae2\particlegenerator.cpp(388): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\cgp600 - ae2\cgp600 - ae2\particlegenerator.cpp(393): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\cgp600 - ae2\cgp600 - ae2\particlegenerator.cpp(394): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\cgp600 - ae2\cgp600 - ae2\particlegenerator.cpp(400): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\cgp600 - ae2\cgp600 - ae2\particlegenerator.cpp(401): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\github\advanced-games-programing\cgp600 - ae2\cgp600 - ae2\particlegenerator.cpp(402): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  CGP600.vcxproj -> D:\GitHub\Advanced-Games-Programing\CGP600 - AE2\CGP600 - AE2\Debug\CGP600.exe
