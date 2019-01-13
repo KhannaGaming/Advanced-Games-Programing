@@ -20,7 +20,7 @@ public:
 	SkyBox(ID3D11Device* D3DDevice, ID3D11DeviceContext* ImmediateContext, ID3D11Buffer*	pVertexBuffer, camera* camera);
 	~SkyBox();
 	void Draw(XMMATRIX* view, XMMATRIX* projection);
-	HRESULT Init(float xpos, float ypos, float zpos, char* textureName);
+	HRESULT Init(float xpos, float ypos, float zpos, const char* textureName);
 	HRESULT AddTexture();
 private:
 	ID3D11Device*				m_pD3DDevice;
@@ -41,6 +41,6 @@ private:
 	float			m_x, m_y, m_z;
 	float			m_xAngle, m_yAngle, m_zAngle;
 	float			m_scale;
-	char*			m_textureName;
+	const char*			m_textureName;
 };
 

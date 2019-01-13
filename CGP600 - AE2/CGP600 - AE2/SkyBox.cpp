@@ -101,7 +101,7 @@ void SkyBox::Draw(XMMATRIX * view, XMMATRIX * projection)
 
 }
 
-HRESULT SkyBox::Init(float xpos, float ypos, float zpos, char* textureName)
+HRESULT SkyBox::Init(float xpos, float ypos, float zpos, const char* textureName)
 {
 	POS_COL_TEX_NORM_VERTEX vertices[] =
 	{

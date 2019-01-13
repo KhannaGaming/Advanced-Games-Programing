@@ -826,8 +826,12 @@ HRESULT InitialiseGraphics()
 	g_CameraNode->SetScale(0.1f);
 	g_SpaceShipNode->SetPos(XMVectorSet(-50, 50, 50.0f,0.0f));
 	g_SpaceShipNode2->SetPos(XMVectorSet(50, 0, 50.0f,0.0f));
+	//g_SpaceShipEngineNode->SetPos(XMVectorSet(g_SpaceShipNode2->GetPos().x + 10, g_SpaceShipNode2->GetPos().y, g_SpaceShipNode2->GetPos().z, 0));
+
 	g_pSkyBox = new SkyBox(g_pD3DDevice, g_pImmediateContext,g_pVertexBuffer,g_pCamera);
-	g_pSkyBox->Init(-50.0f, 0.0f, 50.0,  (char*)"Assets/space.dds");
+	srand(time(NULL));
+	string randomSkybox = "Assets/space" + to_string((rand() % 3)+1) + ".dds";	
+	g_pSkyBox->Init(-50.0f, 0.0f, 50.0, randomSkybox.c_str());
 	
 	for (int i = 0; i < g_vModels.size(); i++)
 	{
@@ -839,7 +843,6 @@ HRESULT InitialiseGraphics()
 	}
 	g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-	srand(time(NULL));
 	CreateAsteroids();
 
 
@@ -888,7 +891,7 @@ void RenderFrame(void)
 	g_pParticleGenerator->Draw(&view, &projection, &g_pCamera->GetPos());
 	g_pImmediateContext->OMSetBlendState(g_pAlphaBlendEnable, 0, 0xffffffff);
 	
-	string scoreText = string( "Score ") + to_string(g_pDeltaTime->GetFPS());
+	string scoreText = string( "FPS ") + to_string(g_pDeltaTime->GetFPS());
 	g_pText2D->AddText(scoreText, -0.5f, +1.0f, 0.1f);
 	g_pText2D->RenderText();
 	g_pImmediateContext->OMSetBlendState(g_pAlphaBlendDisable, 0, 0xffffffff);
@@ -911,7 +914,7 @@ void SetCamera()
 
 void CreateAsteroids()
 {
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 50; i++)
 	{
 		SceneNode* tempAsteroid = new SceneNode(g_pDeltaTime);
 		

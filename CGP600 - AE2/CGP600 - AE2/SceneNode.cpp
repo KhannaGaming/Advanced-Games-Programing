@@ -523,3 +523,8 @@ void SceneNode::AddVelocity(SceneNode* root_node)
 	}
 
 }
+
+void SceneNode::GetLookAt()
+{
+	//normalise the look at==============================================================================================================
+}
