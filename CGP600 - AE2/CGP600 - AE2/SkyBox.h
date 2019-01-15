@@ -22,6 +22,9 @@ public:
 	void Draw(XMMATRIX* view, XMMATRIX* projection);
 	HRESULT Init(float xpos, float ypos, float zpos, const char* textureName);
 	HRESULT AddTexture();
+	float GetScale() { return m_scale; };
+	XMVECTOR GetPos() { return XMVectorSet(m_x,m_y,m_z,0); };
+
 private:
 	ID3D11Device*				m_pD3DDevice;
 	ID3D11DeviceContext*		m_pImmediateContext;

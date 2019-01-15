@@ -15,6 +15,10 @@
 #include"camera.h"
 #include "SceneNode.h"
 #include "DeltaTime.h"
+#define DIM_LEFT 0
+#define DIM_RIGHT 1
+#define DIM_CENTRE 2
+#define DIM_OTHER 3
 
 class DirectInput
 {
@@ -45,6 +49,9 @@ private:
 	float m_cur_vibration_cooldown;
 	DeltaTime* m_pDeltaTime;
 	float m_leftStickVibration, m_rightStickVibration;
-
+	float  m_playerMoveSpeed;
+	float m_mouse_click_cooldown;
+	float m_cur_mouse_click_cooldown;
+	bool m_fired;
 };
 

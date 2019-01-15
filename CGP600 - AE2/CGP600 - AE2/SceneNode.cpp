@@ -2,7 +2,7 @@
 
 
 
-SceneNode::SceneNode(DeltaTime* deltaTime)
+SceneNode::SceneNode(DeltaTime* deltaTime, bool collidable, string tag, SceneNode* world_root_node, AudioManager* audioManager)
 {
 	m_p_model = nullptr;
 	m_p_camera = nullptr;
@@ -10,6 +10,15 @@ SceneNode::SceneNode(DeltaTime* deltaTime)
 	m_scale = 1.0f;
 	velocity = XMVectorZero();
 	m_pDeltaTime = deltaTime;
+	m_collidable = collidable;
+	m_tag = tag;
+	m_max_health = 10.0f;
+	m_health = 10.0f;
+	m_isActive = true;
+	m_world_root_node = world_root_node;
+	m_laser_life = 1.0f;
+	m_cur_laser_life = 0.0f;
+	m_audio_manager = audioManager;
 }
 
 
@@ -21,11 +30,9 @@ SceneNode::~SceneNode()
 	{
 		delete m_children[i];
 		m_children[i] = nullptr;
-		//m_children.pop_back();//erase(m_children.begin() + i);
 	}
 	
-	//	delete m_p_model;
-		m_p_model = nullptr;
+	m_p_model = nullptr;
 	
 	for (int i = 0; i < maxChildSize; i++)
 	{
@@ -93,6 +100,7 @@ bool SceneNode::detachNode(SceneNode * n)
 		if (n == m_children[i])
 		{
 			m_children.erase(m_children.begin() + i);
+			n->SetPos(this->GetPos() + n->GetOffset());
 			return true;
 		}
 		if (m_children[i]->detachNode(n) == true) return true;
@@ -102,28 +110,30 @@ bool SceneNode::detachNode(SceneNode * n)
 
 void SceneNode::execute(XMMATRIX * world, XMMATRIX * view, XMMATRIX * projection, SceneNode* root_node)
 {
-	AddVelocity(root_node);
-	// the local_world matrix will be used to calc the local transformation for this node
-	XMMATRIX local_world = XMMatrixIdentity();
-
-	local_world = XMMatrixScaling(m_scale, m_scale, m_scale);
-	local_world *= XMMatrixRotationX(XMConvertToRadians(m_xAngle));
-	local_world *= XMMatrixRotationY(XMConvertToRadians(m_yAngle));
-	local_world *= XMMatrixRotationZ(XMConvertToRadians(m_zAngle));
-	local_world *= XMMatrixTranslation(m_x, m_y, m_z);
-	// the local matrix is multiplied by the passed in world matrix that contains the concatentated
-	//transformations of all parent nodes so that this nodes transformations are relative to those 
-	local_world *= *world;
-
-	//only draw if there is a model attached
-	if (m_p_model) m_p_model->Draw(&local_world, view, projection);
-
-	//traverse all child nodes, passing in the concatenated world matrix
-	for (int i = 0; i < m_children.size(); i++)
+	if (m_isActive)
 	{
-		m_children[i]->execute(&local_world, view, projection, root_node);
-	}
+		AddVelocity(root_node);
+		// the local_world matrix will be used to calc the local transformation for this node
+		XMMATRIX local_world = XMMatrixIdentity();
 
+		local_world = XMMatrixScaling(m_scale, m_scale, m_scale);
+		local_world *= XMMatrixRotationX(XMConvertToRadians(m_xAngle));
+		local_world *= XMMatrixRotationY(XMConvertToRadians(m_yAngle));
+		local_world *= XMMatrixRotationZ(XMConvertToRadians(m_zAngle));
+		local_world *= XMMatrixTranslation(m_x, m_y, m_z);
+		// the local matrix is multiplied by the passed in world matrix that contains the concatentated
+		//transformations of all parent nodes so that this nodes transformations are relative to those 
+		local_world *= *world;
+
+		//only draw if there is a model attached
+		if (m_p_model) m_p_model->Draw(&local_world, view, projection);
+
+		//traverse all child nodes, passing in the concatenated world matrix
+		for (int i = 0; i < m_children.size(); i++)
+		{
+			m_children[i]->execute(&local_world, view, projection, root_node);
+		}
+	}
 }
 
 bool SceneNode::IncPos(float xAmount, float yAmount, float zAmount, SceneNode* root_node)
@@ -218,13 +228,14 @@ bool SceneNode::LookAt_XZ(float xWorld, float zWorld, SceneNode* root_node)
 	return false;
 }
 
-bool SceneNode::LookAt_XYZ(float xWorld, float yWorld, float zWorld, SceneNode* root_node)
+bool SceneNode::LookAt_XYZ(XMVECTOR world, SceneNode* root_node)
 {
 	float dx, dy, dz;
-	dx = xWorld - m_x;
-	dy = yWorld - m_y;
-	dz = zWorld - m_z;
-	m_lookAt = XMVectorSet(dx, dy, dz, 0);
+	dx = world.x - m_x;
+	dy = world.y - m_y;
+	dz = world.z - m_z;
+	m_lookAt = GetLookAt(XMVectorSet(dx, dy, dz, 0));
+	
 	//m_xAngle = atan2(dy, dx)*(180.0 / XM_PI);// *180.0 / XM_PI;
 	
 	
@@ -306,7 +317,7 @@ bool SceneNode::MoveForwardIncY(float distance, SceneNode* root_node)
 	// this basic system requires entire hirearchy to be updated
 	// so start at root node passing in identity matrix
 	root_node->update_collision_tree(&identity, 1.0f);
-	SceneNode* nodeToCheck = check_collision(root_node);
+	SceneNode* nodeToCheck = check_collision(m_world_root_node);
 	//check for collision of this node (and children) against all other nodes
 	if (nodeToCheck != nullptr)
 	{
@@ -393,8 +404,8 @@ SceneNode* SceneNode::check_collision(SceneNode * compare_tree, SceneNode * obje
 {
 	//check to see if root of tree being compared is same as root node of object tree being checked
 	//i.e. stop object node and children being checked against each other
-	if (object_tree_root == compare_tree)return nullptr;
-
+	if (object_tree_root == compare_tree) return nullptr;
+	
 	//only check for collisions if both nodes contain a model
 	if (m_p_model && compare_tree->m_p_model)
 	{
@@ -419,7 +430,32 @@ SceneNode* SceneNode::check_collision(SceneNode * compare_tree, SceneNode * obje
 			(compare_tree->m_p_model->GetBoundingSphereRaius()*compare_tree->m_world_scale) +
 			(this->m_p_model->GetBoundingSphereRaius() *m_world_scale))
 		{
-
+			if (!compare_tree->m_collidable)
+			{
+				if (compare_tree->m_tag == Tags::Laser)
+				{
+					if (object_tree_root->m_tag != Tags::Laser&& object_tree_root->m_tag != Tags::Camera)
+					{
+						object_tree_root->m_health--;
+						m_audio_manager->PlaySoundEffect("Explosion");
+						compare_tree->ResetNode(compare_tree);						
+					}
+				}
+				return nullptr;
+			}
+			else if (!object_tree_root->m_collidable)
+			{
+				if (object_tree_root->m_tag == Tags::Laser)
+				{
+					if (compare_tree->m_tag != Tags::Laser && compare_tree->m_tag != Tags::Camera)
+					{
+						compare_tree->m_health--;
+						m_audio_manager->PlaySoundEffect("Explosion");
+						object_tree_root->ResetNode(object_tree_root);
+					}
+				}
+				return nullptr;
+			}
 			return compare_tree;
 		}
 	}
@@ -428,14 +464,72 @@ SceneNode* SceneNode::check_collision(SceneNode * compare_tree, SceneNode * obje
 	for (int i = 0; i < compare_tree->m_children.size(); i++)
 	{
 		//check for collision agaisnt all compared tree child nodes
-		if (check_collision(compare_tree->m_children[i], object_tree_root) != nullptr) return compare_tree->m_children[i];
+		if (check_collision(compare_tree->m_children[i], object_tree_root) != nullptr)
+		{
+			if (!compare_tree->m_collidable)
+			{
+				if (compare_tree->m_tag == Tags::Laser)
+				{
+					if (object_tree_root->m_tag != Tags::Laser&& object_tree_root->m_tag != Tags::Camera)
+					{
+						object_tree_root->m_health--;
+						m_audio_manager->PlaySoundEffect("Explosion");		
+						compare_tree->ResetNode(compare_tree);
+					}
+				}
+				return nullptr;
+			}
+			else if (!object_tree_root->m_collidable)
+			{
+				if (object_tree_root->m_tag == Tags::Laser)
+				{
+					if (compare_tree->m_tag != Tags::Laser && compare_tree->m_tag != Tags::Camera)
+					{
+						compare_tree->m_health--;
+						m_audio_manager->PlaySoundEffect("Explosion");
+						object_tree_root->ResetNode(object_tree_root);
+					}
+				}
+				return nullptr;
+			}
+			return compare_tree->m_children[i];
+		}
 	}
 
 	//iterate through composite object child nodes
 	for (int i = 0; i < m_children.size(); i++)
 	{
 		//check all the children node of the composite object against compared tree
-		if (m_children[i]->check_collision(compare_tree, object_tree_root) != nullptr)	return m_children[i];
+		if (m_children[i]->check_collision(compare_tree, object_tree_root) != nullptr)
+		{
+			if (!compare_tree->m_collidable)
+			{
+				if (compare_tree->m_tag == Tags::Laser)
+				{
+					if (object_tree_root->m_tag != Tags::Laser&& object_tree_root->m_tag != Tags::Camera)
+					{
+						object_tree_root->m_health--;
+						m_audio_manager->PlaySoundEffect("Explosion");
+						compare_tree->ResetNode(compare_tree);
+					}
+				}
+				return nullptr;
+			}
+			else if (!object_tree_root->m_collidable)
+			{
+				if (object_tree_root->m_tag == Tags::Laser)
+				{
+					if (compare_tree->m_tag != Tags::Laser && compare_tree->m_tag != Tags::Camera)
+					{
+						compare_tree->m_health--;
+						m_audio_manager->PlaySoundEffect("Explosion");
+						object_tree_root->ResetNode(object_tree_root);
+					}
+				}
+				return nullptr;
+			}
+			return m_children[i];
+		}
 	}
 
 	return nullptr;
@@ -511,8 +605,10 @@ void SceneNode::AddVelocity(SceneNode* root_node)
 		if (nodeToCheck->isMoveable())
 		{
 			XMVECTOR dir = nodeToCheck->GetPos() - GetPos();
+			float normalMagnitude = sqrt(pow(dir.x, 2) + pow(dir.y, 2) + pow(dir.z, 2));
+			dir = dir / normalMagnitude;
 			//nodeToCheck->IncPos(dir.x*moveAmount, dir.y*moveAmount, dir.z*moveAmount, g_root_node);
-			nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + (GetVelocity()*m_scale) );
+			nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + (GetVelocity() * m_scale));
 			//if there is a collision, restore camera and camera node positions
 			SetVelocity(GetVelocity()/(VELOCITY_IMPACT_FACTOR/m_scale));
 		}
@@ -524,7 +620,101 @@ void SceneNode::AddVelocity(SceneNode* root_node)
 
 }
 
-void SceneNode::GetLookAt()
+XMVECTOR SceneNode::GetLookAt(XMVECTOR direction)
 {
-	//normalise the look at==============================================================================================================
+	// Normalise the look at
+	float normalMagnitude = sqrt(pow(direction.x, 2) + pow(direction.y, 2) + pow(direction.z, 2));
+	direction = direction / normalMagnitude;
+	return direction;
+}
+
+void SceneNode::Update(SkyBox* skybox, int& score)
+{
+	if (m_health <= 0)
+	{
+		if (m_tag == Tags::Asteroid)
+		{
+			SetPos(XMVectorSet(RandomNumberGenerator(skybox->GetPos().x + skybox->GetScale()), RandomNumberGenerator(skybox->GetPos().y + skybox->GetScale()), RandomNumberGenerator(skybox->GetPos().x + skybox->GetScale()), 0.0f));
+			m_health = m_max_health;
+			score += (int)m_max_health;
+		}
+		if (m_tag == Tags::SpaceShip)
+		{
+			SetPos(XMVectorSet(RandomNumberGenerator(skybox->GetPos().x + skybox->GetScale()), RandomNumberGenerator(skybox->GetPos().y + skybox->GetScale()), RandomNumberGenerator(skybox->GetPos().x + skybox->GetScale()), 0.0f));
+			m_health = m_max_health;
+			score += 100;
+		}
+	}
+
+	if (m_tag == Tags::Laser)
+	{
+		if (m_isActive)
+		{
+			if (m_cur_laser_life > m_laser_life)
+			{
+				ResetNode(this);
+				m_cur_laser_life = 0;
+				m_isActive = false;
+			}
+			m_cur_laser_life += m_pDeltaTime->GetDeltaTime();
+		}
+	}
+}
+
+void SceneNode::Activate(bool isEnabled)
+{
+	m_isActive = isEnabled;
+}
+
+void SceneNode::SetOffset(XMVECTOR childOffset)
+{
+	m_child_offset = childOffset;
+	SetPos(m_child_offset);
+}
+
+void SceneNode::FireLaser(SceneNode * detachingNode, SceneNode * new_parent_node)
+{
+	m_cur_laser_life = 0;
+	if (detachingNode->GetTag() == Tags::Laser)
+	{
+		detachingNode->SetRotation(-m_p_camera->GetRot().x, m_p_camera->GetRot().y, m_p_camera->GetRot().z);
+	}
+	detachNode(detachingNode);
+	new_parent_node->addChildNode(detachingNode);
+	detachingNode->SetVelocity(m_p_camera->GetLookAt() * 100.0f);
+	m_audio_manager->PlaySoundEffect("Laser");
+	
+}
+
+void SceneNode::SetOriginalParentNode(SceneNode * original_parent_node)
+{
+	m_original_parent_node = original_parent_node;
+}
+
+void SceneNode::ResetNode(SceneNode* node)
+{
+	m_world_root_node->detachNode(node);
+	node->GetOriginalParentNode()->addChildNode(node);
+	node->SetPos(node->GetOffset());
+	node->SetVelocity(XMVectorZero());
+	node->Activate(false);
+}
+
+void SceneNode::SetMaxHealth()
+{
+	m_max_health = m_scale;
+	m_health = m_max_health;
+}
+
+float SceneNode::RandomNumberGenerator(int maxDistance)
+{
+	float randNum = 0;
+
+	do
+	{
+		randNum = rand() % maxDistance;
+		randNum -= maxDistance / 2;
+	} while (randNum < (maxDistance / 2) && randNum > maxDistance);
+
+	return randNum;
 }

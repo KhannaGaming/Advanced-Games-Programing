@@ -267,7 +267,7 @@ void ParticleGenerator::Draw(XMMATRIX* view, XMMATRIX* projection, XMVECTOR* cam
 				break;
 			}
 			}
-			LookAt_XZ(cameraposition->x, cameraposition->z);
+			//LookAt_XZ(cameraposition->x, cameraposition->z);
 			world *= XMMatrixScaling(m_scale, m_scale, m_scale);
 			world *= XMMatrixRotationRollPitchYaw(XMConvertToRadians(m_xAngle), XMConvertToRadians(m_yAngle), XMConvertToRadians(m_zAngle));
 			world *= XMMatrixTranslation((*it)->position.x, (*it)->position.y, (*it)->position.z);
