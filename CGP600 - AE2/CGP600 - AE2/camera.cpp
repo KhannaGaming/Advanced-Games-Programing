@@ -9,9 +9,9 @@ camera::camera(float x, float y, float z, float camera_rotation_yaw, float camer
 	m_z = z;
 	m_camera_rotation_yaw = camera_rotation_yaw;
 	m_camera_rotation_pitch = camera_rotation_pitch;
-	m_dx = sin(m_camera_rotation_yaw *(XM_PI / 180.0f));
-	m_dy = sin(m_camera_rotation_pitch *(XM_PI / 180.0f));
-	m_dz = cos(m_camera_rotation_yaw *(XM_PI / 180.0f));
+	m_dx = (float)sin(m_camera_rotation_yaw *(XM_PI / 180.0f));
+	m_dy = (float)sin(m_camera_rotation_pitch *(XM_PI / 180.0f));
+	m_dz = (float)cos(m_camera_rotation_yaw *(XM_PI / 180.0f));
 }
 
 
@@ -22,22 +22,22 @@ camera::~camera()
 void camera::RotateAroundX(float rotation_amount)
 {
 	m_camera_rotation_pitch += rotation_amount;
-	if (m_camera_rotation_pitch >= 60.0f)
+	if (m_camera_rotation_pitch >= MAX_PITCH_AMOUNT)
 	{
-		m_camera_rotation_pitch = 60.0f;
+		m_camera_rotation_pitch = MAX_PITCH_AMOUNT;
 	}
-	if (m_camera_rotation_pitch <= -60.0f)
+	if (m_camera_rotation_pitch <= -MAX_PITCH_AMOUNT)
 	{
-		m_camera_rotation_pitch = -60.0f;
+		m_camera_rotation_pitch = -MAX_PITCH_AMOUNT;
 	}
-	m_dy = sin(m_camera_rotation_pitch *(XM_PI / 180.0f));
+	m_dy = (float)sin(m_camera_rotation_pitch *(XM_PI / 180.0f));
 }
 
 void camera::RotateAroundY(float rotation_amount)
 {
 	m_camera_rotation_yaw += rotation_amount;
-	m_dx = sin(m_camera_rotation_yaw *(XM_PI / 180.0f));
-	m_dz = cos(m_camera_rotation_yaw *(XM_PI / 180.0f));
+	m_dx = (float)sin(m_camera_rotation_yaw *(XM_PI / 180.0f));
+	m_dz = (float)cos(m_camera_rotation_yaw *(XM_PI / 180.0f));
 }
 
 void camera::Forward(float distance_amount)
@@ -87,9 +87,9 @@ void camera::SetPos(float x, float y, float z)
 
 void camera::SetRot(float x, float y, float z)
 {
-	m_dx = sin(x *(XM_PI / 180.0f));
-	m_dy = sin(y *(XM_PI / 180.0f));
-	m_dz = cos(z *(XM_PI / 180.0f));
+	m_dx = (float)sin(x *(XM_PI / 180.0f));
+	m_dy = (float)sin(y *(XM_PI / 180.0f));
+	m_dz = (float)cos(z *(XM_PI / 180.0f));
 }
 
 XMVECTOR camera::GetRot()

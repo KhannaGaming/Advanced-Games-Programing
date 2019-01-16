@@ -29,7 +29,6 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="objfilemodel.cpp" />
     <ClCompile Include="ParticleGenerator.cpp" />
-    <ClCompile Include="ReflectionModel.cpp" />
     <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="text2D.cpp" />
@@ -40,12 +39,6 @@
     </FxCompile>
     <FxCompile Include="reflect_shader.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </FxCompile>
-    <FxCompile Include="shaders.hlsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="text2D_shaders.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -59,12 +52,12 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="DeltaTime.h" />
     <ClInclude Include="DirectInput.h" />
+    <ClInclude Include="FilePaths.h" />
     <ClInclude Include="LightManager.h" />
     <ClInclude Include="maths.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="objfilemodel.h" />
     <ClInclude Include="ParticleGenerator.h" />
-    <ClInclude Include="ReflectionModel.h" />
     <ClInclude Include="SceneNode.h" />
     <ClInclude Include="SkyBox.h" />
     <ClInclude Include="Tags.h" />

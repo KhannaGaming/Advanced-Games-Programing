@@ -5,7 +5,10 @@
 class Model
 {
 public:
-	Model(ID3D11Device* D3DDevice, ID3D11DeviceContext* ImmediateContext,bool shiney, bool moveable);
+	//***************************************************
+	//METHODS
+	//***************************************************
+	Model(ID3D11Device* D3DDevice, ID3D11DeviceContext* ImmediateContext, bool shiney, bool m_moveable);
 	~Model();
 	HRESULT LoadObjModel(char* filename, char* textureName);
 	void Draw(XMMATRIX* view, XMMATRIX* projection);
@@ -16,21 +19,27 @@ public:
 	void IncScale(float scaleAmount);
 	HRESULT AddTexture();
 	void LookAt_XZ(float xWorld, float zWorld);
-	void LookAt_XYZ(float xWorld,float yWorld, float zWorld);
-
+	void LookAt_XYZ(float xWorld, float yWorld, float zWorld);
 	void MoveForward(float distance);
 	void MoveForwardIncY(float distance);
 	XMVECTOR GetBoundingSphereWorldSpacePosition();
 	float GetBoundingSphereRaius();
-	bool CheckCollision(Model* modelToCompare);
 	ObjFileModel* GetObject();
 	bool isModelMoveable();
+
 private:
+	//***************************************************
+	//METHODS
+	//***************************************************
 	HRESULT SetSamplerState();
 	void CalculateModelCentrePoint();
 	void CalculateBoundingSphereRadius();
+	float Pythagoras(XMVECTOR v1, XMVECTOR v2);
 
 private:
+	//***************************************************
+	//POINTERS
+	//***************************************************
 	ID3D11Device*				m_pD3DDevice;
 	ID3D11DeviceContext*		m_pImmediateContext;
 	ID3D11ShaderResourceView*	m_pTexture0;
@@ -41,22 +50,20 @@ private:
 	ID3D11PixelShader*			m_pPShader;
 	ID3D11InputLayout*			m_pInputLayout;
 	ID3D11Buffer*				m_pConstantBuffer;
-	XMVECTOR					g_directional_light_shines_from;
-	XMVECTOR					g_directional_light_colour;
-	XMVECTOR					g_ambient_light_color;
-	
-	//Point Light
-	//XMVECTOR g_point_light_position;
-	//XMVECTOR g_point_light_colour;
 
-	float			m_x, m_y, m_z;
-	float			m_xAngle, m_yAngle, m_zAngle;
-	float			m_scale;
-	float			m_pTexture;
-	char*			m_textureName;
-	XMVECTOR m_bounding_sphere_centre;
-	float m_bounding_sphere_radius;
-	bool isShiney;
-	bool isMoveable;
+	//***************************************************
+	//VARIABLES
+	//***************************************************
+	float		m_x, m_y, m_z;
+	float		m_xAngle, m_yAngle, m_zAngle;
+	float		m_scale;
+	float		m_bounding_sphere_radius;
+	bool		m_isShiney;
+	bool		m_isMoveable;
+	char*		m_textureName;
+	XMVECTOR	m_directional_light_shines_from;
+	XMVECTOR	m_directional_light_colour;
+	XMVECTOR	m_ambient_light_color;
+	XMVECTOR	m_bounding_sphere_centre;
 };
 

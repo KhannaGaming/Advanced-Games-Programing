@@ -1,16 +1,5 @@
 #include "maths.h"
 
-
-
-maths::maths()
-{
-}
-
-
-maths::~maths()
-{
-}
-
 float maths::dot(XMVECTOR  v1, XMVECTOR  v2)
 {
 	float dot = (v1.x*v2.x) + (v1.y*v2.y) + (v1.z*v2.z);
@@ -29,7 +18,7 @@ XMVECTOR maths::normal(XMVECTOR  v1, XMVECTOR  v2, XMVECTOR  v3)
 	XMVECTOR diffv3v1 = XMVectorSubtract(v3, v1);
 	XMVECTOR crossV = cross(diffv2v1, diffv3v1);
 
-	float normal = sqrt(pow(crossV.x, 2.0f) + pow(crossV.y, 2.0f) + pow(crossV.z, 2.0f));
+	float normal = (float)sqrt(pow(crossV.x, 2.0f) + pow(crossV.y, 2.0f) + pow(crossV.z, 2.0f));
 
 	crossV = XMVectorSet(crossV.x / normal, crossV.y / normal, crossV.z / normal, 0.0f);
 

@@ -59,10 +59,6 @@ SkyBox::~SkyBox()
 
 void SkyBox::Draw(XMMATRIX * view, XMMATRIX * projection)
 {
-
-
-	//m_pImmediateContext->PSSetSamplers(0, 1, &m_pSampler0);
-
 	UINT stride = 48;
 	UINT offset = 0;
 	m_pImmediateContext->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
@@ -71,7 +67,6 @@ void SkyBox::Draw(XMMATRIX * view, XMMATRIX * projection)
 
 	SKYBOX_CONSTANT_BUFFER0 skybox_cb_values;
 	XMMATRIX  world;
-	//skybox_cb_values.colour = {0.5f,1.0f,1.0f,1.0f};
 	m_x = m_pCamera->GetPos().x;
 	m_y = m_pCamera->GetPos().y;
 	m_z = m_pCamera->GetPos().z;

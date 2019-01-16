@@ -10,23 +10,25 @@
 class DeltaTime
 {
 public:
+	//*********************************************************
+	//METHODS
+	//*********************************************************
 	DeltaTime();
-	~DeltaTime();
 	void Update();
 	float GetDeltaTime();
 	int GetFPS();
 
-	int frameCounter;
-	float timeElapsed;
-	float gameTime;
-	float startTime;
-
-
 private:
-	float m_deltaTime;
-	float m_previousTime;
-	float m_currentTime;
-	int fps;
-
+	//*********************************************************
+	//VARIABLES
+	//*********************************************************
+	int		m_frameCounter;
+	float	m_timeElapsed;
+	float	m_gameTime;
+	float	m_startTime;
+	float	m_deltaTime;
+	float	m_previousTime;
+	float	m_currentTime;
+	int		m_fps;
 };
 

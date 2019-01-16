@@ -29,17 +29,17 @@ VOut ReflectionVS(float4 position : POSITION, float3 texcoord : TEXCOORD, float3
 	output.color = default_color;
 
 	//position relative to camera
-	float3 wvpos = mul(worldViewMatrix, position);
+	float4 wvpos = mul(worldViewMatrix, position);
 
 	//surface normal relative to camera
-	float3 wvnormal = mul(worldViewMatrix, normal);
+	float3 wvnormal = mul((float3x3)worldViewMatrix, normal);
 	wvnormal = normalize(wvnormal);
 
 	// obtain the reverse eye vector
-	float3 eye = -normalize(wvpos);
-    output.viewDirection = normalize(wvpos);
+    float4 eye = -normalize(wvpos);
+    output.viewDirection = normalize(wvpos.xyz);
 	//compute the reflection vector
-	output.texcoord = 2.0 * dot(eye, wvnormal)*wvnormal - eye;
+    output.texcoord = 2.0 * dot(eye.xyz, wvnormal) * wvnormal - eye.xyz;
 	output.normal = normalize(normal);
 
 	return output;

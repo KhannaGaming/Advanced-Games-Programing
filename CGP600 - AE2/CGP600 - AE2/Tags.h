@@ -4,6 +4,9 @@
 using namespace std;
 namespace Tags
 {
+	//*********************************************************
+	//CONSTS
+	//*********************************************************
 	const string Root = "Root";
 	const string SpaceShip = "Spaceship";
 	const string Camera = "Camera";

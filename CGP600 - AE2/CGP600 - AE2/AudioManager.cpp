@@ -30,6 +30,7 @@ HRESULT AudioManager::Init()
 	if (FAILED(hr = CreateVoice(&voice_buffer->pSourceVoice, &voice_buffer->buffer)))
 		return hr;
 	m_soundForBuffer["Laser"] = 0;
+	voice_buffer->pSourceVoice->SetVolume(0.5f);
 	m_soundEffects.push_back(*voice_buffer);
 
 	if (FAILED(hr = LoadFromFile(explosionFilePath, voice_buffer)))
@@ -38,6 +39,16 @@ HRESULT AudioManager::Init()
 	if (FAILED(hr = CreateVoice(&voice_buffer->pSourceVoice, &voice_buffer->buffer)))
 		return hr;
 	m_soundForBuffer["Explosion"] = 1;
+	voice_buffer->pSourceVoice->SetVolume(0.4f);
+	m_soundEffects.push_back(*voice_buffer);
+
+	if (FAILED(hr = LoadFromFile(spaceFilePath, voice_buffer)))
+		return hr;
+
+	if (FAILED(hr = CreateVoice(&voice_buffer->pSourceVoice, &voice_buffer->buffer)))
+		return hr;
+	m_soundForBuffer["Space"] = 2;
+	voice_buffer->buffer.LoopCount = XAUDIO2_LOOP_INFINITE;
 	m_soundEffects.push_back(*voice_buffer);
 
 	return S_OK;
@@ -47,17 +58,17 @@ HRESULT AudioManager::PlaySoundEffect(string fileName)
 {
 	HRESULT hr = S_OK;
 
-
 	if (FAILED(hr = m_soundEffects[m_soundForBuffer[fileName]].pSourceVoice->Stop()))
-		return hr;	
-	m_soundEffects[m_soundForBuffer[fileName]].pSourceVoice->FlushSourceBuffers();
-	
+		return hr;
+
+	if (FAILED(hr = m_soundEffects[m_soundForBuffer[fileName]].pSourceVoice->FlushSourceBuffers()))
+		return hr;
+
 	if (FAILED(hr = m_soundEffects[m_soundForBuffer[fileName]].pSourceVoice->SubmitSourceBuffer(&m_soundEffects[m_soundForBuffer[fileName]].buffer)))
 		return hr;
+
 	if (FAILED(hr = m_soundEffects[m_soundForBuffer[fileName]].pSourceVoice->Start(0)))
 		return hr;
-
-	
 
 	return S_OK;
 }

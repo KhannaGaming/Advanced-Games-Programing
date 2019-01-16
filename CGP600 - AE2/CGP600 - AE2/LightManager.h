@@ -32,8 +32,9 @@ struct PointLight
 class LightManager
 {
 public:
-	LightManager();
-	~LightManager();
+	//***************************************************
+	//METHODS
+	//***************************************************
 	void CreateDirectionalLight(string Name, XMVECTOR Pos, XMVECTOR Colour);
 	void CreateAmbientLight(string Name, XMVECTOR Colour);
 	void CreatePointLight(string Name, XMVECTOR Pos, XMVECTOR Colour);
@@ -43,9 +44,12 @@ public:
 	XMVECTOR GetLightPosition(string lightName);
 
 private:
+	//***************************************************
+	//VECTORS
+	//***************************************************
 	vector<DirectionalLight> m_vDirectionalLights;
-	vector<AmbientLight> m_vAmbientLights;
-	vector<PointLight> m_vPointLights;
+	vector<AmbientLight>	 m_vAmbientLights;
+	vector<PointLight>		 m_vPointLights;
 
 };
 

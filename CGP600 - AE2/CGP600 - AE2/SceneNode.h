@@ -12,85 +12,107 @@
 #include<windowsx.h>
 #include "Model.h"
 #include"camera.h"
-#define VELOCITY_IMPACT_FACTOR 5
 #include "DeltaTime.h"
-#include "Tags.h"
 #include "SkyBox.h"
 #include "AudioManager.h"
+#include "Tags.h"
+
+#define VELOCITY_IMPACT_FACTOR 5
+#define ENEMY_SHIP_SPEED 100.0f
+#define MAX_VELOCITY 10.0f
 
 class SceneNode
 {
 public:
-	SceneNode(DeltaTime* deltaTime, bool collidable, string tag, SceneNode* world_root_node, AudioManager* AudioManager);
+	//*************************
+	//METHODS
+	//*************************
+	SceneNode(DeltaTime* deltaTime, bool collidable, string tag, SceneNode* world_root_node, AudioManager* AudioManager, float moveSpeed);
 	~SceneNode();
-	void SetModel(Model*model);
-	void SetCamera(camera*Camera);
-	void SetPos(XMVECTOR pos);
-	XMVECTOR GetPos();
-	void SetRotation(float xAngle, float yAngle, float zAngle);
-	XMVECTOR GetRotation();
-	void SetScale(float scale);
-	float GetScale();
-	void addChildNode(SceneNode* n);
-	bool detachNode(SceneNode* n);
-	void execute(XMMATRIX *world, XMMATRIX* view, XMMATRIX* projection, SceneNode* root_node);
-	bool IncPos(float xAmount, float yAmount, float zAmount, SceneNode* root_node);
-	bool IncRotation(float xAmount, float yAmount, float zAmount, SceneNode* root_node);
-	bool IncScale(float scaleAmount, SceneNode* root_node);
-	bool LookAt_XZ(float xWorld, float zWorld, SceneNode* root_node);
-	bool LookAt_XYZ(XMVECTOR world, SceneNode* root_node);
-	bool MoveForward(float distance, SceneNode* root_node);
-	bool MoveForwardIncY(float distance, SceneNode* root_node);
-	vector<SceneNode*> GetChildren();
-	XMVECTOR get_world_centre_position();
-	void update_collision_tree(XMMATRIX* world, float scale);
-	SceneNode* check_collision(SceneNode* compare_tree);
-	SceneNode* check_collision(SceneNode* compare_tree, SceneNode* object_tree_root);//15
-	SceneNode* check_collision_ray(XMVECTOR ray_position, XMVECTOR direction_ray);
-	bool isMoveable();
-	void MoveForwardIncYNoCollisions(float distance, SceneNode* root_node);
-	XMVECTOR GetVelocity() { return velocity; };
-	void SetVelocity(XMVECTOR amount) { velocity = amount; };
-	void AddVelocity(SceneNode* root_node);
+	XMVECTOR			GetPos();
+	XMVECTOR			get_world_centre_position();
+	XMVECTOR			GetVelocity() { return m_velocity; };
 	XMVECTOR GetLookAt(XMVECTOR direction);
-	void Update(SkyBox* skybox, int& score);
-	void Activate(bool isEnabled);
-	void SetOffset(XMVECTOR childOffset);
 	XMVECTOR GetOffset() { return m_child_offset; };
-	void FireLaser(SceneNode* detachingNode, SceneNode* root_node);
-	string GetTag() { return m_tag; };
-	void SetOriginalParentNode(SceneNode* original_parent_node);
-	SceneNode* GetOriginalParentNode() { return m_original_parent_node; };
-	void ResetNode(SceneNode* node);
-	void SetMaxHealth();
+	XMVECTOR			GetRotation();
+	SceneNode*			check_collision(SceneNode* compare_tree);
+	SceneNode*			check_collision(SceneNode* compare_tree, SceneNode* object_tree_root);
+	SceneNode*			check_collision_ray(XMVECTOR ray_position, XMVECTOR direction_ray);
+	SceneNode*			GetOriginalParentNode() { return m_original_parent_node; };
+	string				GetTag() { return m_tag; };
+	vector<SceneNode*>	GetChildren();
+	void				SetRotation(float xAngle, float yAngle, float zAngle);
+	void				SetScale(float scale);
+	void				SetModel(Model*model);
+	void				SetCamera(camera*Camera);
+	void				SetPos(XMVECTOR pos);
+	void				addChildNode(SceneNode* n);
+	void				execute(XMMATRIX *world, XMMATRIX* view, XMMATRIX* projection, SceneNode* root_node);
+	void				update_collision_tree(XMMATRIX* world, float scale);
+	void				MoveForwardIncYNoCollisions(float distance, SceneNode* root_node);
+	void				SetVelocity(XMVECTOR amount) { m_velocity = amount; };
+	void				AddVelocity(SceneNode* root_node);
+	void				Update(SkyBox* skybox, int& score, SceneNode* rootNode);
+	void				Activate(bool isEnabled);
+	void				SetOffset(XMVECTOR childOffset);
+	void				FireLaser(SceneNode* detachingNode, SceneNode* root_node);
+	void				SetOriginalParentNode(SceneNode* original_parent_node);
+	void				ResetNode(SceneNode* node);
+	void				SetMaxHealth();
+	void				ChaseOrFlee(SceneNode* player, SceneNode* root_node);
+	float				GetScale();
+	bool				isMoveable();
+	bool				IncPos(float xAmount, float yAmount, float zAmount, SceneNode* root_node);
+	bool				IncRotation(float xAmount, float yAmount, float zAmount, SceneNode* root_node);
+	bool				IncScale(float scaleAmount, SceneNode* root_node);
+	bool				LookAt_XZ(float xWorld, float zWorld, SceneNode* root_node);
+	bool				LookAt_XYZ(XMVECTOR world, SceneNode* root_node);
+	bool				MoveForward(float distance, SceneNode* root_node);
+	bool				MoveForwardIncY(SceneNode* root_node);
+	bool				detachNode(SceneNode* n);	
 
 private:
-	float RandomNumberGenerator(int maxDistance);
+	//**************************
+	//METHODS
+	//**************************
+	int			RandomNumberGenerator(int maxDistance);
+	float		Pythagoras(XMVECTOR v);
+	float		Pythagoras(XMVECTOR v1, XMVECTOR v2);
+	bool		checkChildrenPosition(SceneNode* nodeToCheck, SceneNode* rootNode);
+	void		checkVelocities();
 
 private:
-	Model* m_p_model;
-	camera* m_p_camera;
-	vector<SceneNode*> m_children;
-	float m_x, m_y, m_z;
-	float m_xAngle, m_yAngle, m_zAngle;
-	float m_scale;
-	float m_world_centre_x, m_world_centre_y, m_world_centre_z;
-	float m_world_scale;
-	XMVECTOR m_lookAt;
-	XMMATRIX m_local_world_matrix;
-	bool moveable;
-	XMVECTOR velocity;
-	DeltaTime* m_pDeltaTime;
-	bool m_collidable;
-	string m_tag;
-	float m_health;
-	float m_max_health;
-	bool m_isActive;
-	XMVECTOR m_child_offset;
-	SceneNode* m_world_root_node;
-	SceneNode* m_original_parent_node;
-	float m_laser_life;
-	float m_cur_laser_life;
-	AudioManager* m_audio_manager;
+	//**************************
+	//POINTERS
+	//**************************
+	Model*				m_p_model;
+	camera*				m_p_camera;
+	DeltaTime*			m_pDeltaTime;
+	vector<SceneNode*>	m_children;
+	AudioManager*		m_audio_manager;
+	SceneNode*			m_world_root_node;
+	SceneNode*			m_original_parent_node;
+
+	//**************************
+	//VARIABLES
+	//**************************
+	float		m_x, m_y, m_z;
+	float		m_xAngle, m_yAngle, m_zAngle;
+	float		m_scale;
+	float		m_world_centre_x, m_world_centre_y, m_world_centre_z;
+	float		m_world_scale;
+	float		m_health;
+	float		m_max_health;
+	float		m_laser_life;
+	float		m_cur_laser_life;
+	float		m_move_speed;
+	bool		m_isActive;
+	bool		m_moveable;
+	bool		m_collidable;
+	XMVECTOR	m_lookAt;
+	XMMATRIX	m_local_world_matrix;
+	XMVECTOR	m_velocity;
+	XMVECTOR	m_child_offset;
+	string		m_tag;
 };
 

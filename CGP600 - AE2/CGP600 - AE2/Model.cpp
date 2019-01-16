@@ -5,27 +5,25 @@
 struct MODEL_CONSTANT_BUFFER0
 {
 	XMMATRIX WorldViewProjection;		// 64 bytes (4x4=16 floats x 4 floats)
-	XMMATRIX World;
-	XMVECTOR directional_light_vector;	//16 bytes
-	XMVECTOR directional_light_colour;	//16 bytes
-	XMVECTOR ambient_light_colour;		//16 bytes
-	//XMVECTOR point_light_position;
-	//XMVECTOR point_light_colour;
-};//TOTAL SIZE = 112 bytes
+	XMMATRIX World;						// 64 bytes (4x4=16 floats x 4 floats)
+	XMVECTOR directional_light_vector;	// 16 bytes
+	XMVECTOR directional_light_colour;	// 16 bytes
+	XMVECTOR ambient_light_colour;		// 16 bytes
+};//TOTAL SIZE = 176 bytes
 
 struct REFLECTION_CONSTANT_BUFFER0
 {
 	XMMATRIX WorldViewProjection;		// 64 bytes (4x4=16 floats x 4 floats)
-	XMMATRIX WorldView;
-	XMVECTOR directional_light_vector;	//16 bytes
-	XMVECTOR directional_light_colour;	//16 bytes
-	XMVECTOR ambient_light_colour;		//16 bytes
-}; //64 bytes
+	XMMATRIX WorldView;					// 64 bytes (4x4=16 floats x 4 floats)
+	XMVECTOR directional_light_vector;	// 16 bytes
+	XMVECTOR directional_light_colour;	// 16 bytes
+	XMVECTOR ambient_light_colour;		// 16 bytes
+}; //176 bytes
 
 
-Model::Model(ID3D11Device* D3DDevice, ID3D11DeviceContext* ImmediateContext, bool shiney, bool moveable)
+Model::Model(ID3D11Device* D3DDevice, ID3D11DeviceContext* ImmediateContext, bool shiney, bool m_moveable)
 {
-	isShiney = shiney;
+	m_isShiney = shiney;
 	m_pD3DDevice = D3DDevice;
 	m_pImmediateContext = ImmediateContext;
 	m_x, m_y, m_z = 0;
@@ -37,7 +35,7 @@ Model::Model(ID3D11Device* D3DDevice, ID3D11DeviceContext* ImmediateContext, boo
 	m_pLightManager->CreateDirectionalLight("SunLight", XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f), XMVectorSet(1.0f, 1.0f, 1.0f, 0.0f));
 	//always use a small value for ambient lighting
 	m_pLightManager->CreateAmbientLight("AmbientLight", XMVectorSet(0.5f, 0.5f, 0.5f, 1.0f));
-	isMoveable = moveable;
+	m_isMoveable = m_moveable;
 }
 
 
@@ -59,6 +57,9 @@ Model::~Model()
 		delete m_pLightManager;
 		m_pLightManager = nullptr;
 	}
+	m_pImmediateContext = nullptr;
+	m_pD3DDevice = nullptr;
+	
 }
 
 HRESULT Model::LoadObjModel(char * fileName,char* textureName)
@@ -71,7 +72,7 @@ HRESULT Model::LoadObjModel(char * fileName,char* textureName)
 
 	//Load and compile the pixel and vertex shaders- use vs_5_0 to target DX11 hardware only
 	ID3DBlob *MVS, *MPS, *error;
-	if (!isShiney)
+	if (!m_isShiney)
 	{
 		hr = D3DX11CompileFromFile("model_shaders.hlsl", 0, 0, "ModelVS", "vs_4_0", 0, 0, 0, &MVS, &error, 0);
 
@@ -173,18 +174,8 @@ HRESULT Model::LoadObjModel(char * fileName,char* textureName)
 
 void Model::Draw(XMMATRIX* view, XMMATRIX* projection)
 {
-	//Point Light
-	/*g_point_light_colour = XMVectorSet(0.5f, 0.0f, 0.0f, 0.0f);
-	g_point_light_position = XMVectorSet(1.0f, 1.0f, 0.0f, 0.0f);*/
-
-
-	//m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	if (!isShiney)
+	if (!m_isShiney)
 	{
-
-		XMMATRIX Rotation;
-		Rotation = XMMatrixRotationX(XMConvertToRadians(90));
 		XMMATRIX transpose;
 		MODEL_CONSTANT_BUFFER0 model_cb_values;
 		XMMATRIX  world;
@@ -199,20 +190,13 @@ void Model::Draw(XMMATRIX* view, XMMATRIX* projection)
 		model_cb_values.World = XMMatrixTranspose(XMMatrixInverse(&det,A));
 		model_cb_values.WorldViewProjection = world * (*view)*(*projection);
 
-		//Point Light
-		/*
-		XMVECTOR determinant; // inverse function returns determinant, but it isnt used
-		XMMATRIX inverse; // if not defined elsewhere
-		inverse = XMMatrixInverse(&determinant, world);
-		model_cb_values.point_light_colour = g_point_light_colour;
-		model_cb_values.point_light_position = XMVector3Transform(g_point_light_position, Rotation);
-		model_cb_values.point_light_position *= XMVector3Transform(g_point_light_position, inverse);
-		*/
 		transpose = XMMatrixTranspose(world);
+
 		model_cb_values.ambient_light_colour = m_pLightManager->GetLightColour("AmbientLight");
 		model_cb_values.directional_light_colour = m_pLightManager->GetLightColour("SunLight");
 		model_cb_values.directional_light_vector = XMVector3Transform(m_pLightManager->GetLightPosition("SunLight"), transpose);
 		model_cb_values.directional_light_vector = XMVector3Normalize(model_cb_values.directional_light_vector);
+
 		m_pImmediateContext->UpdateSubresource(m_pConstantBuffer, 0, 0, &model_cb_values, 0, 0);
 	}
 	else
@@ -237,8 +221,6 @@ void Model::Draw(XMMATRIX* view, XMMATRIX* projection)
 
 	m_pImmediateContext->VSSetConstantBuffers(0, 1, &m_pConstantBuffer);
 	m_pImmediateContext->PSSetConstantBuffers(0, 1, &m_pConstantBuffer);
-
-
 	m_pImmediateContext->VSSetShader(m_pVShader, 0, 0);
 	m_pImmediateContext->PSSetShader(m_pPShader, 0, 0);
 	m_pImmediateContext->IASetInputLayout(m_pInputLayout);
@@ -249,9 +231,7 @@ void Model::Draw(XMMATRIX* view, XMMATRIX* projection)
 
 void Model::Draw(XMMATRIX * world, XMMATRIX * view, XMMATRIX * projection)
 {
-	
-
-	if (!isShiney)
+	if (!m_isShiney)
 	{
 
 		
@@ -291,8 +271,6 @@ void Model::Draw(XMMATRIX * world, XMMATRIX * view, XMMATRIX * projection)
 
 	m_pImmediateContext->VSSetConstantBuffers(0, 1, &m_pConstantBuffer);
 	m_pImmediateContext->PSSetConstantBuffers(0, 1, &m_pConstantBuffer);
-
-
 	m_pImmediateContext->VSSetShader(m_pVShader, 0, 0);
 	m_pImmediateContext->PSSetShader(m_pPShader, 0, 0);
 	m_pImmediateContext->IASetInputLayout(m_pInputLayout);
@@ -343,7 +321,7 @@ void Model::LookAt_XZ(float xWorld, float zWorld)
 	float dx, dz;
 	dx = xWorld - m_x;
 	dz = zWorld - m_z;
-	m_yAngle = atan2(dx, dz)*(180.0 / XM_PI);
+	m_yAngle = atan2(dx, dz)*(180.0f / XM_PI);
 
 }
 
@@ -353,21 +331,21 @@ void Model::LookAt_XYZ(float xWorld, float yWorld, float zWorld)
 	dx = xWorld - m_x;
 	dy = yWorld - m_y;
 	dz = zWorld - m_z;
-	m_xAngle = -atan2(dy, dx - dz)*(180.0 / XM_PI);// *180.0 / XM_PI;
-	m_yAngle = atan2(dx, dz)*(180.0 / XM_PI);
+	m_xAngle = -atan2(dy, dx - dz)*(180.0f / XM_PI);// *180.0 / XM_PI;
+	m_yAngle = atan2(dx, dz)*(180.0f / XM_PI);
 }
 
 void Model::MoveForward(float distance)
 {
-	m_x += sin(m_yAngle* (XM_PI / 180.0))*distance;
-	m_z += cos(m_yAngle* (XM_PI / 180.0))*distance;
+	m_x += sin(m_yAngle* (XM_PI / 180.0f))*distance;
+	m_z += cos(m_yAngle* (XM_PI / 180.0f))*distance;
 }
 
 void Model::MoveForwardIncY(float distance)
 {
-	m_x += sin(m_yAngle * (XM_PI / 180.0)) * distance * cos(m_xAngle * (XM_PI / 180.0));
-	m_y += -sin(m_xAngle * (XM_PI / 180.0)) * distance;
-	m_z += cos(m_yAngle * (XM_PI / 180.0)) * distance * cos(m_xAngle * (XM_PI / 180.0));
+	m_x += sin(m_yAngle * (XM_PI / 180.0f)) * distance * cos(m_xAngle * (XM_PI / 180.0f));
+	m_y += -sin(m_xAngle * (XM_PI / 180.0f)) * distance;
+	m_z += cos(m_yAngle * (XM_PI / 180.0f)) * distance * cos(m_xAngle * (XM_PI / 180.0f));
 }
 
 XMVECTOR Model::GetBoundingSphereWorldSpacePosition()
@@ -379,7 +357,7 @@ XMVECTOR Model::GetBoundingSphereWorldSpacePosition()
 	world *= XMMatrixTranslation(m_x, m_y, m_z);
 
 	XMVECTOR offset = XMVectorZero();
-	offset = XMVectorSet(m_bounding_sphere_centre.x, m_bounding_sphere_centre.y, m_bounding_sphere_centre.z, 0.0);
+	offset = XMVectorSet(m_bounding_sphere_centre.x, m_bounding_sphere_centre.y, m_bounding_sphere_centre.z, 0.0f);
 	offset = XMVector3Transform(offset, world);
 	return offset;
 }
@@ -389,21 +367,6 @@ float Model::GetBoundingSphereRaius()
 	return m_bounding_sphere_radius*m_scale;
 }
 
-bool Model::CheckCollision(Model * modelToCompare)
-{
-	if (modelToCompare == this)
-	{
-		return false;
-	}
-	float distance_squared = pow(XMVectorGetX(this->GetBoundingSphereWorldSpacePosition()) - XMVectorGetX(modelToCompare->GetBoundingSphereWorldSpacePosition()), 2) + pow(XMVectorGetY(this->GetBoundingSphereWorldSpacePosition()) - XMVectorGetY(modelToCompare->GetBoundingSphereWorldSpacePosition()), 2) + pow(XMVectorGetZ(this->GetBoundingSphereWorldSpacePosition()) - XMVectorGetZ(modelToCompare->GetBoundingSphereWorldSpacePosition()), 2);
-	
-	if(distance_squared<pow((this->GetBoundingSphereRaius()+modelToCompare->GetBoundingSphereRaius()),2))
-	{
-		return true;
-	}
-
-	return false;
-}
 
 ObjFileModel * Model::GetObject()
 {
@@ -412,7 +375,7 @@ ObjFileModel * Model::GetObject()
 
 bool Model::isModelMoveable()
 {
-	return isMoveable;
+	return m_isMoveable;
 }
 
 
@@ -441,7 +404,7 @@ void Model::CalculateModelCentrePoint()
 	XMVECTOR minimum_vertices_position = XMVectorZero();
 	XMVECTOR maximum_vertices_position = XMVectorZero();
 
-	for (int i = 0; i < m_pObject->numverts; i++)
+	for (size_t i = 0; i < m_pObject->numverts; i++)
 	{
 		if (m_pObject->vertices[i].Pos.x>maximum_vertices_position.x)
 		{
@@ -475,13 +438,18 @@ void Model::CalculateModelCentrePoint()
 void Model::CalculateBoundingSphereRadius()
 {
 	float highest_radius = 0.0f;
-	for (int i = 0; i < m_pObject->numverts; i++)
+	for (unsigned int i = 0; i < m_pObject->numverts; i++)
 	{
-		float current_vertices_distance = sqrt(pow(m_pObject->vertices[i].Pos.x - m_bounding_sphere_centre.x, 2) + pow(m_pObject->vertices[i].Pos.y - m_bounding_sphere_centre.y, 2) + pow(m_pObject->vertices[i].Pos.z - m_bounding_sphere_centre.z, 2));
+		float current_vertices_distance = Pythagoras(m_bounding_sphere_centre, XMVectorSet(m_pObject->vertices[i].Pos.x, m_pObject->vertices[i].Pos.y, m_pObject->vertices[i].Pos.z,0.0f)); 
 		if (current_vertices_distance > highest_radius)
 		{
 			highest_radius = current_vertices_distance;
 		}
 	}
 	m_bounding_sphere_radius = highest_radius;
+}
+
+float Model::Pythagoras(XMVECTOR v1, XMVECTOR v2)
+{
+	return sqrt(pow(v2.x - v1.x, 2) + pow(v2.y - v1.y, 2) + pow(v2.z - v1.z, 2));
 }

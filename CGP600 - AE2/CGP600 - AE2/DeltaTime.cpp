@@ -7,15 +7,10 @@ DeltaTime::DeltaTime()
 	m_previousTime = (float(timeGetTime()) / 1000.0f);
 	m_deltaTime = 0.0f;
 	m_currentTime = 0.0f;
-	timeElapsed = 0.0f;
-	gameTime = (float(timeGetTime()) / 1000.0f);
-	startTime = (float(timeGetTime()) / 1000.0f);
-	fps = 0;
-}
-
-
-DeltaTime::~DeltaTime()
-{
+	m_timeElapsed = 0.0f;
+	m_gameTime = (float(timeGetTime()) / 1000.0f);
+	m_startTime = (float(timeGetTime()) / 1000.0f);
+	m_fps = 0;
 }
 
 void DeltaTime::Update()
@@ -31,16 +26,15 @@ float DeltaTime::GetDeltaTime()
 }
 
 int DeltaTime::GetFPS()
-{
+{	
+	m_frameCounter++;
+	m_gameTime = (float(timeGetTime()) / 1000.0f) - m_startTime;
 	
-	frameCounter++;
-	gameTime = (float(timeGetTime()) / 1000.0f) - startTime;
-	
-	if (gameTime - timeElapsed >= 1)
+	if (m_gameTime - m_timeElapsed >= 1)
 	{
-		fps = frameCounter;
-		frameCounter = 0;	
-		timeElapsed++;
+		m_fps = m_frameCounter;
+		m_frameCounter = 0;	
+		m_timeElapsed++;
 	}
-	return fps;
+	return m_fps;
 }

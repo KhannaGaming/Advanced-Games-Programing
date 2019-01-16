@@ -18,14 +18,19 @@ struct Particle
 {
 	float gravity;
 	XMFLOAT3 position;
-	XMFLOAT3 velocity;
+	XMFLOAT3 m_velocity;
 	XMFLOAT4 color;
 	float age;
 };
-enum typeOfPartical { RAINBOW_FOUNTAIN };
+
+enum typeOfPartical { ENGINE_PARTICLE };
+
 class ParticleGenerator
 {
 public:
+	//***************************************************
+	//METHODS
+	//***************************************************
 	ParticleGenerator(ID3D11Device* D3DDevice, ID3D11DeviceContext* ImmediateContext,bool shiney, DeltaTime* deltaTime);
 	~ParticleGenerator();
 	HRESULT LoadObjModel(char* textureName);
@@ -39,18 +44,23 @@ public:
 	HRESULT AddTexture(char* textureName);
 	void LookAt_XZ(float xWorld, float zWorld);
 	void LookAt_XYZ(float xWorld,float yWorld, float zWorld);
-
 	void MoveForward(float distance);
 	void MoveForwardIncY(float distance);
 	int CreateParticle();
 
 
 private:
+	//***************************************************
+	//METHODS
+	//***************************************************
 	HRESULT SetSamplerState();
-	HRESULT CompileShaders();
-	void DrawOne(Particle* one, XMMATRIX* view, XMMATRIX* projection, XMVECTOR* cameraposition);
+	float	RandomZeroToOne();
+	float	RandomNegOneToPosOne();
 
 private:
+	//***************************************************
+	//POINTERS
+	//***************************************************
 	ID3D11Device*				m_pD3DDevice;
 	ID3D11DeviceContext*		m_pImmediateContext;
 	ID3D11ShaderResourceView*	m_pTexture0;
@@ -62,28 +72,26 @@ private:
 	ID3D11RasterizerState*		m_pRasterSolid = 0; 
 	ID3D11RasterizerState*		m_pRasterParticle = 0;
 	ID3D11Buffer*				m_pVertexBuffer;
-	DeltaTime* m_pDeltaTime;
-	ID3D11BlendState* g_pAlphaBlendEnable;
-	ID3D11BlendState* g_pAlphaBlendDisable;
-	//Point Light
-	//XMVECTOR g_point_light_position;
-	//XMVECTOR g_point_light_colour;
+	DeltaTime*					m_pDeltaTime;
+	ID3D11BlendState*			m_pAlphaBlendEnable;
+	ID3D11BlendState*			m_pAlphaBlendDisable;
 
-	float			m_x, m_y, m_z;
-	float			m_xAngle, m_yAngle, m_zAngle;
-	float			m_scale;
-	float			m_pTexture;
-	char*			m_textureName;
-	bool isShiney;
-	bool m_isActive;
-	float m_timePrevious;
-	float m_untilParticle;
-	float RandomZeroToOne();
-	float RandomNegOneToPosOne();
-	float m_age;
-	typeOfPartical particalType;
-	list<Particle*> m_free;
-	list<Particle*> m_active;
-	list<Particle*>::iterator it;//iteration list for pointing to the correct particle in the list
+	//***************************************************
+	//VARIABLES
+	//***************************************************
+	typeOfPartical				m_particalType;
+	list<Particle*>				m_free;
+	list<Particle*>				m_active;
+	list<Particle*>::iterator	it;//iteration list for pointing to the correct particle in the list
+	float						m_x, m_y, m_z;
+	float						m_xAngle, m_yAngle, m_zAngle;
+	float						m_scale;
+	float						m_pTexture;
+	float						m_timePrevious;
+	float						m_untilParticle;
+	float						m_age;
+	bool						m_isShiney;
+	bool						m_isActive;
+	char*						m_textureName;
 };
 

@@ -35,21 +35,22 @@
 #define fourccDPDS 'sdpd'
 #endif
 using namespace std;
-//#ifdef _XBOX
-//char * xboxStrFileName = "game:\\Assets\\Sounds\\Laser.wav";
-//#else
-//TCHAR * laserFilePath = (TCHAR*)("Assets\\Sounds\\Laser.wav");
-//#endif
 
 #define laserFilePath "Assets/Sounds/Laser.wav"
 #define explosionFilePath "Assets/Sounds/Explosion.wav"
+#define spaceFilePath "Assets/Sounds/Space.wav"
+
 class AudioManager
 {
 public:
+	//***************************************************
+	//METHODS
+	//***************************************************
 	AudioManager();
 	~AudioManager();
 	HRESULT Init();
 	HRESULT PlaySoundEffect(string fileName);
+
 private:
 	struct VOICE_BUFFER
 	{
@@ -57,19 +58,30 @@ private:
 		IXAudio2SourceVoice* pSourceVoice;
 	};
 
-private:
-	IXAudio2 * pXAudio2;
-	IXAudio2MasteringVoice* pMasterVoice;
+	//***************************************************
+	//METHODS
+	//***************************************************
 	HRESULT FindChunk(HANDLE hFile, DWORD fourcc, DWORD & dwChunkSize, DWORD & dwChunkDataPosition);
 	HRESULT ReadChunkData(HANDLE hFile, void * buffer, DWORD buffersize, DWORD bufferoffset);
-	WAVEFORMATEXTENSIBLE wfx = { 0 };
-	XAUDIO2_BUFFER buffer = { 0 };
 	HRESULT LoadFromFile(LPCSTR soundFilePath, VOICE_BUFFER * VB);
 	HRESULT CreateVoice(IXAudio2SourceVoice** const& pSourceVoice, XAUDIO2_BUFFER * buffer);
+
+private:
+	//***************************************************
+	//POINTERS
+	//***************************************************
+	IXAudio2 * pXAudio2;
+	IXAudio2MasteringVoice* pMasterVoice;
 	IXAudio2SourceVoice* pSourceVoice;
 	IXAudio2SourceVoice* pSourceVoice2;
+	XAUDIO2_VOICE_STATE* m_voiceState;
+
+	//***************************************************
+	//VARIABLES
+	//***************************************************
+	WAVEFORMATEXTENSIBLE wfx = { 0 };
+	XAUDIO2_BUFFER buffer = { 0 };
 	map<string, int> m_soundForBuffer;
 	vector<VOICE_BUFFER> m_soundEffects;
-	XAUDIO2_VOICE_STATE* m_voiceState;
 };
 

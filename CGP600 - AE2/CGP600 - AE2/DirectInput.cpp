@@ -48,7 +48,7 @@ DirectInput::~DirectInput()
 HRESULT DirectInput::InitInput()
 {
 	HRESULT hr;
-	ZeroMemory(g_keyboard_keys_state, sizeof(g_keyboard_keys_state));
+	ZeroMemory(m_keyboard_keys_state, sizeof(m_keyboard_keys_state));
 	ZeroMemory(&m_mouse_state, sizeof(m_mouse_state));
 	ZeroMemory(&m_xbox_state, sizeof(XINPUT_STATE));
 	ZeroMemory(&m_xbox_vibration_state, sizeof(XINPUT_VIBRATION));
@@ -87,7 +87,7 @@ HRESULT DirectInput::InitInput()
 void DirectInput::ReadInputStates()
 {
 	HRESULT hr;
-	hr = m_keyboard_device->GetDeviceState(sizeof(g_keyboard_keys_state), (LPVOID)&g_keyboard_keys_state);
+	hr = m_keyboard_device->GetDeviceState(sizeof(m_keyboard_keys_state), (LPVOID)&m_keyboard_keys_state);
 
 	if (FAILED(hr))
 	{
@@ -128,7 +128,7 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 	m_cur_mouse_click_cooldown += m_pDeltaTime->GetDeltaTime();
 
 	// Keyboard
-	if (g_keyboard_keys_state[DIK_ESCAPE] & 0x80)
+	if (m_keyboard_keys_state[DIK_ESCAPE] & 0x80)
 	{
 		DestroyWindow(m_hWnd);
 	}
@@ -137,7 +137,7 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 	{
 		if (!m_fired)
 		{
-			for (int i = 0; i < g_cam_node->GetChildren().size(); i++)
+			for (size_t i = 0; i < g_cam_node->GetChildren().size(); i++)
 			{
 				if (g_cam_node->GetChildren()[i]->GetTag() == Tags::Laser)
 				{
@@ -151,9 +151,8 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		}
 	}
 
-	if (g_keyboard_keys_state[DIK_W] & 0x80)
+	if (m_keyboard_keys_state[DIK_W] & 0x80)
 	{
-		
 		m_pCamera->Forward(m_playerMoveSpeed *  m_pDeltaTime->GetDeltaTime());
 		g_cam_node->SetVelocity(m_pCamera->GetLookAt()*m_playerMoveSpeed);
 
@@ -188,10 +187,8 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 			}
 		}
 	}
-
-	if (g_keyboard_keys_state[DIK_S] & 0x80)
+	if (m_keyboard_keys_state[DIK_S] & 0x80)
 	{
-		
 		m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
 		g_cam_node->SetVelocity(m_pCamera->GetLookAt()*-m_playerMoveSpeed);
 
@@ -210,7 +207,6 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 			if (nodeToCheck->isMoveable())
 			{
 				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
-				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
 				//if there is a collision, restore camera and camera node positions
 				m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
@@ -225,13 +221,11 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		}
 	}
 
-	if (g_keyboard_keys_state[DIK_D] & 0x80)
+	if (m_keyboard_keys_state[DIK_D] & 0x80)
 	{
-		
 		m_pCamera->Strafe(m_playerMoveSpeed*  m_pDeltaTime->GetDeltaTime());
 		g_cam_node->SetVelocity(XMVectorSet(g_cam_node->GetVelocity().x + m_playerMoveSpeed, g_cam_node->GetVelocity().y, g_cam_node->GetVelocity().z, g_cam_node->GetVelocity().w));
 
-
 		// set camera node to the position of the cameera 
 		g_cam_node->SetPos(m_pCamera->GetPos());
 
@@ -247,8 +241,8 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 			if (nodeToCheck->isMoveable())
 			{
 				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
-				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
+
 				//if there is a collision, restore camera and camera node positions
 				m_pCamera->Strafe(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
@@ -262,13 +256,11 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		}
 	}
 
-	if (g_keyboard_keys_state[DIK_A] & 0x80)
+	if (m_keyboard_keys_state[DIK_A] & 0x80)
 	{
-		
 		m_pCamera->Strafe(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
 		g_cam_node->SetVelocity(XMVectorSet(g_cam_node->GetVelocity().x - m_playerMoveSpeed, g_cam_node->GetVelocity().y, g_cam_node->GetVelocity().z, g_cam_node->GetVelocity().w));
 
-
 		// set camera node to the position of the cameera 
 		g_cam_node->SetPos(m_pCamera->GetPos());
 
@@ -284,8 +276,8 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 			if (nodeToCheck->isMoveable())
 			{
 				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
-				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
+
 				//if there is a collision, restore camera and camera node positions
 				m_pCamera->Strafe(m_playerMoveSpeed*  m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
@@ -299,13 +291,11 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		}
 	}
 
-	if (g_keyboard_keys_state[DIK_Q] & 0x80)
+	if (m_keyboard_keys_state[DIK_Q] & 0x80)
 	{
-		
 		m_pCamera->Up(m_playerMoveSpeed*  m_pDeltaTime->GetDeltaTime());
 		g_cam_node->SetVelocity(XMVectorSet(g_cam_node->GetVelocity().x, g_cam_node->GetVelocity().y + m_playerMoveSpeed, g_cam_node->GetVelocity().z, g_cam_node->GetVelocity().w));
 
-
 		// set camera node to the position of the cameera 
 		g_cam_node->SetPos(m_pCamera->GetPos());
 
@@ -321,8 +311,8 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 			if (nodeToCheck->isMoveable())
 			{
 				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
-				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
+
 				//if there is a collision, restore camera and camera node positions
 				m_pCamera->Up(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
@@ -336,13 +326,11 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		}
 	}
 
-	if (g_keyboard_keys_state[DIK_E] & 0x80)
+	if (m_keyboard_keys_state[DIK_E] & 0x80)
 	{
-		
 		m_pCamera->Up(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
 		g_cam_node->SetVelocity(XMVectorSet(g_cam_node->GetVelocity().x, g_cam_node->GetVelocity().y - m_playerMoveSpeed, g_cam_node->GetVelocity().z, g_cam_node->GetVelocity().w));
 
-
 		// set camera node to the position of the cameera 
 		g_cam_node->SetPos(m_pCamera->GetPos());
 
@@ -358,8 +346,8 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 			if (nodeToCheck->isMoveable())
 			{
 				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
-				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
+
 				//if there is a collision, restore camera and camera node positions
 				m_pCamera->Up(m_playerMoveSpeed*  m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
@@ -372,7 +360,6 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 			}
 		}
 	}
-
 
 	//	Mouse
 	if (m_mouse_state.lX > 0)
@@ -396,7 +383,7 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 	{
 		if (!m_fired)
 		{
-			for (int i = 0; i < g_cam_node->GetChildren().size(); i++)
+			for (size_t i = 0; i < g_cam_node->GetChildren().size(); i++)
 			{
 				if (g_cam_node->GetChildren()[i]->GetTag() == Tags::Laser)
 				{
@@ -413,7 +400,6 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 	// Controller
 	if (m_xbox_state.Gamepad.sThumbLY > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
-		
 		m_pCamera->Forward(m_playerMoveSpeed*  m_pDeltaTime->GetDeltaTime());
 		g_cam_node->SetVelocity(m_pCamera->GetLookAt()*m_playerMoveSpeed);
 
@@ -430,9 +416,9 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
+			XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 			if (nodeToCheck->isMoveable())
 			{
-				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
 
 				//if there is a collision, restore camera and camera node positions
@@ -445,17 +431,13 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 				m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
 			}
-				//Vibrations
-				m_xbox_vibration_state.wLeftMotorSpeed = m_leftStickVibration; // use any value between 0-65535 here
-				m_xbox_vibration_state.wRightMotorSpeed = m_rightStickVibration; // use any value between 0-65535 here
-				XInputSetState(0, &m_xbox_vibration_state);
-				m_cur_vibration_cooldown = 0;
+			SetVibrations(dir);
 		}
 	}
 
 	else if (m_xbox_state.Gamepad.sThumbLY < -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
-		
+
 		m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
 		g_cam_node->SetVelocity(m_pCamera->GetLookAt()*-m_playerMoveSpeed);
 
@@ -471,9 +453,9 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
+			XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 			if (nodeToCheck->isMoveable())
 			{
-				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
 				//if there is a collision, restore camera and camera node positions
@@ -486,18 +468,14 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 				m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
 			}
-				//Vibrations
-				m_xbox_vibration_state.wLeftMotorSpeed = m_leftStickVibration; // use any value between 0-65535 here
-				m_xbox_vibration_state.wRightMotorSpeed = m_rightStickVibration; // use any value between 0-65535 here
-				XInputSetState(0, &m_xbox_vibration_state);
-				m_cur_vibration_cooldown = 0;
+			SetVibrations(dir);
 		}
 
 	}
 
 	if (m_xbox_state.Gamepad.sThumbLX > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
-		
+
 		m_pCamera->Strafe(m_playerMoveSpeed*  m_pDeltaTime->GetDeltaTime());
 		g_cam_node->SetVelocity(XMVectorSet(g_cam_node->GetVelocity().x + m_playerMoveSpeed, g_cam_node->GetVelocity().y, g_cam_node->GetVelocity().z, g_cam_node->GetVelocity().w));
 
@@ -514,9 +492,9 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
+			XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 			if (nodeToCheck->isMoveable())
 			{
-				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
 				//if there is a collision, restore camera and camera node positions
@@ -530,16 +508,12 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 				m_pCamera->Strafe(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
 			}
-				//Vibrations
-				m_xbox_vibration_state.wLeftMotorSpeed = m_leftStickVibration; // use any value between 0-65535 here
-				m_xbox_vibration_state.wRightMotorSpeed = m_rightStickVibration; // use any value between 0-65535 here
-				XInputSetState(0, &m_xbox_vibration_state);
-				m_cur_vibration_cooldown = 0;
+			SetVibrations(dir);
 		}
 	}
 	else if (m_xbox_state.Gamepad.sThumbLX < -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
-		
+
 		m_pCamera->Strafe(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
 		g_cam_node->SetVelocity(XMVectorSet(g_cam_node->GetVelocity().x - m_playerMoveSpeed, g_cam_node->GetVelocity().y, g_cam_node->GetVelocity().z, g_cam_node->GetVelocity().w));
 
@@ -556,30 +530,100 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
+			XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 			if (nodeToCheck->isMoveable())
 			{
-				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
 				//if there is a collision, restore camera and camera node positions
-				m_pCamera->Strafe(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+				m_pCamera->Strafe(m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
 			}
 			else
 			{
 				//if there is a collision, restore camera and camera node positions
-				m_pCamera->Strafe(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+				m_pCamera->Strafe(m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
 			}
-				//Vibrations
-				m_xbox_vibration_state.wLeftMotorSpeed = m_leftStickVibration; // use any value between 0-65535 here
-				m_xbox_vibration_state.wRightMotorSpeed = m_rightStickVibration; // use any value between 0-65535 here
-				XInputSetState(0, &m_xbox_vibration_state);
-				m_cur_vibration_cooldown = 0;
+			SetVibrations(dir);
 		}
 	}
 
+	if (m_xbox_state.Gamepad.wButtons == XINPUT_GAMEPAD_X)
+	{
 
+		m_pCamera->Up(m_playerMoveSpeed*  m_pDeltaTime->GetDeltaTime());
+		g_cam_node->SetVelocity(XMVectorSet(g_cam_node->GetVelocity().x, g_cam_node->GetVelocity().y + m_playerMoveSpeed, g_cam_node->GetVelocity().z, g_cam_node->GetVelocity().w));
+
+
+		// set camera node to the position of the cameera 
+		g_cam_node->SetPos(m_pCamera->GetPos());
+
+		XMMATRIX identity = XMMatrixIdentity();
+
+		// update tree to reflect new camera postiion
+		g_root_node->update_collision_tree(&identity, 1.0f);
+
+		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		//check for collision of this node (and children) against all other nodes
+		if (nodeToCheck != nullptr)
+		{
+			XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
+			if (nodeToCheck->isMoveable())
+			{
+				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
+				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
+				//if there is a collision, restore camera and camera node positions
+				m_pCamera->Up(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+				g_cam_node->SetPos(m_pCamera->GetPos());
+			}
+			else
+			{
+				//if there is a collision, restore camera and camera node positions
+				m_pCamera->Up(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+				g_cam_node->SetPos(m_pCamera->GetPos());
+			}
+			SetVibrations(dir);
+		}
+	}
+
+	if (m_xbox_state.Gamepad.wButtons == XINPUT_GAMEPAD_B)
+	{
+
+		m_pCamera->Up(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+		g_cam_node->SetVelocity(XMVectorSet(g_cam_node->GetVelocity().x, g_cam_node->GetVelocity().y - m_playerMoveSpeed, g_cam_node->GetVelocity().z, g_cam_node->GetVelocity().w));
+
+
+		// set camera node to the position of the cameera 
+		g_cam_node->SetPos(m_pCamera->GetPos());
+
+		XMMATRIX identity = XMMatrixIdentity();
+
+		// update tree to reflect new camera postiion
+		g_root_node->update_collision_tree(&identity, 1.0f);
+
+		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		//check for collision of this node (and children) against all other nodes
+		if (nodeToCheck != nullptr)
+		{
+			XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
+			if (nodeToCheck->isMoveable())
+			{
+				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
+				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
+				//if there is a collision, restore camera and camera node positions
+				m_pCamera->Up(m_playerMoveSpeed*  m_pDeltaTime->GetDeltaTime());
+				g_cam_node->SetPos(m_pCamera->GetPos());
+			}
+			else
+			{
+				//if there is a collision, restore camera and camera node positions
+				m_pCamera->Up(m_playerMoveSpeed*  m_pDeltaTime->GetDeltaTime());
+				g_cam_node->SetPos(m_pCamera->GetPos());
+			}
+			SetVibrations(dir);
+		}
+	}
 
 	if (m_xbox_state.Gamepad.sThumbRY > XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE)
 	{
@@ -597,9 +641,66 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 	{
 		m_pCamera->RotateAroundY(-m_controller_horizontal_move_speed);
 	}
+	if (m_xbox_state.Gamepad.wButtons == XINPUT_GAMEPAD_BACK)
+	{
+		DestroyWindow(m_hWnd);
+	}
 }
 
 bool DirectInput::IsKeyPressed(unsigned char DI_keycode)
 {	
-		return g_keyboard_keys_state[DI_keycode];
+		return m_keyboard_keys_state[DI_keycode];
+}
+
+void DirectInput::SetVibrations(XMVECTOR dir)
+{
+	// Find Players Rotation amount within 0 & 360
+	float rotationY = m_pCamera->GetRot().y - (floorf(m_pCamera->GetRot().y / 360.0f) * 360);
+
+	// Normalise the direction of colliding object
+	float normalMagnitude = sqrt(pow(dir.x, 2) + pow(dir.y, 2) + pow(dir.z, 2));
+	dir = dir / normalMagnitude;
+
+	//dont allow dir to be between 0.5f or - 0.5f
+	if (dir.x < 0.5f && dir.x > -0.5f)
+	{
+		if (dir.x < 0)
+		{
+			dir.x = -0.5f;
+		}
+		else
+		{
+			dir.x = 0.5f;
+		}
+	}
+
+	// Initialise 2 local variables for "left side" and "right side" of ship
+	float left = 0.0f;
+	float right = 0.0f;
+
+	left = -dir.x;
+	right = dir.x;
+
+	// If have rotated enough for -x to become on the local positive x multiply by -1 
+	if (rotationY > 90 && rotationY < 270)
+	{
+		left *= -1.0f;
+		right *= -1.0f;
+	}
+
+	// Work out the difference of what the oppositie is side value was to work out how much vibration to apply to each controller
+	if (left <= 0)
+	{
+		left = 1 - right;
+	}
+	if (right <= 0)
+	{
+		right = 1 - left;
+	}
+
+	//Vibrations
+	m_xbox_vibration_state.wLeftMotorSpeed =(WORD)(m_leftStickVibration * left); // use any value between 0-65535 here
+	m_xbox_vibration_state.wRightMotorSpeed = (WORD)(m_rightStickVibration * right); // use any value between 0-65535 here
+	XInputSetState(0, &m_xbox_vibration_state);
+	m_cur_vibration_cooldown = 0;
 }

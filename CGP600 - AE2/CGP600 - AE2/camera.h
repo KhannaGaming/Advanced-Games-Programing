@@ -4,6 +4,9 @@
 #define _XM_NO_ALIGNMENT
 #include<xnamath.h>
 #include<math.h>
+
+#define MAX_PITCH_AMOUNT 60.0f
+
 class camera
 {
 public:

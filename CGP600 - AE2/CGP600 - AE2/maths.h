@@ -21,9 +21,9 @@ struct Plane
 class maths
 {
 public:
-	maths();
-	~maths();
-
+	//***************************************************
+	//METHODS
+	//***************************************************
 	float dot(XMVECTOR v1, XMVECTOR v2);
 	XMVECTOR cross(XMVECTOR v1, XMVECTOR v2 );
 	XMVECTOR normal(XMVECTOR v1, XMVECTOR v2, XMVECTOR v3);

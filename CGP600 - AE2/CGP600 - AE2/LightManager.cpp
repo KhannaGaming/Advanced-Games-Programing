@@ -1,16 +1,5 @@
 #include "LightManager.h"
 
-
-
-LightManager::LightManager()
-{
-}
-
-
-LightManager::~LightManager()
-{
-}
-
 void LightManager::CreateDirectionalLight(string Name, XMVECTOR Pos, XMVECTOR Colour)
 {
 	DirectionalLight directionalLight = {Name, Pos, Colour };
@@ -32,7 +21,7 @@ void LightManager::CreatePointLight(string Name, XMVECTOR Pos, XMVECTOR Colour)
 
 void LightManager::SetLightColour(string lightName, XMVECTOR Colour)
 {
-	for (int i = 0; i < m_vDirectionalLights.size(); i++)
+	for (size_t i = 0; i < m_vDirectionalLights.size(); i++)
 	{
 		if (m_vDirectionalLights[i].m_Name == lightName)
 		{
@@ -40,7 +29,7 @@ void LightManager::SetLightColour(string lightName, XMVECTOR Colour)
 			break;
 		}
 	}
-	for (int i = 0; i < m_vAmbientLights.size(); i++)
+	for (size_t i = 0; i < m_vAmbientLights.size(); i++)
 	{
 		if (m_vAmbientLights[i].m_Name == lightName)
 		{
@@ -48,7 +37,7 @@ void LightManager::SetLightColour(string lightName, XMVECTOR Colour)
 			break;
 		}
 	}
-	for (int i = 0; i < m_vPointLights.size(); i++)
+	for (size_t i = 0; i < m_vPointLights.size(); i++)
 	{
 		if (m_vPointLights[i].m_Name == lightName)
 		{
@@ -60,7 +49,7 @@ void LightManager::SetLightColour(string lightName, XMVECTOR Colour)
 
 void LightManager::SetLightPosition(string lightName, XMVECTOR Pos)
 {
-	for (int i = 0; i < m_vDirectionalLights.size(); i++)
+	for (size_t i = 0; i < m_vDirectionalLights.size(); i++)
 	{
 		if (m_vDirectionalLights[i].m_Name == lightName)
 		{
@@ -68,7 +57,7 @@ void LightManager::SetLightPosition(string lightName, XMVECTOR Pos)
 			break;
 		}
 	}
-	for (int i = 0; i < m_vPointLights.size(); i++)
+	for (size_t i = 0; i < m_vPointLights.size(); i++)
 	{
 		if (m_vPointLights[i].m_Name == lightName)
 		{
@@ -80,21 +69,21 @@ void LightManager::SetLightPosition(string lightName, XMVECTOR Pos)
 
 XMVECTOR LightManager::GetLightColour(string lightName)
 {
-	for (int i = 0; i < m_vDirectionalLights.size(); i++)
+	for (size_t i = 0; i < m_vDirectionalLights.size(); i++)
 	{
 		if (m_vDirectionalLights[i].m_Name == lightName)
 		{
 			return m_vDirectionalLights[i].m_Colour;			
 		}
 	}
-	for (int i = 0; i < m_vAmbientLights.size(); i++)
+	for (size_t i = 0; i < m_vAmbientLights.size(); i++)
 	{
 		if (m_vAmbientLights[i].m_Name == lightName)
 		{
 			return m_vAmbientLights[i].m_Colour;
 		}
 	}
-	for (int i = 0; i < m_vPointLights.size(); i++)
+	for (size_t i = 0; i < m_vPointLights.size(); i++)
 	{
 		if (m_vPointLights[i].m_Name == lightName)
 		{
@@ -106,7 +95,7 @@ XMVECTOR LightManager::GetLightColour(string lightName)
 
 XMVECTOR LightManager::GetLightPosition(string lightName)
 {
-	for (int i = 0; i < m_vDirectionalLights.size(); i++)
+	for (size_t i = 0; i < m_vDirectionalLights.size(); i++)
 	{
 		if (m_vDirectionalLights[i].m_Name == lightName)
 		{
@@ -114,7 +103,7 @@ XMVECTOR LightManager::GetLightPosition(string lightName)
 			
 		}
 	}
-	for (int i = 0; i < m_vPointLights.size(); i++)
+	for (size_t i = 0; i < m_vPointLights.size(); i++)
 	{
 		if (m_vPointLights[i].m_Name == lightName)
 		{
