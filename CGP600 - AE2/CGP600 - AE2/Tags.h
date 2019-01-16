@@ -13,6 +13,7 @@ namespace Tags
 	const string PlayerGuns = "PlayerGuns";
 	const string Engine = "Engine";
 	const string Laser = "Laser";
+	const string EnemyLaser = "EnemyLaser";
 	const string Asteroid = "Asteroid";
 };
 

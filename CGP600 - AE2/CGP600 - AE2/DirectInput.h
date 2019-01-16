@@ -27,13 +27,14 @@ public:
 	//***************************************************
 	//METHODS
 	//***************************************************
-	DirectInput(HINSTANCE g_hInst, HWND g_hWnd, camera* Camera, DeltaTime* deltaTime);
+	DirectInput(HINSTANCE g_hInst, HWND g_hWnd, camera* Camera, DeltaTime* deltaTime, AudioManager* audioManager);
 	~DirectInput();
-	HRESULT InitInput();
-	void ReadInputStates();
-	void CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node);
-	bool IsKeyPressed(unsigned char DI_keycode);
-	void SetVibrations(XMVECTOR dir);
+	HRESULT	InitInput();
+	void	ReadInputStates();
+	void	CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node);
+	bool	IsKeyPressed(unsigned char DI_keycode);
+	void	SetVibrations(XMVECTOR dir);
+	float	GetPlayerSpeed() { return m_playerMoveSpeed; };
 
 private:
 	//***************************************************
@@ -44,6 +45,7 @@ private:
 	IDirectInputDevice8*	m_mouse_device;
 	camera*					m_pCamera;
 	DeltaTime*				m_pDeltaTime;
+	AudioManager*			m_pAudioManager;
 
 	//***************************************************
 	//VARIABLES

@@ -98,8 +98,10 @@
     <ClInclude Include="AudioManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FilePaths.h" />
     <ClInclude Include="Tags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FilePaths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

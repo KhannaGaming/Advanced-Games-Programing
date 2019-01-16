@@ -95,12 +95,12 @@ float SceneNode::GetScale()
 	return m_scale;
 }
 
-void SceneNode::addChildNode(SceneNode * n)
+void SceneNode::AddChildNode(SceneNode * n)
 {
 	m_children.push_back(n);
 }
 
-bool SceneNode::detachNode(SceneNode * n)
+bool SceneNode::DetachNode(SceneNode * n)
 {
 	//traverse tree to find node to detach
 	for (size_t i = 0; i < m_children.size(); i++)
@@ -111,12 +111,12 @@ bool SceneNode::detachNode(SceneNode * n)
 			n->SetPos(this->GetPos() + n->GetOffset());
 			return true;
 		}
-		if (m_children[i]->detachNode(n) == true) return true;
+		if (m_children[i]->DetachNode(n) == true) return true;
 	}
 	return false; // node not in this tree
 }
 
-void SceneNode::execute(XMMATRIX * world, XMMATRIX * view, XMMATRIX * projection, SceneNode* root_node)
+void SceneNode::Execute(XMMATRIX * world, XMMATRIX * view, XMMATRIX * projection, SceneNode* root_node)
 {
 	if (m_isActive)
 	{
@@ -140,7 +140,7 @@ void SceneNode::execute(XMMATRIX * world, XMMATRIX * view, XMMATRIX * projection
 		//traverse all child nodes, passing in the concatenated world matrix
 		for (size_t i = 0; i < m_children.size(); i++)
 		{
-			m_children[i]->execute(&local_world, view, projection, root_node);
+			m_children[i]->Execute(&local_world, view, projection, root_node);
 		}
 	}
 }
@@ -168,10 +168,10 @@ bool SceneNode::IncRotation(float xAmount, float yAmount, float zAmount, SceneNo
 	//since state has changed, need to update collision tree
 	// this basic system requires entire hirearchy to be updated
 	// so start at root node passing in identity matrix
-	root_node->update_collision_tree(&identity, 1.0f);
+	root_node->UpdateCollisionTree(&identity, 1.0f);
 
 	//check for collision of this node (and children) against all other nodes
-	if (check_collision(root_node) != nullptr)
+	if (CheckCollision(root_node) != nullptr)
 	{
 		// if collision restore state
 		m_xAngle = old_x;
@@ -196,10 +196,10 @@ bool SceneNode::IncScale(float scaleAmount, SceneNode* root_node)
 	//since state has changed, need to update collision tree
 	// this basic system requires entire hirearchy to be updated
 	// so start at root node passing in identity matrix
-	root_node->update_collision_tree(&identity, 1.0f);
+	root_node->UpdateCollisionTree(&identity, 1.0f);
 
 	//check for collision of this node (and children) against all other nodes
-	if (check_collision(root_node) != nullptr)
+	if (CheckCollision(root_node) != nullptr)
 	{
 		// if collision restore state
 		m_scale = old_scale;
@@ -224,10 +224,10 @@ bool SceneNode::LookAt_XZ(float xWorld, float zWorld, SceneNode* root_node)
 	//since state has changed, need to update collision tree
 	// this basic system requires entire hirearchy to be updated
 	// so start at root node passing in identity matrix
-	root_node->update_collision_tree(&identity, 1.0f);
+	root_node->UpdateCollisionTree(&identity, 1.0f);
 
 	//check for collision of this node (and children) against all other nodes
-	if (check_collision(root_node) != nullptr)
+	if (CheckCollision(root_node) != nullptr)
 	{
 		// if collision restore state
 		m_yAngle = old_y;
@@ -260,10 +260,10 @@ bool SceneNode::LookAt_XYZ(XMVECTOR world, SceneNode* root_node)
 	//since state has changed, need to update collision tree
 	// this basic system requires entire hirearchy to be updated
 	// so start at root node passing in identity matrix
-	root_node->update_collision_tree(&identity, 1.0f);
+	root_node->UpdateCollisionTree(&identity, 1.0f);
 
 	//check for collision of this node (and children) against all other nodes
-	if (check_collision(root_node) != nullptr)
+	if (CheckCollision(root_node) != nullptr)
 	{
 		// if collision restore state
 		m_xAngle = old_x;
@@ -287,8 +287,8 @@ bool SceneNode::MoveForward(float distance, SceneNode* root_node)
 	//since state has changed, need to update collision tree
 	// this basic system requires entire hirearchy to be updated
 	// so start at root node passing in identity matrix
-	root_node->update_collision_tree(&identity, 1.0f);
-	SceneNode* nodeToCheck = check_collision(root_node);
+	root_node->UpdateCollisionTree(&identity, 1.0f);
+	SceneNode* nodeToCheck = CheckCollision(root_node);
 	//check for collision of this node (and children) against all other nodes
 	if (nodeToCheck != nullptr)
 	{
@@ -311,45 +311,6 @@ bool SceneNode::MoveForward(float distance, SceneNode* root_node)
 bool SceneNode::MoveForwardIncY(SceneNode* root_node)
 {
 	SetVelocity(XMVectorSet(m_move_speed * m_lookAt.x, m_move_speed * m_lookAt.y, m_move_speed * m_lookAt.z, 0));
-	//float old_x = m_x;
-	//float old_y = m_y;
-	//float old_z = m_z;
-
-	//
-	////m_x += (sin(m_yAngle * (XM_PI / 180.0)) * distance * cos(m_xAngle * (XM_PI / 180.0)))*m_pDeltaTime->GetDeltaTime();
-	////m_y += (-sin(m_xAngle * (XM_PI / 180.0)) * distance)*m_pDeltaTime->GetDeltaTime();
-	////m_z += (cos(m_yAngle * (XM_PI / 180.0)) * distance * cos(m_xAngle * (XM_PI / 180.0)))*m_pDeltaTime->GetDeltaTime();
-
-	//XMMATRIX identity = XMMatrixIdentity();
-
-	////since state has changed, need to update collision tree
-	//// this basic system requires entire hirearchy to be updated
-	//// so start at root node passing in identity matrix
-	//root_node->update_collision_tree(&identity, 1.0f);
-	//SceneNode* nodeToCheck = check_collision(m_world_root_node);
-	////check for collision of this node (and children) against all other nodes
-	//if (nodeToCheck != nullptr)
-	//{
-	//	if (nodeToCheck->isMoveable())
-	//	{
-	//		if (m_move_speed > 0) m_move_speed *= -1.0f;
-	//		XMVECTOR dir = nodeToCheck->GetPos() - GetPos();
-	//		//nodeToCheck->IncPos(dir.x*distance, dir.y*distance, dir.z*distance, root_node);
-	//		nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + (GetVelocity()*m_scale));
-	//		m_x = old_x;
-	//		m_y = old_y;
-	//		m_z = old_z;
-	//	}
-	//	else
-	//	{
-	//		// if collision restore state
-	//		m_x = old_x;
-	//		m_y = old_y;
-	//		m_z = old_z;
-	//	}
-	//	return true;
-	//}
-
 	return false;
 }
 
@@ -358,12 +319,28 @@ vector<SceneNode*> SceneNode::GetChildren()
 	return m_children;
 }
 
-XMVECTOR SceneNode::get_world_centre_position()
+void SceneNode::CreateLasers(Model * model)
+{		
+	m_shoot_cooldown = 1.0f;
+	m_cur_shoot_cooldown = 0.0f;
+	for (int i = 0; i < 4; i++)
+	{
+		SceneNode* tempLaser = new SceneNode(m_pDeltaTime, false, Tags::EnemyLaser,m_world_root_node, m_audio_manager, 4.0f);
+		tempLaser->SetModel(model);
+		m_vLasers.push_back(tempLaser);
+		AddChildNode(tempLaser);
+		tempLaser->SetScale(0.3f);
+		tempLaser->Activate(false);
+		tempLaser->SetOriginalParentNode(this);
+	}
+}
+
+XMVECTOR SceneNode::GetWorldCentrePosition()
 {
 	return XMVectorSet(m_world_centre_x, m_world_centre_y, m_world_centre_z, 0.0f);
 }
 
-void SceneNode::update_collision_tree(XMMATRIX * world, float scale)
+void SceneNode::UpdateCollisionTree(XMMATRIX * world, float scale)
 {
 	// the local_world matrix will be used to calc the local transformation for this node
 	m_local_world_matrix = XMMatrixIdentity();
@@ -400,16 +377,16 @@ void SceneNode::update_collision_tree(XMMATRIX * world, float scale)
 	//traverse all child nodes, passing in the concatentated world matrix and scale
 	for (size_t i = 0; i < m_children.size(); i++)
 	{
-		m_children[i]->update_collision_tree(&m_local_world_matrix, m_world_scale);
+		m_children[i]->UpdateCollisionTree(&m_local_world_matrix, m_world_scale);
 	}
 }
 
-SceneNode* SceneNode::check_collision(SceneNode * compare_tree)
+SceneNode* SceneNode::CheckCollision(SceneNode * compare_tree)
 {
-	return check_collision(compare_tree, this);
+	return CheckCollision(compare_tree, this);
 }
 
-SceneNode* SceneNode::check_collision(SceneNode * compare_tree, SceneNode * object_tree_root)
+SceneNode* SceneNode::CheckCollision(SceneNode * compare_tree, SceneNode * object_tree_root)
 {
 	//check to see if root of tree being compared is same as root node of object tree being checked
 	//i.e. stop object node and children being checked against each other
@@ -418,8 +395,8 @@ SceneNode* SceneNode::check_collision(SceneNode * compare_tree, SceneNode * obje
 	//only check for collisions if both nodes contain a model
 	if (m_p_model && compare_tree->m_p_model)
 	{
-		XMVECTOR v1 = get_world_centre_position();
-		XMVECTOR v2 = compare_tree->get_world_centre_position();
+		XMVECTOR v1 = GetWorldCentrePosition();
+		XMVECTOR v2 = compare_tree->GetWorldCentrePosition();
 		XMVECTOR vdiff = v1 - v2;
 
 		//XMVECTOR a = XMVector3Length(vdiff);
@@ -439,39 +416,14 @@ SceneNode* SceneNode::check_collision(SceneNode * compare_tree, SceneNode * obje
 			(compare_tree->m_p_model->GetBoundingSphereRaius()*compare_tree->m_world_scale) +
 			(this->m_p_model->GetBoundingSphereRaius() *m_world_scale))
 		{
-			if (!compare_tree->m_collidable)
+			if (CheckForLaser(compare_tree, object_tree_root))
 			{
-				if (compare_tree->m_tag == Tags::Laser)
-				{
-					if (object_tree_root->m_tag != Tags::Laser&& object_tree_root->m_tag != Tags::Camera)
-					{
-						if (compare_tree->m_isActive)
-						{
-							object_tree_root->m_health--;
-							m_audio_manager->PlaySoundEffect("Explosion");
-							compare_tree->ResetNode(compare_tree);
-						}
-					}
-				}
+				return compare_tree;
+			}
+			else
+			{
 				return nullptr;
 			}
-			else if (!object_tree_root->m_collidable)
-			{
-				if (object_tree_root->m_tag == Tags::Laser)
-				{
-					if (compare_tree->m_tag != Tags::Laser && compare_tree->m_tag != Tags::Camera)
-					{
-						if (object_tree_root->m_isActive)
-						{
-							compare_tree->m_health--;
-							m_audio_manager->PlaySoundEffect("Explosion");
-							object_tree_root->ResetNode(object_tree_root);
-						}
-					}
-				}
-				return nullptr;
-			}
-			return compare_tree;
 		}
 	}
 
@@ -479,41 +431,16 @@ SceneNode* SceneNode::check_collision(SceneNode * compare_tree, SceneNode * obje
 	for (size_t i = 0; i < compare_tree->m_children.size(); i++)
 	{
 		//check for collision agaisnt all compared tree child nodes
-		if (check_collision(compare_tree->m_children[i], object_tree_root) != nullptr)
+		if (CheckCollision(compare_tree->m_children[i], object_tree_root) != nullptr)
 		{
-			if (!compare_tree->m_collidable)
+			if (CheckForLaser(compare_tree, object_tree_root))
 			{
-				if (compare_tree->m_tag == Tags::Laser)
-				{
-					if (object_tree_root->m_tag != Tags::Laser&& object_tree_root->m_tag != Tags::Camera)
-					{
-						if (compare_tree->m_isActive)
-						{
-							object_tree_root->m_health--;
-							m_audio_manager->PlaySoundEffect("Explosion");
-							compare_tree->ResetNode(compare_tree);
-						}
-					}
-				}
+				return compare_tree->m_children[i];
+			}
+			else
+			{
 				return nullptr;
 			}
-			else if (!object_tree_root->m_collidable)
-			{
-				if (object_tree_root->m_tag == Tags::Laser)
-				{
-					if (compare_tree->m_tag != Tags::Laser && compare_tree->m_tag != Tags::Camera)
-					{
-						if (object_tree_root->m_isActive)
-						{
-							compare_tree->m_health--;
-							m_audio_manager->PlaySoundEffect("Explosion");
-							object_tree_root->ResetNode(object_tree_root);
-						}
-					}
-				}
-				return nullptr;
-			}
-			return compare_tree->m_children[i];
 		}
 	}
 
@@ -521,52 +448,26 @@ SceneNode* SceneNode::check_collision(SceneNode * compare_tree, SceneNode * obje
 	for (size_t i = 0; i < m_children.size(); i++)
 	{
 		//check all the children node of the composite object against compared tree
-		if (m_children[i]->check_collision(compare_tree, object_tree_root) != nullptr)
+		if (m_children[i]->CheckCollision(compare_tree, object_tree_root) != nullptr)
 		{
-			if (!compare_tree->m_collidable)
+			if (CheckForLaser(compare_tree, object_tree_root))
 			{
-				if (compare_tree->m_tag == Tags::Laser)
-				{
-					if (object_tree_root->m_tag != Tags::Laser&& object_tree_root->m_tag != Tags::Camera)
-					{
-						if (compare_tree->m_isActive)
-						{
-							object_tree_root->m_health--;
-							m_audio_manager->PlaySoundEffect("Explosion");
-							compare_tree->ResetNode(compare_tree);
-						}
-					}
-				}
+				return m_children[i];
+			}
+			else
+			{
 				return nullptr;
 			}
-			else if (!object_tree_root->m_collidable)
-			{
-				if (object_tree_root->m_tag == Tags::Laser)
-				{
-					if (compare_tree->m_tag != Tags::Laser && compare_tree->m_tag != Tags::Camera)
-					{
-						if (object_tree_root->m_isActive)
-						{
-							compare_tree->m_health--;
-							m_audio_manager->PlaySoundEffect("Explosion");
-							object_tree_root->ResetNode(object_tree_root);
-						}
-					}
-				}
-				return nullptr;
-			}
-			return m_children[i];
 		}
 	}
-
 	return nullptr;
 }
 
-SceneNode* SceneNode::check_collision_ray(XMVECTOR ray_position, XMVECTOR direction_ray)
+SceneNode* SceneNode::CheckCollisionRay(XMVECTOR ray_position, XMVECTOR direction_ray)
 {
 	if (m_p_model)
 	{
-		float distance = Pythagoras(get_world_centre_position(),ray_position);
+		float distance = Pythagoras(GetWorldCentrePosition(),ray_position);
 		float rayLength = Pythagoras(ray_position, ray_position + direction_ray);
 		 
 		float sumOfRadiAndRayLength = (this->m_p_model->GetBoundingSphereRaius()*m_world_scale) + rayLength;
@@ -591,7 +492,7 @@ SceneNode* SceneNode::check_collision_ray(XMVECTOR ray_position, XMVECTOR direct
 	return nullptr;
 }
 
-bool SceneNode::isMoveable()
+bool SceneNode::IsMoveable()
 {
 	return m_moveable;
 }
@@ -611,7 +512,7 @@ void SceneNode::MoveForwardIncYNoCollisions(float distance, SceneNode* root_node
 	//since state has changed, need to update collision tree
 	// this basic system requires entire hirearchy to be updated
 	// so start at root node passing in identity matrix
-	root_node->update_collision_tree(&identity, 1.0f);
+	root_node->UpdateCollisionTree(&identity, 1.0f);
 	//check for collision of this node (and children) against all other nodes
 
 }
@@ -623,13 +524,13 @@ void SceneNode::AddVelocity(SceneNode* root_node)
 	XMMATRIX identity = XMMatrixIdentity();
 
 	// update tree to reflect new camera postiion
-	update_collision_tree(&identity, 1.0f);
+	UpdateCollisionTree(&identity, 1.0f);
 
-	SceneNode* nodeToCheck = check_collision(root_node);
+	SceneNode* nodeToCheck = CheckCollision(root_node);
 	//check for collision of this node (and children) against all other nodes
 	if (nodeToCheck != nullptr)
 	{
-		if (nodeToCheck->isMoveable())
+		if (nodeToCheck->IsMoveable())
 		{
 			XMVECTOR dir = nodeToCheck->GetPos() - GetPos();
 			float normalMagnitude = Pythagoras(dir);
@@ -664,7 +565,7 @@ void SceneNode::Update(SkyBox* skybox, int& score, SceneNode* rootNode)
 			do
 			{
 				SetPos(XMVectorSet((float)RandomNumberGenerator((int)(skybox->GetPos().x + skybox->GetScale())), (float)RandomNumberGenerator((int)(skybox->GetPos().y + skybox->GetScale())), (float)RandomNumberGenerator((int)(skybox->GetPos().x + skybox->GetScale())), 0.0f));
-				if (checkChildrenPosition(this, rootNode))
+				if (CheckChildrenPosition(this, rootNode))
 				{
 					positionSet = true;
 					if (Pythagoras(skybox->GetPos(), GetPos()) > 40.0f)
@@ -682,13 +583,13 @@ void SceneNode::Update(SkyBox* skybox, int& score, SceneNode* rootNode)
 			score += (int)m_max_health;
 		}
 
-		if (Pythagoras(skybox->GetPos(), GetPos()) > 200.0f)
+		if (Pythagoras(skybox->GetPos(), GetPos()) > 300.0f)
 		{
 			bool positionSet = false;
 			do
 			{
 				SetPos(XMVectorSet((float)RandomNumberGenerator((int)(skybox->GetPos().x + skybox->GetScale())), (float)RandomNumberGenerator((int)(skybox->GetPos().y + skybox->GetScale())), (float)RandomNumberGenerator((int)(skybox->GetPos().x + skybox->GetScale())), 0.0f));
-				if (checkChildrenPosition(this, rootNode))
+				if (CheckChildrenPosition(this, rootNode))
 				{
 					positionSet = true;
 				}
@@ -702,7 +603,7 @@ void SceneNode::Update(SkyBox* skybox, int& score, SceneNode* rootNode)
 
 	if (m_tag == Tags::SpaceShip)
 	{
-		checkVelocities();
+		CheckVelocities();
 
 		if (m_health <= 0)
 		{
@@ -710,7 +611,7 @@ void SceneNode::Update(SkyBox* skybox, int& score, SceneNode* rootNode)
 			do
 			{
 				SetPos(XMVectorSet((float)RandomNumberGenerator((int)(skybox->GetPos().x + skybox->GetScale())), (float)RandomNumberGenerator((int)(skybox->GetPos().y + skybox->GetScale())), (float)RandomNumberGenerator((int)(skybox->GetPos().x + skybox->GetScale())), 0.0f));
-				if (checkChildrenPosition(this, rootNode))
+				if (CheckChildrenPosition(this, rootNode))
 				{
 					positionSet = true;
 					if (Pythagoras(skybox->GetPos(), GetPos()) > 40.0f)
@@ -727,13 +628,14 @@ void SceneNode::Update(SkyBox* skybox, int& score, SceneNode* rootNode)
 			m_health = m_max_health;
 			score += 100;
 		}
+
 		if (Pythagoras(skybox->GetPos(), GetPos()) > 200.0f)
 		{
 			bool positionSet = false;
 			do
 			{
 				SetPos(XMVectorSet((float)RandomNumberGenerator((int)(skybox->GetPos().x + skybox->GetScale())), (float)RandomNumberGenerator((int)(skybox->GetPos().y + skybox->GetScale())), (float)RandomNumberGenerator((int)(skybox->GetPos().x + skybox->GetScale())), 0.0f));
-				if (checkChildrenPosition(this, rootNode))
+				if (CheckChildrenPosition(this, rootNode))
 				{
 					positionSet = true;
 				}
@@ -757,9 +659,23 @@ void SceneNode::Update(SkyBox* skybox, int& score, SceneNode* rootNode)
 		}
 	}
 
+	if (m_tag == Tags::EnemyLaser)
+	{
+		if (m_isActive)
+		{
+			if (m_cur_laser_life > m_laser_life)
+			{
+				ResetNode(this);
+				m_cur_laser_life = 0;
+				m_isActive = false;
+			}
+			m_cur_laser_life += m_pDeltaTime->GetDeltaTime();
+		}
+	}
+
 	if (m_tag == Tags::Camera)
 	{
-		checkVelocities();
+		CheckVelocities();
 
 		if (m_health <= 0)
 		{
@@ -767,7 +683,7 @@ void SceneNode::Update(SkyBox* skybox, int& score, SceneNode* rootNode)
 			do
 			{
 				SetPos(XMVectorSet((float)RandomNumberGenerator((int)(skybox->GetPos().x + skybox->GetScale())), (float)RandomNumberGenerator((int)(skybox->GetPos().y + skybox->GetScale())), (float)RandomNumberGenerator((int)(skybox->GetPos().x + skybox->GetScale())), 0.0f));
-				if (checkChildrenPosition(this, rootNode))
+				if (CheckChildrenPosition(this, rootNode))
 				{
 					positionSet = true;					
 				}
@@ -793,15 +709,25 @@ void SceneNode::SetOffset(XMVECTOR childOffset)
 void SceneNode::FireLaser(SceneNode * detachingNode, SceneNode * new_parent_node)
 {
 	m_cur_laser_life = 0;
+	DetachNode(detachingNode);
+	new_parent_node->AddChildNode(detachingNode);
 	if (detachingNode->GetTag() == Tags::Laser)
 	{
 		detachingNode->SetRotation(-m_p_camera->GetRot().x, m_p_camera->GetRot().y, m_p_camera->GetRot().z);
 	}
-	detachNode(detachingNode);
-	new_parent_node->addChildNode(detachingNode);
-	detachingNode->SetVelocity(m_p_camera->GetLookAt() * ENEMY_SHIP_SPEED);
-	m_audio_manager->PlaySoundEffect("Laser");
-	
+	else if (detachingNode->GetTag() == Tags::EnemyLaser)
+	{
+		detachingNode->SetRotation(detachingNode->m_original_parent_node->GetRotation().x, detachingNode->m_original_parent_node->GetRotation().y, detachingNode->m_original_parent_node->GetRotation().z);
+	}
+	if (detachingNode->GetTag() == Tags::Laser)
+	{
+		detachingNode->SetVelocity(m_p_camera->GetLookAt() * LASER_SPEED);
+	}
+	else if (detachingNode->GetTag() == Tags::EnemyLaser)
+	{
+		detachingNode->SetVelocity(detachingNode->m_original_parent_node->GetLookAt(m_p_camera->GetPos()- detachingNode->m_original_parent_node->GetPos()) * LASER_SPEED);
+	}
+	m_audio_manager->PlaySoundEffect("Laser");	
 }
 
 void SceneNode::SetOriginalParentNode(SceneNode * original_parent_node)
@@ -811,8 +737,8 @@ void SceneNode::SetOriginalParentNode(SceneNode * original_parent_node)
 
 void SceneNode::ResetNode(SceneNode* node)
 {
-	m_world_root_node->detachNode(node);
-	node->GetOriginalParentNode()->addChildNode(node);
+	m_world_root_node->DetachNode(node);
+	node->GetOriginalParentNode()->AddChildNode(node);
 	node->SetPos(node->GetOffset());
 	node->SetVelocity(XMVectorZero());
 	node->Activate(false);
@@ -824,17 +750,41 @@ void SceneNode::SetMaxHealth()
 	m_health = m_max_health;
 }
 
-void SceneNode::ChaseOrFlee(SceneNode * player, SceneNode * root_node)
+void SceneNode::AI(SkyBox* skybox, int& score, SceneNode * player, SceneNode * root_node)
 {
+	MoveForwardIncY(root_node);
 	if (m_health < 3)
 	{
-		LookAt_XYZ(this->GetPos()-(player->GetPos()- this->GetPos()), root_node);
+		LookAt_XYZ(this->GetPos() - (player->GetPos() - this->GetPos()), root_node);
 	}
 	else
 	{
 		LookAt_XYZ(player->GetPos(), root_node);
+		if (m_cur_shoot_cooldown > m_shoot_cooldown)
+		{
+			for (size_t i = 0; i < GetChildren().size(); i++)
+			{
+				if (GetChildren()[i]->GetTag() == Tags::EnemyLaser)
+				{
+					m_cur_shoot_cooldown = 0.0f;
+					GetChildren()[i]->Activate(true);
+					FireLaser(GetChildren()[i], root_node);
+					break;
+				}
+			}
+		}
+		m_cur_shoot_cooldown += m_pDeltaTime->GetDeltaTime();
+		XMVECTOR dir = player->GetPos() - this->GetPos();
+		if (Pythagoras(dir) < 20.0f)
+		{
+			SetVelocity(XMVectorZero());
+		}
 	}
-	MoveForwardIncY(root_node);
+
+	for (size_t i = 0; i < m_vLasers.size(); i++)
+	{
+		m_vLasers[i]->Update(skybox, score, root_node);
+	}
 }
 
 int SceneNode::RandomNumberGenerator(int maxDistance)
@@ -861,7 +811,7 @@ float SceneNode::Pythagoras(XMVECTOR v1, XMVECTOR v2)
 	return sqrt(pow(v2.x- v1.x, 2) + pow(v2.y - v1.y, 2) + pow(v2.z - v1.z, 2));
 }
 
-bool SceneNode::checkChildrenPosition(SceneNode * nodeToCheck, SceneNode * rootNode)
+bool SceneNode::CheckChildrenPosition(SceneNode * nodeToCheck, SceneNode * rootNode)
 {
 	if (Pythagoras(nodeToCheck->GetPos(), rootNode->GetPos()) < 30.0f)
 	{
@@ -870,7 +820,7 @@ bool SceneNode::checkChildrenPosition(SceneNode * nodeToCheck, SceneNode * rootN
 
 	for (size_t i = 0; i < rootNode->GetChildren().size(); i++)
 	{
-		if (!checkChildrenPosition(nodeToCheck, rootNode->GetChildren()[i]))
+		if (!CheckChildrenPosition(nodeToCheck, rootNode->GetChildren()[i]))
 		{
 			if (nodeToCheck != rootNode->GetChildren()[i])
 			{
@@ -881,7 +831,7 @@ bool SceneNode::checkChildrenPosition(SceneNode * nodeToCheck, SceneNode * rootN
 	return true;
 }
 
-void SceneNode::checkVelocities()
+void SceneNode::CheckVelocities()
 {
 	if (m_velocity.x > MAX_VELOCITY)
 	{
@@ -909,4 +859,93 @@ void SceneNode::checkVelocities()
 	{
 		m_velocity = XMVectorSetZ(m_velocity, -MAX_VELOCITY);
 	}
+}
+
+bool SceneNode::CheckForLaser(SceneNode* compare_tree, SceneNode* object_tree_root)
+{
+	if (!compare_tree->m_collidable)
+	{
+		if (compare_tree->m_tag == Tags::Laser)
+		{
+			if ((object_tree_root->m_tag != Tags::Laser && object_tree_root->m_tag !=Tags::EnemyLaser)&& object_tree_root->m_tag != Tags::Camera)
+			{
+				if (compare_tree->m_isActive)
+				{
+					object_tree_root->m_health--;
+					if (object_tree_root->m_tag == Tags::SpaceShip)
+					{
+						m_audio_manager->PlaySoundEffect("SpaceshipExplosion");
+					}
+					else
+					{
+						m_audio_manager->PlaySoundEffect("Explosion");
+					}
+					compare_tree->ResetNode(compare_tree);
+				}
+			}
+		}
+		else if (compare_tree->m_tag == Tags::EnemyLaser)
+		{
+			if ((object_tree_root->m_tag != Tags::EnemyLaser && object_tree_root->m_tag != Tags::Laser) && object_tree_root->m_tag != Tags::SpaceShip)
+			{
+				if (compare_tree->m_isActive)
+				{
+					object_tree_root->m_health--;
+					if (object_tree_root->m_tag == Tags::Camera)
+					{
+						m_audio_manager->PlaySoundEffect("SpaceshipExplosion");
+					}
+					else
+					{
+						m_audio_manager->PlaySoundEffect("Explosion");
+					}
+					compare_tree->ResetNode(compare_tree);
+				}
+			}
+		}
+		return false;
+	}
+	else if (!object_tree_root->m_collidable)
+	{
+		if (object_tree_root->m_tag == Tags::Laser)
+		{
+			if ((compare_tree->m_tag != Tags::EnemyLaser && compare_tree->m_tag != Tags::Laser) && compare_tree->m_tag != Tags::Camera)
+			{
+				if (object_tree_root->m_isActive)
+				{
+					compare_tree->m_health--;
+					if (compare_tree->m_tag == Tags::SpaceShip)
+					{
+						m_audio_manager->PlaySoundEffect("SpaceshipExplosion");
+					}
+					else
+					{
+						m_audio_manager->PlaySoundEffect("Explosion");
+					}
+					object_tree_root->ResetNode(object_tree_root);
+				}
+			}
+		}
+		else if (object_tree_root->m_tag == Tags::EnemyLaser)
+		{
+			if ((compare_tree->m_tag != Tags::EnemyLaser && compare_tree->m_tag != Tags::Laser) && compare_tree->m_tag != Tags::SpaceShip)
+			{
+				if (object_tree_root->m_isActive)
+				{
+					compare_tree->m_health--;
+					if (compare_tree->m_tag == Tags::Camera)
+					{
+						m_audio_manager->PlaySoundEffect("SpaceshipExplosion");
+					}
+					else
+					{
+						m_audio_manager->PlaySoundEffect("Explosion");
+					}
+					object_tree_root->ResetNode(object_tree_root);
+				}
+			}
+		}
+		return false;
+	}
+	return true;
 }

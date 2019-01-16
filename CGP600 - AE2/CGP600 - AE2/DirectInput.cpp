@@ -2,7 +2,7 @@
 #include <atomic>
 
 
-DirectInput::DirectInput(HINSTANCE g_hInst, HWND g_hWnd, camera* Camera, DeltaTime* deltaTime)
+DirectInput::DirectInput(HINSTANCE g_hInst, HWND g_hWnd, camera* Camera, DeltaTime* deltaTime, AudioManager* audioManager)
 {
 	m_hInst = g_hInst;
 	m_hWnd = g_hWnd;
@@ -20,6 +20,7 @@ DirectInput::DirectInput(HINSTANCE g_hInst, HWND g_hWnd, camera* Camera, DeltaTi
 	m_rightStickVibration = 35000;
 	m_playerMoveSpeed = 10.0f;
 	m_fired = false;
+	m_pAudioManager = audioManager;
 }
 
 
@@ -110,6 +111,43 @@ void DirectInput::ReadInputStates()
 
 void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node)
 {
+	m_pAudioManager->SetVolume("Thruster", 2.0f);
+
+	//Always Moving
+	m_pCamera->Forward((m_playerMoveSpeed/2)*  m_pDeltaTime->GetDeltaTime());
+	g_cam_node->SetVelocity(m_pCamera->GetLookAt()*(m_playerMoveSpeed / 2));
+
+	// set camera node to the position of the cameera 
+	g_cam_node->SetPos(m_pCamera->GetPos());
+
+	XMMATRIX identity = XMMatrixIdentity();
+
+	// update tree to reflect new camera postiion
+	g_root_node->UpdateCollisionTree(&identity, 1.0f);
+
+
+	SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
+	//check for collision of this node (and children) against all other nodes
+	if (nodeToCheck != nullptr)
+	{
+		XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
+		if (nodeToCheck->IsMoveable())
+		{
+			nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
+
+			//if there is a collision, restore camera and camera node positions
+			m_pCamera->Forward(-(m_playerMoveSpeed / 2) * m_pDeltaTime->GetDeltaTime());
+			g_cam_node->SetPos(m_pCamera->GetPos());
+		}
+		else
+		{
+			//if there is a collision, restore camera and camera node positions
+			m_pCamera->Forward(-(m_playerMoveSpeed / 2) * m_pDeltaTime->GetDeltaTime());
+			g_cam_node->SetPos(m_pCamera->GetPos());
+		}
+		SetVibrations(dir);
+	}
+
 	if (m_cur_vibration_cooldown > m_vibration_cooldown)
 	{
 		//Switch vibrations off if not colliding
@@ -141,7 +179,7 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 			{
 				if (g_cam_node->GetChildren()[i]->GetTag() == Tags::Laser)
 				{
-					m_cur_mouse_click_cooldown = 0;
+					m_cur_mouse_click_cooldown = 0.0f;
 					g_cam_node->GetChildren()[i]->Activate(true);
 					g_cam_node->FireLaser(g_cam_node->GetChildren()[i], g_root_node);
 					m_fired = true;
@@ -150,11 +188,11 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 			}
 		}
 	}
-
-	if (m_keyboard_keys_state[DIK_W] & 0x80)
+	if (m_keyboard_keys_state[DIK_LSHIFT] & 0x80)
 	{
-		m_pCamera->Forward(m_playerMoveSpeed *  m_pDeltaTime->GetDeltaTime());
-		g_cam_node->SetVelocity(m_pCamera->GetLookAt()*m_playerMoveSpeed);
+		m_pAudioManager->SetVolume("Thruster", 4.0f);
+		m_pCamera->Forward((m_playerMoveSpeed * 2) *  m_pDeltaTime->GetDeltaTime());
+		g_cam_node->SetVelocity(m_pCamera->GetLookAt()*(m_playerMoveSpeed *2));
 
 		// set camera node to the position of the cameera 
 		g_cam_node->SetPos(m_pCamera->GetPos());
@@ -162,35 +200,38 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		XMMATRIX identity = XMMatrixIdentity();
 
 		// update tree to reflect new camera postiion
-		g_root_node->update_collision_tree(&identity, 1.0f);
+		g_root_node->UpdateCollisionTree(&identity, 1.0f);
 
 
-		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
-			if (nodeToCheck->isMoveable())
+			if (nodeToCheck->IsMoveable())
 			{
 				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
 
 				//if there is a collision, restore camera and camera node positions
-				m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+				m_pCamera->Forward(-(m_playerMoveSpeed * 2) * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
 
 			}
 			else
 			{
 				//if there is a collision, restore camera and camera node positions
-				m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+				m_pCamera->Forward(-(m_playerMoveSpeed * 2) * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
 			}
 		}
 	}
+
 	if (m_keyboard_keys_state[DIK_S] & 0x80)
 	{
-		m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
-		g_cam_node->SetVelocity(m_pCamera->GetLookAt()*-m_playerMoveSpeed);
+		m_pAudioManager->SetVolume("Thruster", 1.0f);
+
+		m_pCamera->Forward(-(m_playerMoveSpeed/3) * m_pDeltaTime->GetDeltaTime());
+		g_cam_node->SetVelocity(m_pCamera->GetLookAt()*-(m_playerMoveSpeed / 3));
 
 		// set camera node to the position of the cameera 
 		g_cam_node->SetPos(m_pCamera->GetPos());
@@ -198,24 +239,24 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		XMMATRIX identity = XMMatrixIdentity();
 
 		// update tree to reflect new camera postiion
-		g_root_node->update_collision_tree(&identity, 1.0f);
+		g_root_node->UpdateCollisionTree(&identity, 1.0f);
 
-		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
-			if (nodeToCheck->isMoveable())
+			if (nodeToCheck->IsMoveable())
 			{
 				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
 				//if there is a collision, restore camera and camera node positions
-				m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+				m_pCamera->Forward(-(m_playerMoveSpeed / 3) * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
 			}
 			else
 			{
 				//if there is a collision, restore camera and camera node positions
-				m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+				m_pCamera->Forward(-(m_playerMoveSpeed / 3) * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
 			}
 		}
@@ -232,13 +273,13 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		XMMATRIX identity = XMMatrixIdentity();
 
 		// update tree to reflect new camera postiion
-		g_root_node->update_collision_tree(&identity, 1.0f);
+		g_root_node->UpdateCollisionTree(&identity, 1.0f);
 
-		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
-			if (nodeToCheck->isMoveable())
+			if (nodeToCheck->IsMoveable())
 			{
 				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
@@ -267,13 +308,13 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		XMMATRIX identity = XMMatrixIdentity();
 
 		// update tree to reflect new camera postiion
-		g_root_node->update_collision_tree(&identity, 1.0f);
+		g_root_node->UpdateCollisionTree(&identity, 1.0f);
 
-		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
-			if (nodeToCheck->isMoveable())
+			if (nodeToCheck->IsMoveable())
 			{
 				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
@@ -302,13 +343,13 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		XMMATRIX identity = XMMatrixIdentity();
 
 		// update tree to reflect new camera postiion
-		g_root_node->update_collision_tree(&identity, 1.0f);
+		g_root_node->UpdateCollisionTree(&identity, 1.0f);
 
-		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
-			if (nodeToCheck->isMoveable())
+			if (nodeToCheck->IsMoveable())
 			{
 				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
@@ -337,13 +378,13 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		XMMATRIX identity = XMMatrixIdentity();
 
 		// update tree to reflect new camera postiion
-		g_root_node->update_collision_tree(&identity, 1.0f);
+		g_root_node->UpdateCollisionTree(&identity, 1.0f);
 
-		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
-			if (nodeToCheck->isMoveable())
+			if (nodeToCheck->IsMoveable())
 			{
 				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
@@ -400,8 +441,9 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 	// Controller
 	if (m_xbox_state.Gamepad.sThumbLY > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
-		m_pCamera->Forward(m_playerMoveSpeed*  m_pDeltaTime->GetDeltaTime());
-		g_cam_node->SetVelocity(m_pCamera->GetLookAt()*m_playerMoveSpeed);
+		m_pAudioManager->SetVolume("Thruster", 4.0f);
+		m_pCamera->Forward((m_playerMoveSpeed * 2) *  m_pDeltaTime->GetDeltaTime());
+		g_cam_node->SetVelocity(m_pCamera->GetLookAt()*(m_playerMoveSpeed * 2));
 
 		// set camera node to the position of the cameera 
 		g_cam_node->SetPos(m_pCamera->GetPos());
@@ -409,26 +451,27 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		XMMATRIX identity = XMMatrixIdentity();
 
 		// update tree to reflect new camera postiion
-		g_root_node->update_collision_tree(&identity, 1.0f);
+		g_root_node->UpdateCollisionTree(&identity, 1.0f);
 
 
-		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
-			XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
-			if (nodeToCheck->isMoveable())
+				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
+			if (nodeToCheck->IsMoveable())
 			{
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
 
 				//if there is a collision, restore camera and camera node positions
-				m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+				m_pCamera->Forward(-(m_playerMoveSpeed * 2) * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
+
 			}
 			else
 			{
 				//if there is a collision, restore camera and camera node positions
-				m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+				m_pCamera->Forward(-(m_playerMoveSpeed * 2) * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
 			}
 			SetVibrations(dir);
@@ -437,9 +480,10 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 
 	else if (m_xbox_state.Gamepad.sThumbLY < -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 	{
+		m_pAudioManager->SetVolume("Thruster", 1.0f);
 
-		m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
-		g_cam_node->SetVelocity(m_pCamera->GetLookAt()*-m_playerMoveSpeed);
+		m_pCamera->Forward(-(m_playerMoveSpeed / 3) * m_pDeltaTime->GetDeltaTime());
+		g_cam_node->SetVelocity(m_pCamera->GetLookAt()*-(m_playerMoveSpeed / 3));
 
 		// set camera node to the position of the cameera 
 		g_cam_node->SetPos(m_pCamera->GetPos());
@@ -447,25 +491,24 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		XMMATRIX identity = XMMatrixIdentity();
 
 		// update tree to reflect new camera postiion
-		g_root_node->update_collision_tree(&identity, 1.0f);
+		g_root_node->UpdateCollisionTree(&identity, 1.0f);
 
-		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
-			XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
-			if (nodeToCheck->isMoveable())
+				XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
+			if (nodeToCheck->IsMoveable())
 			{
-				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
 				//if there is a collision, restore camera and camera node positions
-				m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+				m_pCamera->Forward(-(m_playerMoveSpeed / 3) * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
 			}
 			else
 			{
 				//if there is a collision, restore camera and camera node positions
-				m_pCamera->Forward(-m_playerMoveSpeed * m_pDeltaTime->GetDeltaTime());
+				m_pCamera->Forward(-(m_playerMoveSpeed / 3) * m_pDeltaTime->GetDeltaTime());
 				g_cam_node->SetPos(m_pCamera->GetPos());
 			}
 			SetVibrations(dir);
@@ -486,14 +529,14 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		XMMATRIX identity = XMMatrixIdentity();
 
 		// update tree to reflect new camera postiion
-		g_root_node->update_collision_tree(&identity, 1.0f);
+		g_root_node->UpdateCollisionTree(&identity, 1.0f);
 
-		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
 			XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
-			if (nodeToCheck->isMoveable())
+			if (nodeToCheck->IsMoveable())
 			{
 				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
@@ -524,14 +567,14 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		XMMATRIX identity = XMMatrixIdentity();
 
 		// update tree to reflect new camera postiion
-		g_root_node->update_collision_tree(&identity, 1.0f);
+		g_root_node->UpdateCollisionTree(&identity, 1.0f);
 
-		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
 			XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
-			if (nodeToCheck->isMoveable())
+			if (nodeToCheck->IsMoveable())
 			{
 				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
@@ -562,14 +605,14 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		XMMATRIX identity = XMMatrixIdentity();
 
 		// update tree to reflect new camera postiion
-		g_root_node->update_collision_tree(&identity, 1.0f);
+		g_root_node->UpdateCollisionTree(&identity, 1.0f);
 
-		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
 			XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
-			if (nodeToCheck->isMoveable())
+			if (nodeToCheck->IsMoveable())
 			{
 				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());
@@ -600,14 +643,14 @@ void DirectInput::CheckKeysPressed(SceneNode* g_cam_node, SceneNode* g_root_node
 		XMMATRIX identity = XMMatrixIdentity();
 
 		// update tree to reflect new camera postiion
-		g_root_node->update_collision_tree(&identity, 1.0f);
+		g_root_node->UpdateCollisionTree(&identity, 1.0f);
 
-		SceneNode* nodeToCheck = g_cam_node->check_collision(g_root_node);
+		SceneNode* nodeToCheck = g_cam_node->CheckCollision(g_root_node);
 		//check for collision of this node (and children) against all other nodes
 		if (nodeToCheck != nullptr)
 		{
 			XMVECTOR dir = nodeToCheck->GetPos() - g_cam_node->GetPos();
-			if (nodeToCheck->isMoveable())
+			if (nodeToCheck->IsMoveable())
 			{
 				//nodeToCheck->IncPos(dir.x*m_playerMoveSpeed, dir.y*m_playerMoveSpeed, dir.z*m_playerMoveSpeed, g_root_node);
 				nodeToCheck->SetVelocity(nodeToCheck->GetVelocity() + g_cam_node->GetVelocity());

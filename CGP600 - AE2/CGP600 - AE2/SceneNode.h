@@ -18,8 +18,8 @@
 #include "Tags.h"
 
 #define VELOCITY_IMPACT_FACTOR 5
-#define ENEMY_SHIP_SPEED 100.0f
-#define MAX_VELOCITY 10.0f
+#define LASER_SPEED 80.0f
+#define MAX_VELOCITY 10
 
 class SceneNode
 {
@@ -30,25 +30,26 @@ public:
 	SceneNode(DeltaTime* deltaTime, bool collidable, string tag, SceneNode* world_root_node, AudioManager* AudioManager, float moveSpeed);
 	~SceneNode();
 	XMVECTOR			GetPos();
-	XMVECTOR			get_world_centre_position();
+	XMVECTOR			GetWorldCentrePosition();
 	XMVECTOR			GetVelocity() { return m_velocity; };
-	XMVECTOR GetLookAt(XMVECTOR direction);
-	XMVECTOR GetOffset() { return m_child_offset; };
+	XMVECTOR			GetLookAt(XMVECTOR direction);
+	XMVECTOR			GetOffset() { return m_child_offset; };
 	XMVECTOR			GetRotation();
-	SceneNode*			check_collision(SceneNode* compare_tree);
-	SceneNode*			check_collision(SceneNode* compare_tree, SceneNode* object_tree_root);
-	SceneNode*			check_collision_ray(XMVECTOR ray_position, XMVECTOR direction_ray);
+	SceneNode*			CheckCollision(SceneNode* compare_tree);
+	SceneNode*			CheckCollision(SceneNode* compare_tree, SceneNode* object_tree_root);
+	SceneNode*			CheckCollisionRay(XMVECTOR ray_position, XMVECTOR direction_ray);
 	SceneNode*			GetOriginalParentNode() { return m_original_parent_node; };
 	string				GetTag() { return m_tag; };
 	vector<SceneNode*>	GetChildren();
+	void				CreateLasers(Model* model);
 	void				SetRotation(float xAngle, float yAngle, float zAngle);
 	void				SetScale(float scale);
 	void				SetModel(Model*model);
 	void				SetCamera(camera*Camera);
 	void				SetPos(XMVECTOR pos);
-	void				addChildNode(SceneNode* n);
-	void				execute(XMMATRIX *world, XMMATRIX* view, XMMATRIX* projection, SceneNode* root_node);
-	void				update_collision_tree(XMMATRIX* world, float scale);
+	void				AddChildNode(SceneNode* n);
+	void				Execute(XMMATRIX *world, XMMATRIX* view, XMMATRIX* projection, SceneNode* root_node);
+	void				UpdateCollisionTree(XMMATRIX* world, float scale);
 	void				MoveForwardIncYNoCollisions(float distance, SceneNode* root_node);
 	void				SetVelocity(XMVECTOR amount) { m_velocity = amount; };
 	void				AddVelocity(SceneNode* root_node);
@@ -59,9 +60,10 @@ public:
 	void				SetOriginalParentNode(SceneNode* original_parent_node);
 	void				ResetNode(SceneNode* node);
 	void				SetMaxHealth();
-	void				ChaseOrFlee(SceneNode* player, SceneNode* root_node);
+	void				AI(SkyBox* skybox, int& score, SceneNode* player, SceneNode* root_node);
 	float				GetScale();
-	bool				isMoveable();
+	float				GetHealth() { return m_health; };
+	bool				IsMoveable();
 	bool				IncPos(float xAmount, float yAmount, float zAmount, SceneNode* root_node);
 	bool				IncRotation(float xAmount, float yAmount, float zAmount, SceneNode* root_node);
 	bool				IncScale(float scaleAmount, SceneNode* root_node);
@@ -69,7 +71,7 @@ public:
 	bool				LookAt_XYZ(XMVECTOR world, SceneNode* root_node);
 	bool				MoveForward(float distance, SceneNode* root_node);
 	bool				MoveForwardIncY(SceneNode* root_node);
-	bool				detachNode(SceneNode* n);	
+	bool				DetachNode(SceneNode* n);	
 
 private:
 	//**************************
@@ -78,8 +80,9 @@ private:
 	int			RandomNumberGenerator(int maxDistance);
 	float		Pythagoras(XMVECTOR v);
 	float		Pythagoras(XMVECTOR v1, XMVECTOR v2);
-	bool		checkChildrenPosition(SceneNode* nodeToCheck, SceneNode* rootNode);
-	void		checkVelocities();
+	bool		CheckChildrenPosition(SceneNode* nodeToCheck, SceneNode* rootNode);
+	void		CheckVelocities();
+	bool		CheckForLaser(SceneNode* compare_tree, SceneNode* object_tree_root);
 
 private:
 	//**************************
@@ -94,6 +97,11 @@ private:
 	SceneNode*			m_original_parent_node;
 
 	//**************************
+	//VECTORS
+	//**************************
+	vector<SceneNode*>	m_vLasers;
+
+	//**************************
 	//VARIABLES
 	//**************************
 	float		m_x, m_y, m_z;
@@ -104,7 +112,9 @@ private:
 	float		m_health;
 	float		m_max_health;
 	float		m_laser_life;
-	float		m_cur_laser_life;
+	float		m_cur_laser_life;	
+	float		m_shoot_cooldown;
+	float		m_cur_shoot_cooldown;
 	float		m_move_speed;
 	bool		m_isActive;
 	bool		m_moveable;

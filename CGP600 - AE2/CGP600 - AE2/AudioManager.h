@@ -39,6 +39,8 @@ using namespace std;
 #define laserFilePath "Assets/Sounds/Laser.wav"
 #define explosionFilePath "Assets/Sounds/Explosion.wav"
 #define spaceFilePath "Assets/Sounds/Space.wav"
+#define thrusterFilePath "Assets/Sounds/Thruster.wav"
+#define spaceshipExplosionFilePath "Assets/Sounds/SpaceshipExplosion.wav"
 
 class AudioManager
 {
@@ -48,8 +50,10 @@ public:
 	//***************************************************
 	AudioManager();
 	~AudioManager();
-	HRESULT Init();
-	HRESULT PlaySoundEffect(string fileName);
+	HRESULT					Init();
+	HRESULT					PlaySoundEffect(string fileName);
+	IXAudio2SourceVoice*	GetSound(string fileName);
+	void					SetVolume(string fileName, float volume);
 
 private:
 	struct VOICE_BUFFER

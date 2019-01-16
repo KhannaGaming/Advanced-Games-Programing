@@ -52,8 +52,8 @@ legacy_stdio_definitions.lib
 //*********************************************************
 //GLOBALS VARIABLES
 //*********************************************************
-HINSTANCE g_hInst = NULL;
-HWND g_hWnd = NULL;
+HINSTANCE					g_hInst = NULL;
+HWND						g_hWnd = NULL;
 D3D_DRIVER_TYPE				g_driverType = D3D_DRIVER_TYPE_NULL;
 D3D_FEATURE_LEVEL			g_featureLevel = D3D_FEATURE_LEVEL_11_0;
 ID3D11Device*				g_pD3DDevice = NULL;
@@ -66,36 +66,37 @@ ID3D11DepthStencilView*		g_pZBuffer;
 camera*						g_pCamera;
 Text2D*						g_pFPSText2D;
 Text2D*						g_pScoreText2D;
-ID3D11BlendState* g_pAlphaBlendEnable; 
-ID3D11BlendState* g_pAlphaBlendDisable; 
-Model* g_SpaceShip;
-Model* g_pAsteroid;
-Model* g_pAsteroid2;
-Model* g_pAsteroid3;
-Model* g_pAsteroid4;
-Model* g_pReflectionModel;
-Model* g_pCube;
-Model* g_pLaser;
-vector<Model*> g_vModels;
-DirectInput* g_pDirectInput;
-SkyBox* g_pSkyBox;
-ParticleGenerator* g_pParticleGenerator;
-SceneNode* g_root_node;
-SceneNode* g_SpaceShipNode; 
-SceneNode* g_SpaceShipNode2;
-SceneNode* g_AsteroidNode;
-SceneNode* g_CameraNode;
-SceneNode* g_SpaceShipEngineNode;
-SceneNode* g_LaserNode;
-SceneNode* g_LaserNode2;
-SceneNode* g_LaserNode3;
-SceneNode* g_LaserNode4;
-vector<SceneNode*> g_vAsteroids;
-vector<Model*> g_vAsteroidModels;
-vector<SceneNode*> g_vPlayerLasers;
-vector<SceneNode*> g_vEnemies;
-DeltaTime* g_pDeltaTime;
-AudioManager* g_pAudioManager;
+Text2D*						g_pHealthText2D;
+ID3D11BlendState*			g_pAlphaBlendEnable; 
+ID3D11BlendState*			g_pAlphaBlendDisable; 
+Model*						g_SpaceShip;
+Model*						g_pAsteroid;
+Model*						g_pAsteroid2;
+Model*						g_pAsteroid3;
+Model*						g_pAsteroid4;
+Model*						g_pReflectionModel;
+Model*						g_pCube;
+Model*						g_pLaser;
+vector<Model*>				g_vModels;
+DirectInput*				g_pDirectInput;
+SkyBox*						g_pSkyBox;
+ParticleGenerator*			g_pParticleGenerator;
+SceneNode*					g_root_node;
+SceneNode*					g_SpaceShipNode; 
+SceneNode*					g_SpaceShipNode2;
+SceneNode*					g_AsteroidNode;
+SceneNode*					g_CameraNode;
+SceneNode*					g_SpaceShipEngineNode;
+SceneNode*					g_LaserNode;
+SceneNode*					g_LaserNode2;
+SceneNode*					g_LaserNode3;
+SceneNode*					g_LaserNode4; 
+vector<SceneNode*>			g_vAsteroids;
+vector<Model*>				g_vAsteroidModels;
+vector<SceneNode*>			g_vPlayerLasers;
+vector<SceneNode*>			g_vEnemies;
+DeltaTime*					g_pDeltaTime;
+AudioManager*				g_pAudioManager;
 
 //Backgournd clear colour
 float g_clear_colour[4] = { 0.0f,0.0f,0.0f,1.0f };
@@ -149,7 +150,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		DXTRACE_MSG("Failed to initialise graphics");
 		return 0;
 	}
-	g_pDirectInput = new DirectInput(g_hInst, g_hWnd, g_pCamera, g_pDeltaTime);
+	g_pDirectInput = new DirectInput(g_hInst, g_hWnd, g_pCamera, g_pDeltaTime, g_pAudioManager);
 	if (FAILED(g_pDirectInput->InitInput()))
 	{
 		DXTRACE_MSG("Failed to create Input");
@@ -432,6 +433,7 @@ HRESULT InitialiseD3D()
 
 	g_pFPSText2D = new Text2D("Assets/font1.png", g_pD3DDevice, g_pImmediateContext);
 	g_pScoreText2D = new Text2D("Assets/font1.png", g_pD3DDevice, g_pImmediateContext);
+	g_pHealthText2D = new Text2D("Assets/font1.png", g_pD3DDevice, g_pImmediateContext);
 
 	D3D11_BLEND_DESC b;
 	b.RenderTarget[0].BlendEnable = TRUE;
@@ -539,7 +541,11 @@ void ShutdownD3D()
 	if (g_pAlphaBlendEnable) g_pAlphaBlendEnable->Release();
 
 
-
+	if (g_pHealthText2D)
+	{
+		delete g_pHealthText2D;
+		g_pHealthText2D = nullptr;
+	}
 	if (g_pFPSText2D)
 	{
 		delete g_pFPSText2D;
@@ -618,13 +624,16 @@ HRESULT InitialiseGraphics()
 	hr = g_pAudioManager->Init();
 	if (FAILED(hr))return hr;
 	g_pAudioManager->PlaySoundEffect("Space");
+	g_pAudioManager->PlaySoundEffect("Thruster");
 
 	//***************************************************************
 	//Create new SceneNode
 	//***************************************************************
 	g_root_node = new SceneNode(g_pDeltaTime, true,Tags::Root,g_root_node, g_pAudioManager, 4.0f);
 	g_SpaceShipNode = new SceneNode(g_pDeltaTime, true,Tags::SpaceShip,g_root_node, g_pAudioManager, 4.0f);
+	g_SpaceShipNode->CreateLasers(g_pLaser);
 	g_SpaceShipNode2 = new SceneNode(g_pDeltaTime, true, Tags::SpaceShip, g_root_node, g_pAudioManager, 4.0f);
+	g_SpaceShipNode2->CreateLasers(g_pLaser);
 	g_SpaceShipEngineNode = new SceneNode(g_pDeltaTime, true, Tags::SpaceShip,g_root_node, g_pAudioManager, 4.0f);
 	g_CameraNode = new SceneNode(g_pDeltaTime, true,Tags::Camera,g_root_node, g_pAudioManager, 4.0f);
 	g_LaserNode = new SceneNode(g_pDeltaTime, false,Tags::Laser,g_root_node, g_pAudioManager, 4.0f);
@@ -652,14 +661,14 @@ HRESULT InitialiseGraphics()
 	//***************************************************************
 	//Add any child nodes
 	//***************************************************************
-	g_root_node->addChildNode(g_CameraNode);
-	g_CameraNode->addChildNode(g_LaserNode);
-	g_CameraNode->addChildNode(g_LaserNode2);
-	g_CameraNode->addChildNode(g_LaserNode3);
-	g_CameraNode->addChildNode(g_LaserNode4);
-	g_root_node->addChildNode(g_SpaceShipNode);
-	g_root_node->addChildNode(g_SpaceShipNode2);
-	g_SpaceShipNode2->addChildNode(g_SpaceShipEngineNode);
+	g_root_node->AddChildNode(g_CameraNode);
+	g_CameraNode->AddChildNode(g_LaserNode);
+	g_CameraNode->AddChildNode(g_LaserNode2);
+	g_CameraNode->AddChildNode(g_LaserNode3);
+	g_CameraNode->AddChildNode(g_LaserNode4);
+	g_root_node->AddChildNode(g_SpaceShipNode);
+	g_root_node->AddChildNode(g_SpaceShipNode2);
+	g_SpaceShipNode2->AddChildNode(g_SpaceShipEngineNode);
 
 	//***************************************************************
 	//Set any other transformations
@@ -671,10 +680,10 @@ HRESULT InitialiseGraphics()
 	g_LaserNode2->SetScale(0.3f);
 	g_LaserNode3->SetScale(0.3f);
 	g_LaserNode4->SetScale(0.3f);
-	g_LaserNode->SetOffset(XMVectorSet(-2.0f, -0.2f, 0.0f, 0));
-	g_LaserNode2->SetOffset(XMVectorSet(2.0f, -0.2f, 0.0f, 0));
-	g_LaserNode3->SetOffset(XMVectorSet(-2.0f, -0.2f, 0.0f, 0));
-	g_LaserNode4->SetOffset(XMVectorSet(2.0f, -0.2f, 0.0f, 0));
+	g_LaserNode->SetOffset(XMVectorSet(0, -1, 0.0f, 0));
+	g_LaserNode2->SetOffset(XMVectorSet(0, -1, 0.0f, 0));
+	g_LaserNode3->SetOffset(XMVectorSet(0, -1, 0.0f, 0));
+	g_LaserNode4->SetOffset(XMVectorSet(0, -1, 0.0f, 0));
 	g_SpaceShipEngineNode->SetPos(XMVectorSet(3.0f, -1.2f, 0, 0));
 
 	//***************************************************************
@@ -686,6 +695,8 @@ HRESULT InitialiseGraphics()
 		g_vPlayerLasers[i]->Activate(false);
 	}
 	g_CameraNode->SetCamera(g_pCamera);
+	g_SpaceShipNode->SetCamera(g_pCamera);
+	g_SpaceShipNode2->SetCamera(g_pCamera);
 	g_LaserNode->SetOriginalParentNode(g_CameraNode);
 	g_LaserNode2->SetOriginalParentNode(g_CameraNode);
 	g_LaserNode3->SetOriginalParentNode(g_CameraNode);
@@ -718,7 +729,7 @@ HRESULT InitialiseGraphics()
 
 	for (size_t i = 0; i < g_vEnemies.size(); i++)
 	{
-		g_vEnemies[i]->ChaseOrFlee(g_vAsteroids[rand()%g_vAsteroids.size()], g_root_node);
+		g_vEnemies[i]->AI(g_pSkyBox, score, g_vAsteroids[rand()%g_vAsteroids.size()], g_root_node);
 	}
 	return S_OK;
 }
@@ -746,7 +757,6 @@ void RenderFrame(void)
 	g_pDeltaTime->Update();
 	for (size_t i = 0; i < g_vPlayerLasers.size(); i++)
 	{
-		g_vPlayerLasers[i]->AddVelocity(g_root_node);
 		g_vPlayerLasers[i]->Update(g_pSkyBox, score, g_root_node);
 	}
 	for (size_t i = 0; i < g_vAsteroids.size(); i++)
@@ -761,7 +771,7 @@ void RenderFrame(void)
 	{
 		if (Pythagoras(g_CameraNode->GetPos(), g_vEnemies[i]->GetPos()) < ENEMY_SIGHT_RADIUS)
 		{
-			g_vEnemies[i]->ChaseOrFlee(g_CameraNode, g_root_node);
+			g_vEnemies[i]->AI(g_pSkyBox, score, g_CameraNode, g_root_node);
 		}
 		else
 		{
@@ -788,7 +798,7 @@ void RenderFrame(void)
 	//***************************************************************
 	//Draw
 	//***************************************************************
-	g_root_node->execute(&XMMatrixIdentity(), &view, &projection, g_root_node);
+	g_root_node->Execute(&XMMatrixIdentity(), &view, &projection, g_root_node);
 	g_pSkyBox->Draw(&view, &projection);
 	g_pParticleGenerator->Draw(&view, &projection, &g_pCamera->GetPos());
 
@@ -798,10 +808,13 @@ void RenderFrame(void)
 	// Enable Alpha blend for text editing and drawing on top 
 	g_pImmediateContext->OMSetBlendState(g_pAlphaBlendEnable, 0, 0xffffffff);	
 	string FPSText = string("FPS ") + to_string(g_pDeltaTime->GetFPS());
-	g_pFPSText2D->AddText(FPSText, -1.0f, +1.0f, 0.05f);
+	g_pFPSText2D->AddText(FPSText, -1.0f, 1.0f, 0.05f);
 	g_pFPSText2D->RenderText();
 	string scoreText = string( "Score ") + to_string(score);
-	g_pScoreText2D->AddText(scoreText, -0.25f, +0.9f, 0.1f);
+	g_pScoreText2D->AddText(scoreText, -0.4f, 0.9f, 0.1f);
+	g_pScoreText2D->RenderText();
+	string healthText = string("Health ") + to_string((int)g_CameraNode->GetHealth());
+	g_pScoreText2D->AddText(healthText, 0.5f, 1.0f, 0.05f);
 	g_pScoreText2D->RenderText();
 	g_pImmediateContext->OMSetBlendState(g_pAlphaBlendDisable, 0, 0xffffffff);
 
@@ -818,7 +831,7 @@ void CreateAsteroids()
 		SceneNode* tempAsteroid = new SceneNode(g_pDeltaTime, true, Tags::Asteroid, g_root_node, g_pAudioManager, 4.0f);
 		
 		tempAsteroid->SetModel(g_vAsteroidModels[rand()%4]);
-		g_root_node->addChildNode(tempAsteroid);
+		g_root_node->AddChildNode(tempAsteroid);
 		do
 		{
 			//***************************************************************

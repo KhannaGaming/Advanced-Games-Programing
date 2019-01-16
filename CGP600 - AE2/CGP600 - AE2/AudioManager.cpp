@@ -39,7 +39,7 @@ HRESULT AudioManager::Init()
 	if (FAILED(hr = CreateVoice(&voice_buffer->pSourceVoice, &voice_buffer->buffer)))
 		return hr;
 	m_soundForBuffer["Explosion"] = 1;
-	voice_buffer->pSourceVoice->SetVolume(0.4f);
+	voice_buffer->pSourceVoice->SetVolume(0.5f);
 	m_soundEffects.push_back(*voice_buffer);
 
 	if (FAILED(hr = LoadFromFile(spaceFilePath, voice_buffer)))
@@ -49,6 +49,25 @@ HRESULT AudioManager::Init()
 		return hr;
 	m_soundForBuffer["Space"] = 2;
 	voice_buffer->buffer.LoopCount = XAUDIO2_LOOP_INFINITE;
+	m_soundEffects.push_back(*voice_buffer);
+
+	if (FAILED(hr = LoadFromFile(thrusterFilePath, voice_buffer)))
+		return hr;
+
+	if (FAILED(hr = CreateVoice(&voice_buffer->pSourceVoice, &voice_buffer->buffer)))
+		return hr;
+	m_soundForBuffer["Thruster"] = 3;
+	voice_buffer->pSourceVoice->SetVolume(2.0f);
+	voice_buffer->buffer.LoopCount = XAUDIO2_LOOP_INFINITE;
+	m_soundEffects.push_back(*voice_buffer);
+
+	if (FAILED(hr = LoadFromFile(spaceshipExplosionFilePath, voice_buffer)))
+		return hr;
+
+	if (FAILED(hr = CreateVoice(&voice_buffer->pSourceVoice, &voice_buffer->buffer)))
+		return hr;
+	m_soundForBuffer["SpaceshipExplosion"] = 4;
+	voice_buffer->pSourceVoice->SetVolume(0.3f);
 	m_soundEffects.push_back(*voice_buffer);
 
 	return S_OK;
@@ -71,6 +90,16 @@ HRESULT AudioManager::PlaySoundEffect(string fileName)
 		return hr;
 
 	return S_OK;
+}
+
+IXAudio2SourceVoice* AudioManager::GetSound(string fileName)
+{
+	return m_soundEffects[m_soundForBuffer[fileName]].pSourceVoice;
+}
+
+void AudioManager::SetVolume(string fileName, float volume)
+{
+	m_soundEffects[m_soundForBuffer[fileName]].pSourceVoice->SetVolume(volume);
 }
 
 HRESULT AudioManager::FindChunk(HANDLE hFile, DWORD fourcc, DWORD & dwChunkSize, DWORD & dwChunkDataPosition)
